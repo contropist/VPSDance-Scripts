@@ -1,2 +1,15 @@
 # scripts
-Linux VPS tools
+Tools and Scripts for Linux VPS
+
+<!--
+# cdn: https://cdn.statically.io/gh/:user/:repo/:tag/:file, https://cdn.statically.io/gh/cloudend/scripts/main/tools.sh
+# cdn: https://cdn.jsdelivr.net/gh/:user/:repo/, https://cdn.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
+# cdn: https://hub.fastgit.org/:user/:repo/, https://hub.fastgit.org/zhboner/realm/releases/download/v1.4/realm
+# cdn: https://ghproxy.com/https://github.com/:user/:repo/, https://ghproxy.com/https://github.com/zhboner/realm/releases/download/v1.4/realm
+-->
+
+
+- worldSpeed
+```sh
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh) -4
+```
