@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-# Usage: bash <(curl -Lso- https://git.io/speed_test)
-# or: bash <(curl -Lso- https://cdn.jsdelivr.net/gh/CloudEndIO/scripts@main/speedtest.sh) [-4, -6]
-# or: bash <(curl -Lso- https://raw.fastgit.org/CloudEndIO/scripts/main/speedtest.sh)
-# or: bash <(curl -Lso- https://raw.fastgit.org/CloudEndIO/scripts/main/speedtest.sh) [-4, -6]
+# Usage:
+# bash <(curl -Lso- https://cdn.statically.io/gh/cloudend/scripts/main/worldSpeed.sh)  [-4, -6]
+# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh)
+# bash <(curl -Lso- https://raw.githack.com/cloudend/scripts/main/worldSpeed.sh)
+# bash <(curl -Lso- https://gitcdn.link/cdn/cloudend/scripts/main/worldSpeed.sh)
+# bash <(curl -Lso- https://raw.fastgit.org/cloudend/scripts/main/worldSpeed.sh)
 
 # References:
 # https://github.com/flyzy2005/scripts
