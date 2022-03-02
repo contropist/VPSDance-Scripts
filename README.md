@@ -13,3 +13,16 @@ Tools and Scripts for Linux VPS
 ```sh
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh) -4
 ```
+
+- install ddns-go
+```sh
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/tools.sh) ddns-go -p
+```
+- install gost
+```sh
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/CloudEndIO/scripts@main/tools.sh) gost -p
+```
+- install realm
+```sh
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/CloudEndIO/scripts@main/tools.sh) realm -p
+```
