@@ -26,3 +26,8 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/CloudEndIO/scripts@main/tools.sh) 
 ```sh
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/CloudEndIO/scripts@main/tools.sh) realm -p
 ```
+
+- paste text and share
+```
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/paste.sh)
+```
