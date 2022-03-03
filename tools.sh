@@ -24,7 +24,7 @@ prerelease=$( [[ "${2}" =~ ^(-p|prerelease)$ ]] && echo true || echo false )
 debug=$( [[ $OS == "Darwin" ]] && echo true || echo false )
 
 check_root () {
-  if [[ "$USER" != 'root' ]]; then
+  if [[ "$USER" != 'root' ]]; then # [[ "$EUID" -ne 0 ]]
     printf "${RED}[x] Please run this script as root! \n${NC}"; exit 1;
     # if [[ "$debug" != true ]]; then exit 1; fi
   fi
