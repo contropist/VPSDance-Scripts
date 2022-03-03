@@ -8,7 +8,15 @@
 # bash <(curl -Lso- https://raw.fastgit.org/cloudend/scripts/main/tools.sh)
 
 
-OS=$(uname -s)
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BOLD="\033[1m"
+NC='\033[0m'
+
+OS=$(uname -s) # Linux, FreeBSD, Darwin
+ARCH=$(uname -m) # x86_64, arm64, aarch64
 # DISTRO=$( [[ -e $(which lsb_release) ]] && (lsb_release -si) || echo 'unknown' ) which/lsb_release command not found
 DISTRO=$( ([[ -e "/usr/bin/yum" ]] && echo 'CentOS') || ([[ -e "/usr/bin/apt" ]] && echo 'Debian') || echo 'unknown' )
 name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
@@ -17,8 +25,8 @@ debug=$( [[ $OS == "Darwin" ]] && echo true || echo false )
 
 check_root () {
   if [[ "$USER" != 'root' ]]; then
-    echo 'Please run this script as root!'
-    if [[ "$debug" != true ]]; then exit 1; fi
+    printf "${RED}[x] Please run this script as root! \n${NC}"; exit 1;
+    # if [[ "$debug" != true ]]; then exit 1; fi
   fi
 }
 prompt_yn () {
@@ -32,7 +40,97 @@ prompt_yn () {
   done
 }
 init () {
-  case "${DISTRO}" in
+  case "$name" in
+    snell)
+      app="snell"
+      config="/root/snell.conf"
+      repo="surge-networks/snell"
+      case $ARCH in
+        aarch64)
+          match="linux-aarch64"
+        ;;
+        *) #x86_64
+         match="linux-amd64"
+        ;;
+      esac
+    ;;
+    realm)
+      app="realm"
+      config="/root/realm.json"
+      # repo="zhboner/realm"
+      # match=""
+      repo="zephyrchien/realm"
+      case $ARCH in
+        aarch64)
+          match="aarch64.*linux-gnu.*.gz"
+        ;;
+        *) #x86_64
+         match="x86_64.*linux-gnu.*.gz"
+        ;;
+      esac
+    ;;
+    gost)
+      app="gost"
+      config="/root/gost.json"
+      repo="ginuerzh/gost"
+      case $ARCH in
+        aarch64)
+          match="linux-armv8"
+        ;;
+        *) #x86_64
+         match="linux-amd64"
+        ;;
+      esac
+    ;;
+    ss | shadowsocks)
+      app="ss"
+      config="/root/ss.json"
+      repo="shadowsocks/shadowsocks-rust"
+      case $ARCH in
+        aarch64)
+          match="aarch64.*linux-gnu"
+        ;;
+        *) #x86_64
+         match="x86_64.*linux-gnu"
+        ;;
+      esac
+    ;;
+    nali)
+      app="nali"
+      repo="zu1k/nali"
+      case $ARCH in
+        aarch64)
+          match="linux-armv8"
+        ;;
+        *) #x86_64
+         match="linux-amd64"
+        ;;
+      esac
+    ;;
+    wtrace | worsttrace)
+      app="wtrace"
+    ;;
+    ddns-go)
+      app="ddns-go"
+      config="/root/ddns-go.yaml"
+      repo="jeessy2/ddns-go"
+      case $ARCH in
+        aarch64)
+          match="Linux_.*arm64"
+        ;;
+        *) #x86_64
+         match="Linux_.*x86_64"
+        ;;
+      esac
+    ;;
+    *)
+      printf "${YELLOW}Please specify app_name (snell|realm|gost|ss|nali|wtrace|ddns-go)\n\n${NC}";
+      exit
+    ;;
+  esac
+}
+install_deps () {
+    case "${DISTRO}" in
     Debian*|Ubuntu*)
       apt install -y curl wget zip unzip tar xz-utils gzip;
     ;;
@@ -40,51 +138,6 @@ init () {
       yum install -y curl wget zip unzip tar xz gzip;
     ;;
     *)
-    ;;
-  esac
-
-  case "$name" in
-    snell)
-      app="snell"
-      repo="surge-networks/snell"
-      match="linux-amd64"
-      config="/root/snell.conf"
-    ;;
-    realm)
-      app="realm"
-      repo="zhboner/realm"
-      match=""
-      config="/root/realm.json"
-    ;;
-    gost)
-      app="gost"
-      repo="ginuerzh/gost"
-      match="linux-amd64"
-      config="/root/gost.json"
-    ;;
-    ss | shadowsocks)
-      app="ss"
-      repo="shadowsocks/shadowsocks-rust"
-      match="x86_64.*linux-gnu"
-      config="/root/ss.json"
-    ;;
-    nali)
-      app="nali"
-      repo="zu1k/nali"
-      match="linux-amd64"
-    ;;
-    wtrace | worsttrace)
-      app="wtrace"
-    ;;
-    ddns-go)
-      app="ddns-go"
-      repo="jeessy2/ddns-go"
-      match="Linux_*x86_64"
-      autogen="/root/ddns-go.yaml"
-    ;;
-    *)
-      echo "Please specify app_name (snell|realm|gost|ss|nali|wtrace|ddns-go)"
-      exit
     ;;
   esac
 }
@@ -103,10 +156,17 @@ download () {
       fi
     ;;
     wtrace)
-      url="https://pkg.wtrace.app/linux/worsttrace"
+      case $ARCH in
+        aarch64)
+          printf "${RED}[x] $ARCH not supported ${PLAIN}\n${NC}"; exit 1;
+        ;;
+        *) #x86_64
+         url="https://pkg.wtrace.app/linux/worsttrace"
+        ;;
+      esac
     ;;
   esac
-  echo -e "\n[Download] $url"
+  echo -e "${GREEN}\n[Download]${NC} $url"
   if [[ "$debug" != true ]]; then
     wget $url
   fi
@@ -124,6 +184,7 @@ download () {
     ;;
     realm)
       # curl -s https://api.github.com/repos/zhboner/realm/releases/latest | grep "browser_download_url.*" | cut -d : -f 2,3 | xargs wget -O ./realm {}; chmod +x realm
+      if [[ `compgen -G "realm*.tar.gz"` ]]; then tar xzvf realm*.tar.gz; rm -rf realm*.tar.gz; fi
       mv ./realm /usr/bin/realm; chmod +x /usr/bin/realm;
     ;;
     gost)
@@ -163,7 +224,7 @@ gen_service () {
     ;;
   esac
   if ! [[ -n "$service" ]]; then return; fi
-  echo -e "\n[Generate service]"
+  echo -e "${GREEN}\n[Generate service]${NC}"
   if [[ "$debug" = true ]]; then
     echo -e $service
   else
@@ -187,7 +248,6 @@ gen_config () {
   # port=$(( ${RANDOM:0:4} + 10000 )) # random 10000-20000
   port="${port:-1234}"
   pass=$(openssl rand -base64 32 | tr -dc A-Za-z0-9 | cut -b1-16)
-  echo -e "\n[Create config file] \"$config\", for example:"
   # conf=('{'
   # '}')
   # conf="$(printf "%s\n" "${conf[@]}")"
@@ -241,7 +301,8 @@ gen_config () {
       conf="$(printf "%s\n" "${conf[@]}")"
     ;;
   esac
-  if [[ -n "$config" ]]; then
+  if [[ -n "$config" && -n "$conf" ]]; then
+    echo -e "\n[Create config file] \"$config\", for example:"
     echo -e "$conf"
   fi
 }
@@ -249,12 +310,12 @@ finally () {
   # echo "Port:       $port"
   # echo "Password:   $pass"
   if [[ -n "$service" ]]; then
-    echo -e "\n[Enable and start service]"
-    if [[ -n "$config" ]]; then
+    echo -e "${GREEN}\n[Enable and start service]${NC}"
+    if [[ -n "$config" && -n "$conf" ]]; then
       echo -e "- Please make sure \"$config\" exists.\n- Run the following commands:"
     fi
   else
-    echo -e "\n[Usage]"
+    echo -e "${GREEN}\n[Usage]${NC}"
   fi
   case "$app" in
     nali)
@@ -265,6 +326,7 @@ finally () {
     ;;
     ddns-go)
       tips="systemctl restart $app;\n\nOpen http://127.0.0.1:9876 for configuration."
+      tips="$tips\n\n [Auto-generated] \"$config\"\n"
     ;;
     *)
       tips="systemctl restart $app; systemctl status $app;"
@@ -273,14 +335,12 @@ finally () {
   if [[ -n "$tips" ]]; then
     echo -e "$tips\n"
   fi
-  if [[ -n "$autogen" ]]; then
-    echo -e "\n[Auto Generate file] \"$autogen\"\n"
-  fi
 }
 
 # echo "name: $name; repo=$repo; prerelease=$prerelease"
 init
 check_root
+install_deps
 download
 gen_service
 gen_config
