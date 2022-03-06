@@ -32,6 +32,11 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/CloudEndIO/scripts@main/tools.sh) 
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/paste.sh)
 ```
 
+- unlockTest
+```
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.sh)
+```
+
 update cache:
 
 https://purge.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
