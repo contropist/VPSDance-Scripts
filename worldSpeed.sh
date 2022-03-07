@@ -94,6 +94,7 @@ test () {
   # speed_test 'http://hk4.lg.starrydns.com/100MB.test' 'StarryDNS, HongKong, CN' '4'
   # speed_test 'http://tpdb.speed2.hinet.net/test_100m.zip' 'Hinet, Taiwan' '4,6' # http (QoS)
   speed_test 'ftp://ftp:ftp@ftp.speed.hinet.net/test_100m.zip' 'Hinet, Taiwan' '4,6' # ftp
+  speed_test 'http://ftp1.apol.com.tw/test_100m.dat' 'APOL, Taiwan' '4'
   speed_test 'http://speedtest.tokyo2.linode.com/100MB-tokyo2.bin' 'Linode, Tokyo, JP' '4,6'
   speed_test 'http://speedtest.tok02.softlayer.com/downloads/test100.zip' 'Softlayer, Tokyo, JP' '4,6'
   speed_test 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Seoul, KR' '4,6'
