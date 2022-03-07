@@ -35,7 +35,7 @@ speed_test () {
     return
   fi
   local speedtest=$(curl $stack -m 12 -Lo /dev/null -skw "%{speed_download}\n" "$1" )
-  local host=$(awk -F':' '{print $1}' <<< `awk -F'/' '{print $3}' <<< $1`)
+  local host=$((awk '{gsub(/^.*@/,"", $0); print $0}' | awk -F':' '{print $1}')  <<< `awk -F'/' '{print $3}' <<< $1`)
   local ipaddress=$($PING -c1 -n ${host} | awk -F'[()]' '{print $2;exit}')
   local nodeName=$2
   # printf "%-32s%-24s%-14s\n" "${nodeName}" "${ipaddress}" "$(FormatBytes $speedtest)"
@@ -92,7 +92,8 @@ test () {
   # speed_test 'https://hk.edis.at/100MB.test' 'EDIS, HongKong, CN' '4,6'
   # speed_test 'http://hkg-speedtest.lg.bluevps.com/100MB.bin' 'BlueVPS, HongKong, CN' '4'
   # speed_test 'http://hk4.lg.starrydns.com/100MB.test' 'StarryDNS, HongKong, CN' '4'
-  speed_test 'http://tpdb.speed2.hinet.net/test_100m.zip' 'Hinet, Taiwan' '4,6'
+  # speed_test 'http://tpdb.speed2.hinet.net/test_100m.zip' 'Hinet, Taiwan' '4,6' # http (QoS)
+  speed_test 'ftp://ftp:ftp@ftp.speed.hinet.net/test_100m.zip' 'Hinet, Taiwan' '4,6' # ftp
   speed_test 'http://speedtest.tokyo2.linode.com/100MB-tokyo2.bin' 'Linode, Tokyo, JP' '4,6'
   speed_test 'http://speedtest.tok02.softlayer.com/downloads/test100.zip' 'Softlayer, Tokyo, JP' '4,6'
   speed_test 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Seoul, KR' '4,6'
