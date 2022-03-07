@@ -54,4 +54,4 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoWorstTra
 update cache:
 
 https://purge.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
-https://purge.jsdelivr.net/gh/cloudend/scripts@main/speedtest.sh
+https://purge.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh
