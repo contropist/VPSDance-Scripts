@@ -37,6 +37,12 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/paste.sh)
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.sh)
 ```
 
+- superBench
+```
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/superBench.sh)
+```
+
+
 update cache:
 
 https://purge.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
