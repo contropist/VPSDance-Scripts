@@ -42,6 +42,14 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.s
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/superBench.sh)
 ```
 
+- autoBestTrace
+```
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoBestTrace.sh)
+```
+- autoWorstTrace
+```
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoWorstTrace.sh)
+```
 
 update cache:
 
