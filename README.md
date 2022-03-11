@@ -46,6 +46,10 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/superBench.s
 ```
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoBestTrace.sh)
 ```
+- autoNaliTrace
+```
+ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoNaliTrace.sh)
+```
 - autoWorstTrace
 ```
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoWorstTrace.sh)
