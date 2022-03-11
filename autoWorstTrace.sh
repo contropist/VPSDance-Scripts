@@ -4,6 +4,9 @@
 # bash <(curl -Lso- https://cdn.statically.io/gh/cloudend/scripts/main/autoWorstTrace.sh)
 # bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoWorstTrace.sh)
 
+# Trap interrupts and exit instead of continuing the loop
+trap "echo Exited!; exit;" SIGINT SIGTERM
+
 # install worsttrace
 if [ ! -f "/usr/bin/worsttrace" ]; then
   bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/tools.sh) wtrace -p
