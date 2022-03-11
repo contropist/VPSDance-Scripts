@@ -10,6 +10,7 @@ if [ ! -f "/usr/bin/nali" ]; then
 fi
 
 ## start to use nali
+nali update;
 
 next() {
   printf "%-70s\n" "-" | sed 's/\s/-/g'
