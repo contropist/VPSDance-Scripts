@@ -24,8 +24,9 @@ ip_addr=(广州电信 上海电信 厦门电信 重庆联通 成都联通 上海
 
 for i in {0..7}
 do
-	echo ${ip_addr[$i]}
-	worsttrace ${ip_list[$i]} | sed ':a;N;s/.*WorstTrace.*\n//g;ta' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d'
-	next
+  echo ${ip_addr[$i]}
+  # currently doesn't support TCP
+  worsttrace ${ip_list[$i]} | sed ':a;N;s/.*WorstTrace.*\n//g;ta; s/^[[:space:]]*//;s/[[:space:]]*$//; /^$/d'
+  next
 done
 # worsttrace 202.112.14.151 | sed ':a;N;s/.*WorstTrace.*\n//g;ta' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d'
