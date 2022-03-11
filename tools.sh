@@ -195,6 +195,7 @@ download () {
     ;;
     nali)
       gzip -d nali-*.gz; mv ./nali-* /usr/bin/nali; chmod +x /usr/bin/nali;
+      nali update;
     ;;
     wtrace)
       mv ./worsttrace /usr/bin/worsttrace; chmod +x /usr/bin/worsttrace;
