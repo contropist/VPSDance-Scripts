@@ -61,9 +61,9 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoWorstTra
 
 update cache:
 
-https://purge.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
-https://purge.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh
-https://purge.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.sh
-https://purge.jsdelivr.net/gh/cloudend/scripts@main/superBench.sh
-https://purge.jsdelivr.net/gh/cloudend/scripts@main/bench.sh
+- https://purge.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
+- https://purge.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh
+- https://purge.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.sh
+- https://purge.jsdelivr.net/gh/cloudend/scripts@main/superBench.sh
+- https://purge.jsdelivr.net/gh/cloudend/scripts@main/bench.sh
 
