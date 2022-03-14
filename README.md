@@ -63,3 +63,7 @@ update cache:
 
 https://purge.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
 https://purge.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh
+https://purge.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.sh
+https://purge.jsdelivr.net/gh/cloudend/scripts@main/superBench.sh
+https://purge.jsdelivr.net/gh/cloudend/scripts@main/bench.sh
+
