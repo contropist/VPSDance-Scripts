@@ -41,6 +41,10 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.s
 ```
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/superBench.sh)
 ```
+- bench
+```
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/bench.sh)
+```
 
 - autoBestTrace
 ```
