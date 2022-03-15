@@ -4,12 +4,12 @@
 
 bash <(
   curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/bench.sh \
-  | sed "/Los Angeles/Ii speed_test '34115' 'TianJin, CT CN'" \
-  | sed "/Los Angeles/Ii speed_test '27594' 'Guangzhou, CT CN'" \
-  | sed "/Los Angeles/Ii speed_test '4870' 'Changsha, CU CN'" \
-  | sed "/Los Angeles/Ii speed_test '13704' 'Nanjing, CU CN'" \
-  | sed "/Los Angeles/Ii speed_test '26404' 'Hefei, CM CN'" \
-  | sed "/Los Angeles/Ii speed_test '15863' 'Nanning, CM CN'" \
+  | sed "/Los Angeles/Ii speed_test '34115' 'TianJin CT'" \
+  | sed "/Los Angeles/Ii speed_test '27594' 'Guangzhou CT'" \
+  | sed "/Los Angeles/Ii speed_test '4870' 'Changsha CU'" \
+  | sed "/Los Angeles/Ii speed_test '13704' 'Nanjing CU'" \
+  | sed "/Los Angeles/Ii speed_test '26404' 'Hefei CM'" \
+  | sed "/Los Angeles/Ii speed_test '15863' 'Nanning CM'" \
   | sed "/.*, CN/Id"
 )
 
