@@ -10,6 +10,7 @@
 # References:
 # https://github.com/flyzy2005/scripts
 # https://github.com/manvari/server-speedtest
+# https://cnman.github.io/speedtest.html
 
 # Colors
 RED='\033[0;31m'
@@ -112,7 +113,8 @@ test () {
   speed_test 'https://il-us-ping.vultr.com/vultr.com.100MB.bin' 'Vultr, Chicago, US' '4'
   # speed_test 'http://lg.den2-c.fdcservers.net/100MBtest.zip' 'FDC, Denver, US' '4'
   region "Eastern US"
-  speed_test 'http://speedtest.newark.linode.com/100MB-newark.bin' 'Linode, Newark, NJ, US' '4,6'
+  # speed_test 'http://speedtest.newark.linode.com/100MB-newark.bin' 'Linode, Newark, NJ, US' '4,6'
+  speed_test 'http://speedtest-nyc1.digitalocean.com/100mb.test' 'Digital Ocean, New York, US' '4,6'
   speed_test 'http://mirror.wdc1.us.leaseweb.net/speedtest/100mb.bin' 'Softlayer, Washington, US' '4,6'
   region "Canada"
   speed_test 'http://speedtest-tor1.digitalocean.com/100mb.test' 'DO, Toronto, CA' '4,6'
