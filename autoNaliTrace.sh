@@ -6,7 +6,7 @@
 
 # install nali
 if [ ! -f "/usr/bin/nali" ]; then
-  bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/tools.sh) nali -p
+  bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) nali -p
 fi
 
 ## start to use nali
