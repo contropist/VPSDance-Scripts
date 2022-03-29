@@ -11,35 +11,35 @@ Tools and Scripts for Linux VPS
 
 - worldSpeed
 ```sh
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh) -4
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/worldSpeed.sh) -4
 ```
 
 - install ddns-go
 ```sh
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/tools.sh) ddns-go -p
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) ddns-go -p
 ```
 - install gost
 ```sh
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/CloudEndIO/scripts@main/tools.sh) gost -p
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) gost -p
 ```
 - install realm
 ```sh
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/CloudEndIO/scripts@main/tools.sh) realm -p
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) realm -p
 ```
 
 - paste text and share
 ```
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/paste.sh)
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/paste.sh)
 ```
 
 - unlockTest
 ```
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.sh)
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/unlockTest.sh)
 ```
 
 - superBench
 ```
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/superBench.sh)
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/superBench.sh)
 ```
 - bench
 ```
@@ -52,18 +52,18 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoBestTrac
 ```
 - autoNaliTrace
 ```
- bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoNaliTrace.sh)
+ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoNaliTrace.sh)
 ```
 - autoWorstTrace
 ```
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoWorstTrace.sh)
+bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoWorstTrace.sh)
 ```
 
 update cache:
 
-- https://purge.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
-- https://purge.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh
-- https://purge.jsdelivr.net/gh/cloudend/scripts@main/unlockTest.sh
-- https://purge.jsdelivr.net/gh/cloudend/scripts@main/superBench.sh
-- https://purge.jsdelivr.net/gh/cloudend/scripts@main/bench.sh
+- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh
+- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/worldSpeed.sh
+- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/unlockTest.sh
+- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/superBench.sh
+- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/bench.sh
 
