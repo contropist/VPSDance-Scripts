@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/tools.sh) [snell|realm|gost|ss|nali|wtrace|ddns-go] -p
+# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/tools.sh) [snell|realm|gost|ss|nali|wtrace|ddns-go]
 # bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh)
 # bash <(curl -Lso- https://raw.githack.com/VPSDance/scripts/main/tools.sh)
 # bash <(curl -Lso- https://raw.fastgit.org/VPSDance/scripts/main/tools.sh)
@@ -19,7 +19,8 @@ ARCH=$(uname -m) # x86_64, arm64, aarch64
 # DISTRO=$( [[ -e $(which lsb_release) ]] && (lsb_release -si) || echo 'unknown' ) which/lsb_release command not found
 DISTRO=$( ([[ -e "/usr/bin/yum" ]] && echo 'CentOS') || ([[ -e "/usr/bin/apt" ]] && echo 'Debian') || echo 'unknown' )
 name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
-prerelease=$( [[ "${2}" =~ ^(-p|prerelease)$ ]] && echo true || echo false )
+# prerelease=$( [[ "${2}" =~ ^(-p|prerelease)$ ]] && echo true || echo false )
+prerelease=true
 debug=$( [[ $OS == "Darwin" ]] && echo true || echo false )
 
 check_root () {
