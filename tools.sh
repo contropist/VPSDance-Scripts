@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://cdn.statically.io/gh/cloudend/scripts/main/tools.sh) [snell|realm|gost|ss|nali|wtrace|ddns-go] -p
-# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/tools.sh)
-# bash <(curl -Lso- https://raw.githack.com/cloudend/scripts/main/tools.sh)
-# bash <(curl -Lso- https://gitcdn.link/cdn/cloudend/scripts/main/tools.sh)
-# bash <(curl -Lso- https://raw.fastgit.org/cloudend/scripts/main/tools.sh)
+# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/tools.sh) [snell|realm|gost|ss|nali|wtrace|ddns-go] -p
+# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh)
+# bash <(curl -Lso- https://raw.githack.com/VPSDance/scripts/main/tools.sh)
+# bash <(curl -Lso- https://raw.fastgit.org/VPSDance/scripts/main/tools.sh)
 
 
 # Colors
