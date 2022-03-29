@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://cdn.statically.io/gh/cloudend/scripts/main/autoNaliTrace.sh)
-# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoNaliTrace.sh)
+# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/autoNaliTrace.sh)
+# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoNaliTrace.sh)
 
 # install nali
 if [ ! -f "/usr/bin/nali" ]; then
