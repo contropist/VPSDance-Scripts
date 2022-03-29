@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://cdn.statically.io/gh/cloudend/scripts/main/worldSpeed.sh)  [-4, -6]
-# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/worldSpeed.sh)
-# bash <(curl -Lso- https://raw.githack.com/cloudend/scripts/main/worldSpeed.sh)
-# bash <(curl -Lso- https://gitcdn.link/cdn/cloudend/scripts/main/worldSpeed.sh)
-# bash <(curl -Lso- https://raw.fastgit.org/cloudend/scripts/main/worldSpeed.sh)
+# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/worldSpeed.sh)  [-4, -6]
+# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/worldSpeed.sh)
+# bash <(curl -Lso- https://raw.githack.com/VPSDance/scripts/main/worldSpeed.sh)
+# bash <(curl -Lso- https://gitcdn.link/cdn/VPSDance/scripts/main/worldSpeed.sh)
+# bash <(curl -Lso- https://raw.fastgit.org/VPSDance/scripts/main/worldSpeed.sh)
 
 # References:
 # https://github.com/flyzy2005/scripts
