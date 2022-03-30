@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/init.sh) [snell|realm|gost|ss|nali|wtrace|ddns-go]
+# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/init.sh)
 # bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/init.sh)
 # bash <(curl -Lso- https://raw.githack.com/VPSDance/scripts/main/init.sh)
 # bash <(curl -Lso- https://raw.fastgit.org/VPSDance/scripts/main/init.sh)
