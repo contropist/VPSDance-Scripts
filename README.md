@@ -8,7 +8,7 @@ Tools and Scripts for Linux VPS
 # cdn: https://ghproxy.com/https://github.com/:user/:repo/, https://ghproxy.com/https://github.com/zhboner/realm/releases/download/v1.4/realm
 -->
 
--- VPS Tool box(include all scripts)
+- VPS Tool box(include all scripts)
 ```sh
 bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/init.sh)
 ```
