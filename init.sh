@@ -127,7 +127,7 @@ start() {
   info "13. 安装 realm (端口转发工具)"
   info "14. 安装 gost (隧道/端口转发工具)"
   info "15. 安装 nali (IP查询工具)"
-  info "16. 安装 wtrace (路由追踪工具 WorstTrace)"
+  info "16. 安装 worsttrace (路由追踪工具)"
   info "17. 安装 ddns-go (DDNS工具)"
   # info "19. 安装 wireguard"
   info "21. 检测 VPS流媒体解锁 (RegionRestrictionCheck)"
