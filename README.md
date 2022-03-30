@@ -8,12 +8,6 @@ Tools and Scripts for Linux VPS
 # cdn: https://ghproxy.com/https://github.com/:user/:repo/, https://ghproxy.com/https://github.com/zhboner/realm/releases/download/v1.4/realm
 -->
 
-
-- worldSpeed
-```sh
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/worldSpeed.sh) -4
-```
-
 - install ddns-go
 ```sh
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) ddns-go -p
@@ -62,7 +56,6 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoWorstTra
 update cache:
 
 - https://purge.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh
-- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/worldSpeed.sh
 - https://purge.jsdelivr.net/gh/VPSDance/scripts@main/unlockTest.sh
 - https://purge.jsdelivr.net/gh/VPSDance/scripts@main/superBench.sh
 - https://purge.jsdelivr.net/gh/VPSDance/scripts@main/bench.sh
