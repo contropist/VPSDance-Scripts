@@ -84,6 +84,9 @@ install_deps() {
 install_bbr() {
   bash <(curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/bbr.sh)
 }
+bashrc() {
+  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/bashrc.sh)
+}
 install_tool() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh) "$@"
 }
@@ -105,6 +108,9 @@ bench() {
 super_speed() {
   bash <(curl -Lso- https://raw.githubusercontent.com/flyzy2005/superspeed/master/superspeed.sh)
 }
+lemon_bench() {
+  curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast
+}
 yabs() {
   info "curl -sL yabs.sh | bash -s -- -dir"
   curl -sL yabs.sh | bash -s -- -dir
@@ -121,20 +127,23 @@ start() {
   echo -e "${BLUE}请选择要使用的功能${NC}"
   info "1. [推荐] 安装常用软件 (curl/wget/ping/traceroute...)"
   info "2. [推荐] 安装并开启 BBR"
+  info "3. 终端优化 (颜色美化/上下键查找历史)"
   # info "3. [推荐] 系统配置优化"
   info "11. 安装 shadowsocks"
   info "12. 安装 snell"
   info "13. 安装 realm (端口转发工具)"
   info "14. 安装 gost (隧道/端口转发工具)"
   info "15. 安装 nali (IP查询工具)"
-  info "16. 安装 worsttrace (路由追踪工具)"
+  info "16. 安装 wtrace (路由追踪工具 WorstTrace)"
   info "17. 安装 ddns-go (DDNS工具)"
   # info "19. 安装 wireguard"
   info "21. 检测 VPS流媒体解锁 (RegionRestrictionCheck)"
-  info "22. 检测 VPS系统/IO/到国内网速 (SuperBench)"
-  info "23. 检测 VPS系统/IO/到国际网速 (Bench.sh)"
+  info "22. 检测 VPS信息/IO/到国内网速 (SuperBench)"
+  info "23. 检测 VPS信息/IO/到国际网速 (Bench.sh)"
   info "24. 性能测试 (YABS)"
   # info "25. 检测 到国内网速(电信/移动/联通) (Superspeed)"
+  # info "25. 检测 VPS信息/IO/路由 (LemonBench)"
+  info "25. "
   # info "29. 性能测试 (UnixBench)"
   # info "31. DD重装Linux系统"
   while :; do
@@ -154,7 +163,8 @@ main() {
   header
   if [[ "$num" == "1" ]]; then install_deps
 	elif [[ "$num" == "2" ]]; then install_bbr
-	elif [[ "$num" == "3" ]]; then tcpx
+	elif [[ "$num" == "3" ]]; then bashrc
+	# elif [[ "$num" == "4" ]]; then tcpx
 	elif [[ "$num" == "11" ]]; then install_tool "ss"
 	elif [[ "$num" == "12" ]]; then install_tool "snell"
 	elif [[ "$num" == "13" ]]; then install_tool "realm"
@@ -168,6 +178,7 @@ main() {
 	elif [[ "$num" == "23" ]]; then bench
 	elif [[ "$num" == "24" ]]; then yabs
 	# elif [[ "$num" == "25" ]]; then super_speed
+	# elif [[ "$num" == "25" ]]; then lemon_bench
 	# elif [[ "$num" == "29" ]]; then unix_bench
 	# elif [[ "$num" == "31" ]]; then reinstall
   else exit
