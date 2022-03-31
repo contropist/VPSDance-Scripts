@@ -5,7 +5,7 @@
 
 # mkdir -m 700 ~/.ssh; chmod 600 ~/.ssh/authorized_keys >> ~/.ssh/authorized_keys
 
-mmkdir -p "${HOME}/.ssh"; chmod 700 "${HOME}/.ssh";
+mkdir -p "${HOME}/.ssh"; chmod 700 "${HOME}/.ssh";
 if [[ ! -f "${HOME}/.ssh/authorized_keys" ]]; then echo '' >> ~/.ssh/authorized_keys; fi
 chmod 600 "${HOME}/.ssh/authorized_keys"
 
