@@ -326,7 +326,8 @@ finally () {
       tips="worsttrace g.cn;"
     ;;
     ddns-go)
-      tips="systemctl restart $app;\n\nOpen http://127.0.0.1:9876 for configuration."
+      systemctl restart $app;
+      tips="\nOpen http://127.0.0.1:9876 for configuration."
       tips="$tips\n\n [Auto-generated] \"$config\"\n"
     ;;
     *)
