@@ -140,9 +140,9 @@ reinstall() {
 start() {
   header
   echo -e "${BLUE}请选择要使用的功能${NC}"
-  info "1. [推荐] 安装常用软件 (curl/wget/ping/traceroute...)"
+  info "1. [推荐] 终端优化 (颜色美化/上下键查找历史)"
   info "2. [推荐] 安装并开启 BBR"
-  info "3. [推荐] 终端优化 (颜色美化/上下键查找历史)"
+  info "3. [推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
   info "4. [推荐] 系统优化 (TCP网络/资源限制)"
   info "11. 安装 shadowsocks"
   info "12. 安装 snell"
@@ -179,29 +179,29 @@ start() {
 main() {
   clear
   header
-  if [[ "$num" == "1" ]]; then install_deps
-	elif [[ "$num" == "2" ]]; then install_bbr
-	elif [[ "$num" == "3" ]]; then bashrc
-	elif [[ "$num" == "4" ]]; then tuning
-	elif [[ "$num" == "11" ]]; then install_tool "ss"
-	elif [[ "$num" == "12" ]]; then install_tool "snell"
-	elif [[ "$num" == "13" ]]; then install_tool "realm"
-	elif [[ "$num" == "14" ]]; then install_tool "gost"
-	elif [[ "$num" == "15" ]]; then install_tool "nali"
-	elif [[ "$num" == "16" ]]; then install_tool "wtrace"
-	elif [[ "$num" == "17" ]]; then install_tool "ddns-go"
-	# elif [[ "$num" == "19" ]]; then install_wireguard
-	elif [[ "$num" == "21" ]]; then unlock_test
-	elif [[ "$num" == "22" ]]; then super_bench
-	elif [[ "$num" == "23" ]]; then bench
-	elif [[ "$num" == "24" ]]; then yabs
-	elif [[ "$num" == "25" ]]; then besttrace
-	elif [[ "$num" == "26" ]]; then worsttrace
-	elif [[ "$num" == "27" ]]; then nalitrace
-	# elif [[ "$num" == "29" ]]; then unix_bench
-	# elif [[ "$num" == "31" ]]; then reinstall
+  if [[ "$num" == "1" ]]; then bashrc
+  elif [[ "$num" == "2" ]]; then install_bbr
+  elif [[ "$num" == "3" ]]; then install_deps
+  elif [[ "$num" == "4" ]]; then tuning
+  elif [[ "$num" == "11" ]]; then install_tool "ss"
+  elif [[ "$num" == "12" ]]; then install_tool "snell"
+  elif [[ "$num" == "13" ]]; then install_tool "realm"
+  elif [[ "$num" == "14" ]]; then install_tool "gost"
+  elif [[ "$num" == "15" ]]; then install_tool "nali"
+  elif [[ "$num" == "16" ]]; then install_tool "wtrace"
+  elif [[ "$num" == "17" ]]; then install_tool "ddns-go"
+  # elif [[ "$num" == "19" ]]; then install_wireguard
+  elif [[ "$num" == "21" ]]; then unlock_test
+  elif [[ "$num" == "22" ]]; then super_bench
+  elif [[ "$num" == "23" ]]; then bench
+  elif [[ "$num" == "24" ]]; then yabs
+  elif [[ "$num" == "25" ]]; then besttrace
+  elif [[ "$num" == "26" ]]; then worsttrace
+  elif [[ "$num" == "27" ]]; then nalitrace
+  # elif [[ "$num" == "29" ]]; then unix_bench
+  # elif [[ "$num" == "31" ]]; then reinstall
   else exit
-	fi
+  fi
 }
 
 check_root
