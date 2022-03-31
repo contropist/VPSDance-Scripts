@@ -115,6 +115,15 @@ yabs() {
   info "curl -sL yabs.sh | bash -s -- -dir"
   curl -sL yabs.sh | bash -s -- -dir
 }
+besttrace() {
+  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoBestTrace.sh)
+}
+worsttrace() {
+  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoWorstTrace.sh)
+}
+nalitrace() {
+  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoNaliTrace.sh)
+}
 unix_bench() {
   bash <(curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/unixbench.sh)
 }
@@ -127,7 +136,7 @@ start() {
   echo -e "${BLUE}请选择要使用的功能${NC}"
   info "1. [推荐] 安装常用软件 (curl/wget/ping/traceroute...)"
   info "2. [推荐] 安装并开启 BBR"
-  info "3. 终端优化 (颜色美化/上下键查找历史)"
+  info "3. [推荐] 终端优化 (颜色美化/上下键查找历史)"
   # info "3. [推荐] 系统配置优化"
   info "11. 安装 shadowsocks"
   info "12. 安装 snell"
@@ -143,7 +152,9 @@ start() {
   info "24. 性能测试 (YABS)"
   # info "25. 检测 到国内网速(电信/移动/联通) (Superspeed)"
   # info "25. 检测 VPS信息/IO/路由 (LemonBench)"
-  info "25. "
+  info "25. 检测 回程路由 (BestTrace)"
+  info "26. 检测 回程路由 (WorstTrace)"
+  info "27. 检测 回程路由 (traceroute + nali)"
   # info "29. 性能测试 (UnixBench)"
   # info "31. DD重装Linux系统"
   while :; do
@@ -177,8 +188,9 @@ main() {
 	elif [[ "$num" == "22" ]]; then super_bench
 	elif [[ "$num" == "23" ]]; then bench
 	elif [[ "$num" == "24" ]]; then yabs
-	# elif [[ "$num" == "25" ]]; then super_speed
-	# elif [[ "$num" == "25" ]]; then lemon_bench
+	elif [[ "$num" == "25" ]]; then besttrace
+	elif [[ "$num" == "26" ]]; then worsttrace
+	elif [[ "$num" == "27" ]]; then nalitrace
 	# elif [[ "$num" == "29" ]]; then unix_bench
 	# elif [[ "$num" == "31" ]]; then reinstall
   else exit
