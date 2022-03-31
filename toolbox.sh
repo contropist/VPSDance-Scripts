@@ -87,8 +87,14 @@ install_bbr() {
 bashrc() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/bashrc.sh)
 }
+tuning() {
+  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tuning.sh)
+}
 install_tool() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh) "$@"
+}
+install_wrap() {
+  bash <(curl -fsSL https://raw.githubusercontent.com/P3TERX/warp.sh/main/warp.sh) menu
 }
 install_wireguard(){
   curl -Ls https://raw.githubusercontent.com/teddysun/across/master/wireguard.sh | bash -s -- -r
@@ -100,7 +106,6 @@ unlock_test() {
 }
 super_bench() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/superBench.sh)
-  curl -sL https://raw.githubusercontent.com/VPSDance/scripts/main/superBench.sh | bash -s io
 }
 bench() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/bench.sh)
@@ -137,7 +142,7 @@ start() {
   info "1. [推荐] 安装常用软件 (curl/wget/ping/traceroute...)"
   info "2. [推荐] 安装并开启 BBR"
   info "3. [推荐] 终端优化 (颜色美化/上下键查找历史)"
-  # info "3. [推荐] 系统配置优化"
+  info "4. [推荐] 系统优化 (TCP网络/资源限制)"
   info "11. 安装 shadowsocks"
   info "12. 安装 snell"
   info "13. 安装 realm (端口转发工具)"
@@ -145,6 +150,7 @@ start() {
   info "15. 安装 nali (IP查询工具)"
   info "16. 安装 wtrace (路由追踪工具 WorstTrace)"
   info "17. 安装 ddns-go (DDNS工具)"
+  # info "18. 安装 warp"
   # info "19. 安装 wireguard"
   info "21. 检测 VPS流媒体解锁 (RegionRestrictionCheck)"
   info "22. 检测 VPS信息/IO/到国内网速 (SuperBench)"
@@ -175,7 +181,7 @@ main() {
   if [[ "$num" == "1" ]]; then install_deps
 	elif [[ "$num" == "2" ]]; then install_bbr
 	elif [[ "$num" == "3" ]]; then bashrc
-	# elif [[ "$num" == "4" ]]; then tcpx
+	elif [[ "$num" == "4" ]]; then tuning
 	elif [[ "$num" == "11" ]]; then install_tool "ss"
 	elif [[ "$num" == "12" ]]; then install_tool "snell"
 	elif [[ "$num" == "13" ]]; then install_tool "realm"
