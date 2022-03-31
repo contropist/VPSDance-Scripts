@@ -54,7 +54,7 @@ python_version() {
 
 header() {
   next
-  printf "%s\n" "[VPS Tool box]"
+  printf "%s\n" "[VPS ToolBox]"
   printf "%b\n" "${GREEN}VPS/IPLC测评:${NC} ${YELLOW}https://vps.dance/${NC}"
   printf "%b\n" "目前支持: Ubuntu/Debian, Centos/Redhat"
   next
