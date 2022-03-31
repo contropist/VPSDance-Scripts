@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
+# bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/toolbox.sh)
 # bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/toolbox.sh)
 # bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/toolbox.sh)
 # bash <(curl -Lso- https://raw.githack.com/VPSDance/scripts/main/toolbox.sh)
