@@ -6,8 +6,9 @@
 
 # allusers=$( cat /etc/passwd | grep -vE "(/bin/false|/sbin/nologin|/bin/sync|guest-)" | cut -d: -f1 )
 # allusers=$(awk -F':' '$2 ~ "\\$" {print $1}' /etc/shadow)
-for file in /root/.bashrc /home/*/.bashrc ; do
+for file in /root/.bashrc /home/*/.bashrc; do
   # echo $file;
+  if [[ ! -f "$file" ]]; then continue; fi;
   # delete lines between two patterns
   sed -i '/^# => vps.dance/,/^# <= vps.dance/d' $file;
   # insert lines
