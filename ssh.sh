@@ -30,13 +30,14 @@ main () {
 
   for home in /root /home/*;
   do
-    if [[ ! -e "$home" ]]; then continue; fi; # echo $home;
+    if [[ ! -e "$home" ]]; then continue; fi;
+    # echo $home;
+    echo "$text" >> "${home}/.ssh/authorized_keys"
     # remove-duplicates
     # sed -nr 'G;/^([^\n]+\n)([^\n]+\n)*\1/!{P;h}'
     # awk '!seen[$0]++'
     sed -i "/^$/d" "${home}/.ssh/authorized_keys"
     sed -i -nr 'G;/^([^\n]+\n)([^\n]+\n)*\1/!{P;h}' "${home}/.ssh/authorized_keys"
-    echo "$text" >> "${home}/.ssh/authorized_keys"
   done
 }
 main
