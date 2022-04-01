@@ -85,6 +85,9 @@ install_deps() {
 install_bbr() {
   bash <(curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/bbr.sh)
 }
+ssh_key() {
+  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/ssh.sh)
+}
 bashrc() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/bashrc.sh)
 }
@@ -140,10 +143,11 @@ reinstall() {
 start() {
   header
   echo -e "${BLUE}请选择要使用的功能${NC}"
-  info "1. [推荐] 终端优化 (颜色美化/上下键查找历史)"
-  info "2. [推荐] 安装并开启 BBR"
-  info "3. [推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
-  info "4. [推荐] 系统优化 (TCP网络/资源限制)"
+  info "1. [推荐] 配置SSH Public Key (SSH免密登录)"
+  info "2. [推荐] 终端优化 (颜色美化/上下键查找历史)"
+  info "3. [推荐] 安装并开启 BBR"
+  info "4. [推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
+  info "5. [推荐] 系统优化 (TCP网络/资源限制)"
   info "11. 安装 shadowsocks"
   info "12. 安装 snell"
   info "13. 安装 realm (端口转发工具)"
@@ -179,10 +183,11 @@ start() {
 main() {
   clear
   header
-  if [[ "$num" == "1" ]]; then bashrc
-  elif [[ "$num" == "2" ]]; then install_bbr
-  elif [[ "$num" == "3" ]]; then install_deps
-  elif [[ "$num" == "4" ]]; then tuning
+  if [[ "$num" == "1" ]]; then ssh_key
+  if [[ "$num" == "2" ]]; then bashrc
+  elif [[ "$num" == "3" ]]; then install_bbr
+  elif [[ "$num" == "4" ]]; then install_deps
+  elif [[ "$num" == "5" ]]; then tuning
   elif [[ "$num" == "11" ]]; then install_tool "ss"
   elif [[ "$num" == "12" ]]; then install_tool "snell"
   elif [[ "$num" == "13" ]]; then install_tool "realm"
