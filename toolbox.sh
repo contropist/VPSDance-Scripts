@@ -140,7 +140,7 @@ reinstall() {
   bash <(curl -Lso- https://raw.githubusercontent.com/hiCasper/Shell/master/AutoReinstall.sh)
 }
 
-start() {
+menu() {
   header
   echo -e "${BLUE}请选择要使用的功能${NC}"
   info "1. [推荐] 配置SSH Public Key (SSH免密登录)"
@@ -184,7 +184,7 @@ main() {
   clear
   header
   if [[ "$num" == "1" ]]; then ssh_key
-  if [[ "$num" == "2" ]]; then bashrc
+  elif [[ "$num" == "2" ]]; then bashrc
   elif [[ "$num" == "3" ]]; then install_bbr
   elif [[ "$num" == "4" ]]; then install_deps
   elif [[ "$num" == "5" ]]; then tuning
@@ -210,5 +210,5 @@ main() {
 }
 
 check_root
-start
+menu
 main
