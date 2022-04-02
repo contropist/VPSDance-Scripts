@@ -15,7 +15,7 @@ sysctl_conf="/etc/sysctl.conf"
 allusers=$( cat /etc/passwd | grep -vE "(/bin/false|/sbin/nologin|/bin/sync|guest-)" | cut -d: -f1 )
 # allusers=$(awk -F':' '$2 ~ "\\$" {print $1}' /etc/shadow)
 
-reload_sysctl() { sysctl -q -p && sysctl -q --system; }
+reload_sysctl() { sysctl -q -p && sysctl --system; }
 check_sysctl() {
   if [ ! -f '/etc/sysctl.conf' ]; then touch /etc/sysctl.conf; fi
 }
@@ -30,12 +30,7 @@ ulimited_tuning() {
   # max open files
   sed -i '/fs.file-max/d' "$sysctl_conf"
   echo 'fs.file-max=102400' >> "$sysctl_conf"
-
-  ulimit -SHn 65535 && ulimit -c unlimited
-  if ! grep -q "ulimit" /etc/profile; then
-    sed -i '/ulimit -SHn/d' /etc/profile
-    echo "ulimit -SHn 1000000" >> /etc/profile
-  fi
+  # max user processes
   for usr in $allusers '\*'; do
     usr="${usr/\\/}"
     sed -i "/${usr}.*\(nproc\|nofile\|memlock\)/d" "$limits_conf"
@@ -46,38 +41,43 @@ ulimited_tuning() {
     echo "${usr} soft    memlock  unlimited" >> "$limits_conf"
     echo "${usr} hard    memlock  unlimited" >> "$limits_conf"
   done
-  reload_sysctl
+  if ! grep -q "ulimit" /etc/profile; then
+    sed -i '/ulimit -SHn/d' /etc/profile
+    echo "ulimit -SHn 1000000" >> /etc/profile
+  fi
+  ulimit -SHn 65535 && ulimit -c unlimited
+  # reload_sysctl
 }
 
 # sysctl -a | grep mem
 tcp_tuning() {
   check_sysctl
   # incoming connections
-  sed -i '/net.core.somaxconn/d' >> "$sysctl_conf"
+  sed -i '/net.core.somaxconn/d' "$sysctl_conf"
   echo 'net.core.somaxconn=65535' >> "$sysctl_conf"
   # 保持time_wait套接字的最大数
-  sed -i '/net.ipv4.tcp_max_tw_buckets/d' >> "$sysctl_conf"
+  sed -i '/net.ipv4.tcp_max_tw_buckets/d' "$sysctl_conf"
   echo 'net.ipv4.tcp_max_tw_buckets=8192' >> "$sysctl_conf"
   # 端口随机分配的范围
-  sed -i '/net.ipv4.ip_local_port_range/d' >> "$sysctl_conf"
+  sed -i '/net.ipv4.ip_local_port_range/d' "$sysctl_conf"
   echo 'net.ipv4.ip_local_port_range=10240 65000' >> "$sysctl_conf"
   # TCP内存自动调整
-  sed -i '/net.ipv4.tcp_moderate_rcvbuf/d' >> "$sysctl_conf"
+  sed -i '/net.ipv4.tcp_moderate_rcvbuf/d' "$sysctl_conf"
   echo 'net.ipv4.tcp_moderate_rcvbuf=1' >> "$sysctl_conf"
   # TCP窗口大小缩放
   sed -i '/net.ipv4.tcp_window_scaling/d' "$sysctl_conf"
   echo 'net.ipv4.tcp_window_scaling=1' >> "$sysctl_conf"
   # TCP缓冲区
   BDP='16777216' # 26214400
-  # sed -i '/net.ipv4.tcp_rmem/d' >> "$sysctl_conf"
-  # sed -i '/net.ipv4.tcp_wmem/d' >> "$sysctl_conf"
+  # sed -i '/net.ipv4.tcp_rmem/d' "$sysctl_conf"
+  # sed -i '/net.ipv4.tcp_wmem/d' "$sysctl_conf"
   # echo "net.ipv4.tcp_rmem=4096 131072 $BDP" >> "$sysctl_conf"
   # echo "net.ipv4.tcp_wmem=4096 16384 $BDP" >> "$sysctl_conf"
-  sed -i '/net.core.rmem_max/d' >> "$sysctl_conf"
-  sed -i '/net.core.wmem_max/d' >> "$sysctl_conf"
+  sed -i '/net.core.rmem_max/d' "$sysctl_conf"
+  sed -i '/net.core.wmem_max/d' "$sysctl_conf"
   echo "net.core.rmem_max=$BDP" >> "$sysctl_conf"
   echo "net.core.wmem_max=$BDP" >> "$sysctl_conf"
-  sed -i '/net.core.rmem_default/d' >> "$sysctl_conf"
+  sed -i '/net.core.rmem_default/d' "$sysctl_conf"
   echo "net.core.rmem_default=$BDP" >> "$sysctl_conf" # 212992, `$BDP / 2`
   # TCP Fast Open
   sed -i '/net.ipv4.tcp_fastopen/d' "$sysctl_conf"
@@ -103,7 +103,8 @@ tcp_tuning() {
   # 如果套接字由本端要求关闭, 保持FIN-WAIT-2状态的时间(默认值60)
   sed -i '/net.ipv4.tcp_fin_timeout/d' "$sysctl_conf"
   echo 'net.ipv4.tcp_fin_timeout=30' >> "$sysctl_conf"
-  reload_sysctl
+  # reload_sysctl
 }
 ulimited_tuning
 tcp_tuning
+reload_sysctl
