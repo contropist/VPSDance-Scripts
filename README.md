@@ -31,27 +31,9 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) re
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/paste.sh)
 ```
 
-- unlockTest
-```
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/unlockTest.sh)
-```
-
-- superBench
-```
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/superBench.sh)
-```
-- bench
-```
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/bench.sh)
-```
-
 - autoBestTrace
 ```
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoBestTrace.sh)
-```
-- autoNaliTrace
-```
- bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoNaliTrace.sh)
 ```
 - autoWorstTrace
 ```
@@ -60,8 +42,5 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoWorstTra
 
 update cache:
 
+- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/toolbox.sh
 - https://purge.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh
-- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/unlockTest.sh
-- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/superBench.sh
-- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/bench.sh
-
