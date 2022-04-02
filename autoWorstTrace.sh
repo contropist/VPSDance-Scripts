@@ -7,6 +7,13 @@
 # Trap interrupts and exit instead of continuing the loop
 trap "echo Exited!; exit;" SIGINT SIGTERM
 
+footer() {
+  BLUE="\033[34m"; NC='\033[0m'
+  printf "%-37s\n" "-" | sed 's/\s/-/g'
+  printf "%b\n" " Supported by: ${BLUE}https://vps.dance${NC}"
+  printf "%-37s\n" "-" | sed 's/\s/-/g'
+}
+
 # install worsttrace
 if [ ! -f "/usr/bin/worsttrace" ]; then
   bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) wtrace -p
@@ -33,3 +40,5 @@ do
   next
 done
 # worsttrace 202.112.14.151 | sed ':a;N;s/.*WorstTrace.*\n//g;ta' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d'
+footer
+
