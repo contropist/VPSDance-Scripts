@@ -57,13 +57,15 @@ header() {
   next
   printf "%s\n" "[VPS ToolBox]"
   printf "%b\n" "${GREEN}VPS/IPLC测评:${NC} ${YELLOW}https://vps.dance/${NC}"
+  printf "%b\n" "${GREEN}Telegram频道:${NC} ${YELLOW}https://https://t.me/vpsdance${NC}"
   printf "%b\n" "目前支持: Ubuntu/Debian, Centos/Redhat"
   next
 }
 footer() {
-  next
-  printf "%b\n" "Supported by: https://vps.dance"
-  next
+  BLUE="\033[34m"; NC='\033[0m'
+  printf "%-37s\n" "-" | sed 's/\s/-/g'
+  printf "%b\n" " Supported by: ${BLUE}https://vps.dance${NC}"
+  printf "%-37s\n" "-" | sed 's/\s/-/g'
 }
 
 install_deps() {
