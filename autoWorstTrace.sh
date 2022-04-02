@@ -39,6 +39,6 @@ do
   worsttrace ${ip_list[$i]} | sed ':a;N;s/.*WorstTrace.*\n//g;ta; s/^[[:space:]]*//;s/[[:space:]]*$//; /^$/d'
   next
 done
-# worsttrace 202.112.14.151 | sed ':a;N;s/.*WorstTrace.*\n//g;ta' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d'
 footer
+# worsttrace 202.112.14.151 | sed ':a;N;s/.*WorstTrace.*\n//g;ta' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | sed '/^$/d'
 
