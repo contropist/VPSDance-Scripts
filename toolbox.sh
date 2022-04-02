@@ -147,7 +147,7 @@ menu() {
   info "2. [推荐] 终端优化 (颜色美化/上下键查找历史)"
   info "3. [推荐] 安装并开启 BBR"
   info "4. [推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
-  info "5. [推荐] 系统优化 (TCP网络/资源限制)"
+  info "5. [推荐] 系统优化 (TCP网络优化/资源限制优化)"
   info "11. 安装 shadowsocks"
   info "12. 安装 snell"
   info "13. 安装 realm (端口转发工具)"
