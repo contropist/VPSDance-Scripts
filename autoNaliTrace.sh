@@ -4,6 +4,13 @@
 # bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/autoNaliTrace.sh)
 # bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoNaliTrace.sh)
 
+footer() {
+  BLUE="\033[34m"; NC='\033[0m'
+  printf "%-37s\n" "-" | sed 's/\s/-/g'
+  printf "%b\n" " Supported by: ${BLUE}https://vps.dance${NC}"
+  printf "%-37s\n" "-" | sed 's/\s/-/g'
+}
+
 # install nali
 if [ ! -f "/usr/bin/nali" ]; then
   bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) nali -p
@@ -30,6 +37,7 @@ do
   | sed 's/ 对方和您在同一内部网//g; s/\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\ *\[.*\]\) *([0-9\.]\+ [^)]\+)/\1/g; s/ \[\(as.*\/as.*\)\]/ [*]/Ig'
 	next
 done
+footer
 # echo '2  172.30.83.68 [局域网 对方和您在同一内部网]  (172.30.83.68 [局域网 对方和您在同一内部网] ) [*]  2.847 ms' | sed 's/ 对方和您在同一内部网//g'
 # echo '2  172.30.83.68 [局域网]  (172.30.83.68 [局域网] ) [*]  1.956 ms' | sed 's/\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\ *\[.*\]\) *([0-9\.]\+ [^)]\+)/#\1#/g'
 # echo '2  172.30.83.68 [局域网]  (172.30.83.68 [局域网] ) [*]  1.956 ms' | sed 's/ *([0-9\.]\+ [^)]\+)/#\0#/g'
