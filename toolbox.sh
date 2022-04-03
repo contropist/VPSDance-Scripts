@@ -192,6 +192,7 @@ main() {
   elif [[ "$num" == "3" ]]; then install_bbr
   elif [[ "$num" == "4" ]]; then install_deps
   elif [[ "$num" == "5" ]]; then tuning
+  elif [[ "$num" == "6" ]]; then ssh_port
   elif [[ "$num" == "11" ]]; then install_tool "ss"
   elif [[ "$num" == "12" ]]; then install_tool "snell"
   elif [[ "$num" == "13" ]]; then install_tool "realm"
