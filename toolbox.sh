@@ -135,12 +135,6 @@ yabs() {
 besttrace() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoBestTrace.sh)
 }
-worsttrace() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoWorstTrace.sh)
-}
-nalitrace() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoNaliTrace.sh)
-}
 unix_bench() {
   bash <(curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/unixbench.sh)
 }
@@ -170,8 +164,6 @@ menu() {
   success "23." "检测 VPS信息/IO/到国际网速 (Bench.sh)"
   success "24." "性能测试 (YABS)"
   success "25." "检测 回程路由 (BestTrace)"
-  # success "26." "检测 回程路由 (WorstTrace)"
-  # success "27." "检测 回程路由 (traceroute + nali)"
   # success "25." "检测 到国内网速(电信/移动/联通) (Superspeed)"
   # success "25." "检测 VPS信息/IO/路由 (LemonBench)"
   # success "29." "性能测试 (UnixBench)"
@@ -210,8 +202,6 @@ main() {
   elif [[ "$num" == "23" ]]; then bench
   elif [[ "$num" == "24" ]]; then yabs
   elif [[ "$num" == "25" ]]; then besttrace
-  # elif [[ "$num" == "26" ]]; then worsttrace
-  # elif [[ "$num" == "27" ]]; then nalitrace
   # elif [[ "$num" == "29" ]]; then unix_bench
   # elif [[ "$num" == "31" ]]; then reinstall
   else exit
