@@ -14,7 +14,6 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE="\033[34m"
 PURPLE="\033[35m"
-SKYBLUE="\033[36m"
 BOLD="\033[1m"
 NC='\033[0m'
 
@@ -26,22 +25,29 @@ debug=$( [[ $OS == "Darwin" ]] && echo true || echo false )
 
 check_root() {
   if [[ "$USER" != 'root' ]]; then # [[ "$EUID" -ne 0 ]]
-    error "Please run this script as root!"; exit 1;
+    danger "Please run this script as root!"; exit 1;
     # if [[ "$debug" != true ]]; then exit 1; fi
   fi
 }
 next() {
   printf "%-37s\n" "-" | sed 's/\s/-/g'
 }
-error() {
-  printf "${RED}[x] %s${NC}\n" "$@"
+success() {
+  printf "${GREEN}%s${NC} ${@:2}\n" "$1"
 }
 info() {
-  printf "${SKYBLUE}%s${NC}\n" "$@"
+  printf "${BLUE}%s${NC} ${@:2}\n" "$1"
+}
+danger() {
+  printf "${RED}[x] %s${NC}\n" "$@"
 }
 warn() {
   printf "${YELLOW}%s${NC}\n" "$@"
 }
+nc() {
+  printf "${NC}%s${NC}\n" "$@" # No Color
+}
+
 # if (ver_lte 3 3.0); then echo 3; else echo 2; fi # ver_lte 2.5.7 3 && echo "yes" || echo "no"
 ver_lte() { # <=
   [  "$(printf '%s\n' "$@" | sort -V | head -n 1)" = "$1" ] && return 0 || return 1
@@ -144,40 +150,40 @@ reinstall() {
 
 menu() {
   header
-  echo -e "${BLUE}请选择要使用的功能${NC}"
-  info "1. [推荐] 配置SSH Public Key (SSH免密登录)"
-  info "2. [推荐] 终端优化 (颜色美化/上下键查找历史)"
-  info "3. [推荐] 安装并开启 BBR"
-  info "4. [推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
-  info "5. [推荐] 系统优化 (TCP网络优化/资源限制优化)"
-  info "11. 安装 shadowsocks"
-  info "12. 安装 snell"
-  info "13. 安装 realm (端口转发工具)"
-  info "14. 安装 gost (隧道/端口转发工具)"
-  info "15. 安装 nali (IP查询工具)"
-  # info "16. 安装 wtrace (路由追踪工具 WorstTrace)"
-  info "17. 安装 ddns-go (DDNS工具)"
-  # info "18. 安装 warp"
-  # info "19. 安装 wireguard"
-  info "21. 检测 VPS流媒体解锁 (RegionRestrictionCheck)"
-  info "22. 检测 VPS信息/IO/到国内网速 (SuperBench)"
-  info "23. 检测 VPS信息/IO/到国际网速 (Bench.sh)"
-  info "24. 性能测试 (YABS)"
-  # info "25. 检测 到国内网速(电信/移动/联通) (Superspeed)"
-  # info "25. 检测 VPS信息/IO/路由 (LemonBench)"
-  info "25. 检测 回程路由 (BestTrace)"
-  # info "26. 检测 回程路由 (WorstTrace)"
-  # info "27. 检测 回程路由 (traceroute + nali)"
-  # info "29. 性能测试 (UnixBench)"
-  # info "31. DD重装Linux系统"
+  info "请选择要使用的功能"
+  success "1." "[推荐] 配置SSH Public Key (SSH免密登录)"
+  success "2." "[推荐] 终端优化 (颜色美化/上下键查找历史)"
+  success "3." "[推荐] 安装并开启 BBR"
+  success "4." "[推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
+  success "5." "[推荐] 系统优化 (TCP网络优化/资源限制优化)"
+  success "11." "安装 shadowsocks"
+  success "12." "安装 snell"
+  success "13." "安装 realm (端口转发工具)"
+  success "14." "安装 gost (隧道/端口转发工具)"
+  success "15." "安装 nali (IP查询工具)"
+  success "16." "安装 ddns-go (DDNS工具)"
+  # success "17." "安装 warp"
+  # success "18." "安装 wireguard"
+  # success "19." "安装 wtrace (路由追踪工具 WorstTrace)"
+  success "21." "检测 VPS流媒体解锁 (RegionRestrictionCheck)"
+  success "22." "检测 VPS信息/IO/到国内网速 (SuperBench)"
+  success "23." "检测 VPS信息/IO/到国际网速 (Bench.sh)"
+  success "24." "性能测试 (YABS)"
+  success "25." "检测 回程路由 (BestTrace)"
+  # success "26." "检测 回程路由 (WorstTrace)"
+  # success "27." "检测 回程路由 (traceroute + nali)"
+  # success "25." "检测 到国内网速(电信/移动/联通) (Superspeed)"
+  # success "25." "检测 VPS信息/IO/路由 (LemonBench)"
+  # success "29." "性能测试 (UnixBench)"
+  # success "31." "DD重装Linux系统"
   while :; do
     read -p "输入数字以选择:" num
-    [[ $num =~ ^[0-9]+$ ]] || { error "请输入正确的数字"; continue; }
+    [[ $num =~ ^[0-9]+$ ]] || { danger "请输入正确的数字"; continue; }
     break
     # if ((num >= 1 && num <= 5)); then
     #   break
     # else
-    #   error "请输入正确的数字";
+    #   danger "请输入正确的数字";
     # fi
   done
 }
@@ -195,9 +201,10 @@ main() {
   elif [[ "$num" == "13" ]]; then install_tool "realm"
   elif [[ "$num" == "14" ]]; then install_tool "gost"
   elif [[ "$num" == "15" ]]; then install_tool "nali"
-  # elif [[ "$num" == "16" ]]; then install_tool "wtrace"
-  elif [[ "$num" == "17" ]]; then install_tool "ddns-go"
-  # elif [[ "$num" == "19" ]]; then install_wireguard
+  elif [[ "$num" == "16" ]]; then install_tool "ddns-go"
+  # elif [[ "$num" == "17" ]]; then install_wrap
+  # elif [[ "$num" == "18" ]]; then install_wireguard
+  # elif [[ "$num" == "19" ]]; then install_tool "wtrace"
   elif [[ "$num" == "21" ]]; then unlock_test
   elif [[ "$num" == "22" ]]; then super_bench
   elif [[ "$num" == "23" ]]; then bench
