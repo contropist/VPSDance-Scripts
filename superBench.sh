@@ -11,7 +11,7 @@ python_version() {
 main() {
   # fix python3 error
   local ver=$(python_version) # echo $ver
-  curl -Lso- https://cdn.jsdelivr.net/gh/oooldking/script@1.1.7/tools.py > tools.py
+  curl -Lso- https://raw.githubusercontent.com/oooldking/script/master/tools.py > tools.py
   if (ver_lte 3 $ver); then
     sed -i 's/print \(.*\)$/print(\1)/g' tools.py
     sed -i 's/,urllib2,/,/g' tools.py
