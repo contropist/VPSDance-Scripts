@@ -31,9 +31,10 @@ main() {
     | sed "s/27154' 'TianJin/4870' 'Changsha/Ig" \
     | sed "s/26678' 'Guangzhou 5G/13704' 'Nanjing/Ig" \
     | sed "s/17184' 'Tianjin/26404' 'Hefei/Ig" \
-    | sed "/.*26850' 'Wuxi/Id" \ # | sed "s/27249' 'Nanjing 5G/15863' 'Nanning/Ig" \
+    | sed "/.*26850' 'Wuxi/Id" \
     | sed "/.*28491' 'Changsha/Id" \
     | sed '/^[ \t]*speed_fast_com$/d'
+    # | sed "s/27249' 'Nanjing 5G/15863' 'Nanning/Ig"
   )
 }
 main
