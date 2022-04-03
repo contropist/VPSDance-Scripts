@@ -35,10 +35,7 @@ bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/paste.sh)
 ```
 bash <(curl -Lso- https://cdn.jsdelivr.net/gh/cloudend/scripts@main/autoBestTrace.sh)
 ```
-- autoWorstTrace
-```
-bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoWorstTrace.sh)
-```
+
 
 update cache:
 
