@@ -102,6 +102,9 @@ bashrc() {
 tuning() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tuning.sh)
 }
+ssh_port() {
+  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/ssh.sh) port
+}
 install_tool() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh) "$@"
 }
@@ -150,6 +153,7 @@ menu() {
   success "3." "[推荐] 安装并开启 BBR"
   success "4." "[推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
   success "5." "[推荐] 系统优化 (TCP网络优化/资源限制优化)"
+  success "6." "[推荐] 修改默认SSH端口 (防止被攻击)"
   success "11." "安装 shadowsocks"
   success "12." "安装 snell"
   success "13." "安装 realm (端口转发工具)"
