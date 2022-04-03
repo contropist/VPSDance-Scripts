@@ -155,7 +155,7 @@ menu() {
   info "13. 安装 realm (端口转发工具)"
   info "14. 安装 gost (隧道/端口转发工具)"
   info "15. 安装 nali (IP查询工具)"
-  info "16. 安装 wtrace (路由追踪工具 WorstTrace)"
+  # info "16. 安装 wtrace (路由追踪工具 WorstTrace)"
   info "17. 安装 ddns-go (DDNS工具)"
   # info "18. 安装 warp"
   # info "19. 安装 wireguard"
@@ -166,8 +166,8 @@ menu() {
   # info "25. 检测 到国内网速(电信/移动/联通) (Superspeed)"
   # info "25. 检测 VPS信息/IO/路由 (LemonBench)"
   info "25. 检测 回程路由 (BestTrace)"
-  info "26. 检测 回程路由 (WorstTrace)"
-  info "27. 检测 回程路由 (traceroute + nali)"
+  # info "26. 检测 回程路由 (WorstTrace)"
+  # info "27. 检测 回程路由 (traceroute + nali)"
   # info "29. 性能测试 (UnixBench)"
   # info "31. DD重装Linux系统"
   while :; do
@@ -195,7 +195,7 @@ main() {
   elif [[ "$num" == "13" ]]; then install_tool "realm"
   elif [[ "$num" == "14" ]]; then install_tool "gost"
   elif [[ "$num" == "15" ]]; then install_tool "nali"
-  elif [[ "$num" == "16" ]]; then install_tool "wtrace"
+  # elif [[ "$num" == "16" ]]; then install_tool "wtrace"
   elif [[ "$num" == "17" ]]; then install_tool "ddns-go"
   # elif [[ "$num" == "19" ]]; then install_wireguard
   elif [[ "$num" == "21" ]]; then unlock_test
@@ -203,8 +203,8 @@ main() {
   elif [[ "$num" == "23" ]]; then bench
   elif [[ "$num" == "24" ]]; then yabs
   elif [[ "$num" == "25" ]]; then besttrace
-  elif [[ "$num" == "26" ]]; then worsttrace
-  elif [[ "$num" == "27" ]]; then nalitrace
+  # elif [[ "$num" == "26" ]]; then worsttrace
+  # elif [[ "$num" == "27" ]]; then nalitrace
   # elif [[ "$num" == "29" ]]; then unix_bench
   # elif [[ "$num" == "31" ]]; then reinstall
   else exit
