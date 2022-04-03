@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Usage:
+# bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/superBench.sh)
+# Reference:
 # https://github.com/oooldking/script
 
 ver_lte() { # <=
