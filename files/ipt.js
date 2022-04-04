@@ -1,4 +1,5 @@
 // (function(){
+// https://purge.jsdelivr.net/gh/VPSDance/scripts@main/files/ipt.js
 window.tr = () => {
   const from = $('#note :selected').text();
   const ip = $('#ip').val();
