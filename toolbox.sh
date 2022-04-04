@@ -64,7 +64,7 @@ header() {
   next
   printf "%s\n" "[VPS ToolBox] 目前支持: Ubuntu/Debian, Centos/Redhat"
   printf "%b\n" "${GREEN}VPS/IPLC测评:${NC} ${YELLOW}https://vps.dance/${NC}"
-  printf "%b\n" "${GREEN}Telegram频道:${NC} ${YELLOW}https://https://t.me/vpsdance${NC}"
+  printf "%b\n" "${GREEN}Telegram频道:${NC} ${YELLOW}https://t.me/vpsdance${NC}"
   next
 }
 footer() {
