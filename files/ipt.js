@@ -14,11 +14,12 @@ window.tr = () => {
     [ttl, host, ip, time, as, location] = [val(ttl), val(host), val(ip), val(time), val(as), val(location)];
     ip = (ip === host ? '' : ` (${ip})`);
     time = time.split(' / ')[1] || time;
-    const item = ip === '*' ? `${ttl}  *` : `${ttl}  ${host}${ip}  ${time} ms  ${as}  ${location}`;
+    const item = host === '*' ? `${ttl}  *` : `${ttl}  ${host}${ip}  ${time} ms  ${as}  ${location}`;
     html+= `${item}\n`;
   });
   html = html.replace(ipReg, ipMask);
   console.warn(html);
   copy(html);
 }
+tr();
 // }());
