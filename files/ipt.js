@@ -1,4 +1,5 @@
-(function(){
+// (function(){
+window.tr = () => {
   const from = $('#note :selected').text();
   const ip = $('#ip').val();
   const ipMask = ip.split('.').slice(0, 2).concat('*', '*').join('.');
@@ -18,4 +19,5 @@
   html = html.replace(ipReg, ipMask);
   console.warn(html);
   copy(html);
-}());
+}
+// }());
