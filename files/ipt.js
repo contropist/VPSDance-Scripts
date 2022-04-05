@@ -35,25 +35,6 @@ window.__tr = () => {
 }
 // tr();
 
-__IDS__ = [
-  {id: '502', name: '广东电信'},
-  {id: '764', name: '江苏电信'},
-  // {id: '896', name: 'Shanghai CT'},
-  {id: '11', name: 'Chongqing CT'},
-
-  {id: '503', name: '广东联通'},
-  {id: '765', name: '江苏联通'},
-  // {id: '1078', name: '上海联通'},
-  // {id: '1240', name: '上海联通9929'},
-  {id: '12', name: '重庆联通'},
-  // {id: '662', name: '湖南联通'},
-
-  {id: '424', name: '广东移动'},
-  {id: '766', name: '江苏移动'},
-  {id: '924', name: '重庆移动'},
-  // {id: '946', name: '重庆移动'},
-];
-
 window.__process = (item) => new Promise((resolve, reject) => {
   const cb = (text) => {
     clearInterval(item._t);
@@ -61,7 +42,10 @@ window.__process = (item) => new Promise((resolve, reject) => {
   }
   $('select[name="id"]').val(item.id);
   // return setTimeout(() => cb('test ' + item.name), 2 * 1000);
-  $('#btn').trigger('click');
+  try {
+    $('#btn').trigger('click');
+  } catch (error) { console.warn(error); }
+  $('#ps').submit();
   const l = $('#load');
   setTimeout(() => cb(''), 60 * 1000); // timeout
   item._t = setInterval(() => {
@@ -82,6 +66,33 @@ window.__queue = (items) => {
   }
   return run();
 };
+window.__init = () => {
+  const form = $('#ps');
+  form.next('button').remove();
+  form.after('<button onclick="__fetch()">test</button>');
+  $('select[name="t"]').val('T');
+  // $('select[name="id"]').val();
+}
+__init();
+
+__IDS__ = [
+  {id: '502', name: '广东电信'},
+  {id: '764', name: '江苏电信'},
+  // {id: '896', name: 'Shanghai CT'},
+  {id: '11', name: 'Chongqing CT'},
+
+  {id: '503', name: '广东联通'},
+  {id: '765', name: '江苏联通'},
+  // {id: '1078', name: '上海联通'},
+  // {id: '1240', name: '上海联通9929'},
+  {id: '12', name: '重庆联通'},
+  // {id: '662', name: '湖南联通'},
+
+  {id: '424', name: '广东移动'},
+  {id: '766', name: '江苏移动'},
+  {id: '924', name: '重庆移动'},
+  // {id: '946', name: '重庆移动'},
+];
 // __IDS__ = [ {id: '503', name: '广东联通'}, {id: '424', name: '广东移动'}, ];
 window.__fetch = () => __queue(__IDS__).then(arr => {
   // console.warn(arr);
@@ -91,14 +102,6 @@ window.__fetch = () => __queue(__IDS__).then(arr => {
   window.__d__ = r;
   __cp(window.__d__);
 });
-window.__init = () => {
-  const form = $('#ps');
-  form.next('button').remove();
-  form.after('<button onclick="__fetch()">test</button>');
-  $('select[name="t"]').val('T');
-  // $('select[name="id"]').val();
-}
-__init();
 
 
 // }());
