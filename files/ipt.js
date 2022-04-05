@@ -100,7 +100,7 @@ window.__fetch = () => __queue(__IDS__).then(arr => {
     .map(({ name, text }) => `${name}\n${text}`).join(`\n${new Array(70).join('-')}\n`);
   console.warn(r);
   window.__d__ = r;
-  __cp(window.__d__);
+  $('#map_view').before('<button onclick="__cp(__d__)">cp</button>');
 });
 
 
