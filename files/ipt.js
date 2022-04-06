@@ -13,23 +13,18 @@ window.__cp = (text) => {
 
 window.__tr = () => {
   // const name = $('#note :selected').text();
-  const ip = $('#ip').val();
-  const ipMask = ip.split('.').slice(0, 2).concat('*', '*').join('.');
-  const ipReg = new RegExp(`\\b${ip.split('.').join('\\.')}\\b`, 'g');
-  let html = `traceroute to ${ip}, 30 hops max, 32 byte packets\n`;
-
-  $('#trace tbody tr').map((_, line) => {
+  let html = ``;
+  const lines = $('#trace tbody tr').map((_, line) => {
     let [ttl, ip, host, location, as, time] = $(line).find('td').toArray().map(o => o.innerText.split('\n'));
-    const valIndex = ip.findIndex(o => !!o && o !== '*');
+    const valIndex = ip.findLastIndex(o => !!o && o !== '*');
     const val = (arr) => arr[valIndex] || arr[0];
     [ttl, host, ip, time, as, location] = [val(ttl), val(host), val(ip), val(time), val(as), val(location)];
     ip = (ip === host ? '' : ` (${ip})`);
     time = time.split(' / ')[1] || time;
-    const item = host === '*' ? `${ttl}  *` : `${ttl}  ${host}${ip}  ${time} ms  ${as}  ${location}`;
-    html+= `${item}\n`;
+    return host === '*' ? `${ttl}  *` : `${ttl}  ${host}${ip}  ${time}ms  ${as}  ${location}`;
   });
-  html = html.replace(ipReg, ipMask);
-  // console.warn(html);
+  html = lines.toArray().join('\n');
+  console.warn(html);
   // __cp(html);
   return html;
 }
@@ -37,7 +32,8 @@ window.__tr = () => {
 
 window.__process = (item) => new Promise((resolve, reject) => {
   const cb = (text) => {
-    clearInterval(item._t);
+    clearTimeout(item._t);
+    clearInterval(item._i);
     resolve({ ...item, text });
   }
   $('select[name="id"]').val(item.id);
@@ -45,10 +41,12 @@ window.__process = (item) => new Promise((resolve, reject) => {
   try {
     $('#btn').trigger('click');
   } catch (error) { console.warn(error); }
-  $('#ps').submit();
+  try {
+    $('#ps').submit();
+  } catch (error) { console.warn(error); }
   const l = $('#load');
-  setTimeout(() => cb(''), 60 * 1000); // timeout
-  item._t = setInterval(() => {
+  item._t = setTimeout(() => cb(''), 1000 * 60 * 2); // timeout
+  item._i = setInterval(() => {
     const done = l.is(':hidden');
     if (!done) return;
     cb($('#trace tbody tr').length > 1 ? __tr() : '');
@@ -79,7 +77,7 @@ __IDS__ = [
   {id: '502', name: '广东电信'},
   {id: '764', name: '江苏电信'},
   // {id: '896', name: 'Shanghai CT'},
-  {id: '11', name: 'Chongqing CT'},
+  {id: '11', name: '重庆电信'},
 
   {id: '503', name: '广东联通'},
   {id: '765', name: '江苏联通'},
@@ -96,10 +94,14 @@ __IDS__ = [
 // __IDS__ = [ {id: '503', name: '广东联通'}, {id: '424', name: '广东移动'}, ];
 window.__fetch = () => __queue(__IDS__).then(arr => {
   // console.warn(arr);
-  const r = arr.filter(o => !!o.text)
-    .map(({ name, text }) => `${name}\n${text}`).join(`\n${new Array(70).join('-')}\n`);
-  console.warn(r);
-  window.__d__ = r;
+  const ip = $('#ip').val();
+  const ipMask = ip.split('.').slice(0, 2).concat('*', '*').join('.');
+  const ipReg = new RegExp(`\\b${ip.split('.').join('\\.')}\\b`, 'g');
+  const data = [{text: `traceroute to ${ip}, 30 hops max, 32 byte packets` }, ...arr].filter(o => !!o.text)
+    .map(({ name, text }) => [name, text].join('\n')).join(`\n${new Array(50).join('-')}\n`)
+    .replace(ipReg, ipMask);
+  console.warn(data);
+  window.__d__ = data;
   $('#map_view').before('<button onclick="__cp(__d__)">cp</button>');
 });
 
