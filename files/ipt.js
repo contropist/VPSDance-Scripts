@@ -98,7 +98,7 @@ window.__fetch = () => __queue(__IDS__).then(arr => {
   const ipMask = ip.split('.').slice(0, 2).concat('*', '*').join('.');
   const ipReg = new RegExp(`\\b${ip.split('.').join('\\.')}\\b`, 'g');
   const data = [{text: `traceroute to ${ip}, 30 hops max, 32 byte packets` }, ...arr].filter(o => !!o.text)
-    .map(({ name, text }) => [name, text].join('\n')).join(`\n${new Array(50).join('-')}\n`)
+    .map(({ name, text }) => [name, text].filter(o => !!o).join('\n')).join(`\n${new Array(50).join('-')}\n`)
     .replace(ipReg, ipMask);
   console.warn(data);
   window.__d__ = data;
