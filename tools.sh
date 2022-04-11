@@ -261,18 +261,15 @@ gen_config () {
       conf="[snell-server]\nlisten = 0.0.0.0:$port\npsk = $pass\nobfs = tls"
     ;;
     realm)
-      conf=('{'
-        ' "listening_addresses": ["0.0.0.0"],'
-        ' "listening_ports": ["10001-10002"],'
-        ' "remote_addresses": ['
-        '  "1.1.1.1",'
-        '  "1.1.1.2"'
-        ' ],'
-        ' "remote_ports": ['
-        '  "80",'
-        '  "443"'
-        ' ]'
-      '}')
+      conf=(''
+        '[[endpoints]]'
+        'listen = "0.0.0.0:10001"'
+        'remote = "test.com:80"'
+        ''
+        '[[endpoints]]'
+        'listen = "0.0.0.0:10002"'
+        'remote = "1.1.1.1:443"'
+      '')
       conf="$(printf "%s\n" "${conf[@]}")"
     ;;
     gost)
