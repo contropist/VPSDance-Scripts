@@ -56,7 +56,7 @@ init () {
     ;;
     realm)
       app="realm"
-      config="/root/realm.json"
+      config="/root/realm.toml"
       # repo="zhboner/realm"
       # match=""
       repo="zephyrchien/realm"
@@ -212,7 +212,7 @@ gen_service () {
       service='[Unit]\nDescription=Snell Service\nAfter=network.target\n[Service]\nType=simple\nLimitNOFILE=32768\nRestart=on-failure\nExecStart=/usr/bin/snell-server -c /root/snell.conf\nStandardOutput=syslog\nStandardError=syslog\nSyslogIdentifier=snell-server\n[Install]\nWantedBy=multi-user.target\n'
     ;;
     realm)
-      service='[Unit]\nDescription=realm\nAfter=network-online.target\nWants=network-online.target systemd-networkd-wait-online.service\n[Service]\nType=simple\nUser=root\nRestart=on-failure\nRestartSec=5s\nExecStart=/usr/bin/realm -c /root/realm.json\n[Install]\nWantedBy=multi-user.target'
+      service='[Unit]\nDescription=realm\nAfter=network-online.target\nWants=network-online.target systemd-networkd-wait-online.service\n[Service]\nType=simple\nUser=root\nRestart=on-failure\nRestartSec=5s\nExecStart=/usr/bin/realm -c /root/realm.toml\n[Install]\nWantedBy=multi-user.target'
     ;;
     gost)
       service='[Unit]\nDescription=gost\nAfter=network-online.target\nWants=network-online.target systemd-networkd-wait-online.service\n[Service]\nType=simple\nUser=root\nRestart=on-failure\nRestartSec=5s\nExecStart=/usr/bin/gost -C /root/gost.json\n[Install]\nWantedBy=multi-user.target'
@@ -270,6 +270,7 @@ gen_config () {
         'listen = "0.0.0.0:10002"'
         'remote = "1.1.1.1:443"'
       '')
+
       conf="$(printf "%s\n" "${conf[@]}")"
     ;;
     gost)
@@ -302,6 +303,9 @@ gen_config () {
   if [[ -n "$config" && -n "$conf" ]]; then
     echo -e "\n[Create config file] \"$config\", for example:"
     echo -e "$conf"
+  fi
+  if [[ -f "/root/realm.json" && "$app" == "realm" ]]; then
+    printf "\n%b\n" "${YELLOW}Convert Realm1 to Realm2 config${NC}: realm convert realm.json > realm.toml";
   fi
 }
 finally () {
