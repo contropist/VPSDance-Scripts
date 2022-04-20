@@ -117,6 +117,7 @@ install_wireguard(){
   # curl -Ls https://raw.githubusercontent.com/teddysun/across/master/wireguard.sh | bash -s -- -n
 }
 unlock_test() {
+  info "bash <(curl -Lso- https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/check.sh)"
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/unlockTest.sh)
 }
 super_bench() {
