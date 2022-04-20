@@ -5,7 +5,7 @@
 
 main() {
   bash <(
-    curl -L -s check.unlock.media \
+    curl -L -s https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/check.sh \
     | sed '/^[ \t]*echo\( -e\)\? "[-]*"\(.*\)\?$/d' \
     | sed '/^[ \t]*echo\( -e\)\? "[=]*"\(.*\)\?$/d' \
     | sed 's/ CheckV6().*$/&\n printf "%-39s\\n" \| sed "s\/\\s\/-\/g"/' \
