@@ -7,7 +7,7 @@
 # https://cloud.google.com/architecture/tcp-optimization-for-network-performance-in-gcp-and-hybrid?hl=zh-cn
 # [LFN网络下TCP性能的优化](https://github.com/acacia233/Project-Smalltrick/wiki/)
 # https://github.com/ylx2016/Linux-NetSpeed/blob/master/tcp.sh
-# http://sh.nekoneko.cloud/tools.sh
+# bash <(curl -Lso- http://sh.nekoneko.cloud/tools.sh)
 
 pam_limits="/etc/pam.d/common-session"
 limits_conf="/etc/security/limits.conf"
