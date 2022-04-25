@@ -57,9 +57,9 @@ init () {
     realm)
       app="realm"
       config="/root/realm.toml"
-      # repo="zhboner/realm"
+      repo="zhboner/realm"
+      # repo="zephyrchien/realm"
       # match=""
-      repo="zephyrchien/realm"
       case $ARCH in
         aarch64)
           match="aarch64.*linux-gnu.*.gz"
