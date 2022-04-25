@@ -108,6 +108,12 @@ ssh_port() {
 install_tool() {
   bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh) "$@"
 }
+install_xray() {
+  bash <(curl -fsSL https://github.com/XTLS/Xray-install/raw/main/install-release.sh) install
+  info "configuration file: /usr/local/etc/xray/config.json"
+  info "status: systemctl status xray"
+  info "restart: systemctl restart xray"
+}
 install_wrap() {
   bash <(curl -fsSL https://raw.githubusercontent.com/P3TERX/warp.sh/main/warp.sh) menu
 }
@@ -155,6 +161,7 @@ menu() {
   success "4." "[推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
   success "5." "[推荐] 系统优化 (TCP网络优化/资源限制优化)"
   success "6." "[推荐] 修改默认SSH端口 (防止被攻击)"
+  success "10." "安装 xray"
   success "11." "安装 shadowsocks"
   success "12." "安装 snell"
   success "13." "安装 realm (端口转发工具)"
@@ -194,6 +201,7 @@ main() {
   elif [[ "$num" == "4" ]]; then install_deps
   elif [[ "$num" == "5" ]]; then tuning
   elif [[ "$num" == "6" ]]; then ssh_port
+  elif [[ "$num" == "10" ]]; then install_xray
   elif [[ "$num" == "11" ]]; then install_tool "ss"
   elif [[ "$num" == "12" ]]; then install_tool "snell"
   elif [[ "$num" == "13" ]]; then install_tool "realm"
