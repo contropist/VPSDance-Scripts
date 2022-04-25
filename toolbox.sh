@@ -110,6 +110,9 @@ install_tool() {
 }
 install_xray() {
   bash <(curl -fsSL https://github.com/XTLS/Xray-install/raw/main/install-release.sh) install
+  # 使用增强版的 geosite/geoip 规则
+  wget -O /usr/local/share/xray/geoip.dat https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
+  wget -O /usr/local/share/xray/geosite.dat https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
   info "configuration file: /usr/local/etc/xray/config.json"
   info "status: systemctl status xray"
   info "restart: systemctl restart xray"
