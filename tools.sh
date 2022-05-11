@@ -278,7 +278,7 @@ gen_config () {
         ' "Debug": true,'
         ' "Retries": 0,'
         ' "ServeNodes": ['
-        '   "tcp://:24000/ipv6.itiioulet.dinghaojc.com:24000"'
+        '   "tcp://:10002/1.1.1.1:443"'
         ' ],'
         ' "ChainNodes": ['
         ' ],'
