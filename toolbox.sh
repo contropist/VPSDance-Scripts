@@ -20,8 +20,11 @@ NC='\033[0m'
 OS=$(uname -s) # Linux, FreeBSD, Darwin
 ARCH=$(uname -m) # x86_64, arm64, aarch64
 DISTRO=$( ([[ -e "/usr/bin/yum" ]] && echo 'CentOS') || ([[ -e "/usr/bin/apt" ]] && echo 'Debian') || echo 'unknown' )
-# name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
 debug=$( [[ $OS == "Darwin" ]] && echo true || echo false )
+cnd=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
+CDN='https://raw.githubusercontent.com'
+if [[ "${1}" =~ ^(fastgit)$ ]]; then CDN='https://raw.fastgit.org'; fi
+echo $CDN
 
 check_root() {
   if [[ "$USER" != 'root' ]]; then # [[ "$EUID" -ne 0 ]]
@@ -91,25 +94,25 @@ install_deps() {
   esac
 }
 install_bbr() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/bbr.sh)
+  bash <(curl -Lso- $CDN/teddysun/across/master/bbr.sh)
 }
 ssh_key() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/ssh.sh)
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/ssh.sh)
 }
 bashrc() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/bashrc.sh)
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/bashrc.sh)
 }
 tuning() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tuning.sh)
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/tuning.sh)
 }
 ssh_port() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/ssh.sh) port
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/ssh.sh) port
 }
 install_tool() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh) "$@"
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/tools.sh) "$@"
 }
 install_xray() {
-  bash <(curl -fsSL https://github.com/XTLS/Xray-install/raw/main/install-release.sh) install
+  bash <(curl -fsSL $CDN/XTLS/Xray-install/main/install-release.sh) install
   # 使用增强版的 geosite/geoip 规则
   wget -O /usr/local/share/xray/geoip.dat https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
   wget -O /usr/local/share/xray/geosite.dat https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
@@ -118,25 +121,25 @@ install_xray() {
   info "restart: systemctl restart xray"
 }
 install_wrap() {
-  bash <(curl -fsSL https://raw.githubusercontent.com/P3TERX/warp.sh/main/warp.sh) menu
+  bash <(curl -fsSL $CDN/P3TERX/warp.sh/main/warp.sh) menu
 }
 install_wireguard(){
-  curl -Ls https://raw.githubusercontent.com/teddysun/across/master/wireguard.sh | bash -s -- -r
+  curl -Ls $CDN/teddysun/across/master/wireguard.sh | bash -s -- -r
   # uninstall_wireguard
-  # curl -Ls https://raw.githubusercontent.com/teddysun/across/master/wireguard.sh | bash -s -- -n
+  # curl -Ls $CDN/teddysun/across/master/wireguard.sh | bash -s -- -n
 }
 unlock_test() {
-  info "bash <(curl -Lso- https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/check.sh)"
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/unlockTest.sh)
+  info "bash <(curl -Lso- $CDN/lmc999/RegionRestrictionCheck/main/check.sh)"
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/unlockTest.sh)
 }
 super_bench() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/superBench.sh)
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/superBench.sh)
 }
 bench() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/bench.sh)
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/bench.sh)
 }
 super_speed() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/flyzy2005/superspeed/master/superspeed.sh)
+  bash <(curl -Lso- $CDN/flyzy2005/superspeed/master/superspeed.sh)
 }
 lemon_bench() {
   curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast
@@ -146,13 +149,13 @@ yabs() {
   curl -sL yabs.sh | bash -s -- -dir
 }
 besttrace() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoBestTrace.sh)
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/autoBestTrace.sh)
 }
 unix_bench() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/unixbench.sh)
+  bash <(curl -Lso- $CDN/teddysun/across/master/unixbench.sh)
 }
 reinstall() {
-  bash <(curl -Lso- https://raw.githubusercontent.com/hiCasper/Shell/master/AutoReinstall.sh)
+  bash <(curl -Lso- $CDN/hiCasper/Shell/master/AutoReinstall.sh)
 }
 
 menu() {
