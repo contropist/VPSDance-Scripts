@@ -27,7 +27,7 @@ ssh_key () {
   do
     if [[ ! -e "$home" ]]; then continue; fi;
     mkdir -p "${home}/.ssh"; chmod 700 "${home}/.ssh";
-    if [[ ! -f "${home}/.ssh/authorized_keys" ]]; then echo '' >> ~/.ssh/authorized_keys; fi
+    if [[ ! -f "${home}/.ssh/authorized_keys" ]]; then echo '' >> "${home}/.ssh/authorized_keys"; fi
     chmod 600 "${home}/.ssh/authorized_keys"
   done
   echo "Paste your SSH public key (~/.ssh/id_rsa.pub):"
