@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/tools.sh) [snell|realm|gost|ss|nali|wtrace|ddns-go]
+# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/tools.sh) [snell|realm|gost|ss|nali|wtrace|ddns-go|nexttrace]
 # bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh)
 # bash <(curl -Lso- https://raw.githack.com/VPSDance/scripts/main/tools.sh)
 # bash <(curl -Lso- https://raw.fastgit.org/VPSDance/scripts/main/tools.sh)
@@ -15,7 +15,7 @@ BOLD="\033[1m"
 NC='\033[0m'
 
 OS=$(uname -s) # Linux, FreeBSD, Darwin
-ARCH=$(uname -m) # x86_64, arm64, aarch64
+ARCH=$(uname -m) # x86_64, arm64, arm64/aarch64
 # DISTRO=$( [[ -e $(which lsb_release) ]] && (lsb_release -si) || echo 'unknown' ) which/lsb_release command not found
 DISTRO=$( ([[ -e "/usr/bin/yum" ]] && echo 'CentOS') || ([[ -e "/usr/bin/apt" ]] && echo 'Debian') || echo 'unknown' )
 name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
@@ -123,8 +123,20 @@ init () {
         ;;
       esac
     ;;
+    nexttrace)
+      app="nexttrace"
+      repo="xgadget-lab/nexttrace"
+      case $ARCH in
+        aarch64)
+          match="linux_arm64"
+        ;;
+        *) #x86_64
+         match="linux_amd64"
+        ;;
+      esac
+    ;;
     *)
-      printf "${YELLOW}Please specify app_name (snell|realm|gost|ss|nali|wtrace|ddns-go)\n\n${NC}";
+      printf "${YELLOW}Please specify app_name (snell|realm|gost|ss|nali|wtrace|ddns-go|nexttrace)\n\n${NC}";
       exit
     ;;
   esac
@@ -202,6 +214,9 @@ download () {
     ;;
     ddns-go)
       tar xzf ddns-go_*tar.gz; mv ./ddns-go /usr/bin/; rm -rf ddns-go_*tar.gz* LICENSE README.md;
+    ;;
+    nexttrace)
+      mv ./nexttrace_* /usr/bin/nexttrace; chmod +x /usr/bin/nexttrace;
     ;;
     *);;
   esac
@@ -330,6 +345,9 @@ finally () {
       systemctl restart $app;
       tips="\nOpen http://127.0.0.1:9876 for configuration."
       tips="$tips\n\n [Auto-generated] \"$config\"\n"
+    ;;
+    nexttrace)
+      tips="nexttrace -T -rdns 189.cn"
     ;;
     *)
       tips="systemctl restart $app; systemctl status $app;"
