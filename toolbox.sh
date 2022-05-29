@@ -174,6 +174,7 @@ menu() {
   success "14." "安装 gost (隧道/端口转发工具)"
   success "15." "安装 nali (IP查询工具)"
   success "16." "安装 ddns-go (DDNS工具)"
+  success "17." "安装 nexttrace (路由追踪工具)"
   # success "17." "安装 warp"
   # success "18." "安装 wireguard"
   # success "19." "安装 wtrace (路由追踪工具 WorstTrace)"
@@ -214,6 +215,7 @@ main() {
   elif [[ "$num" == "14" ]]; then install_tool "gost"
   elif [[ "$num" == "15" ]]; then install_tool "nali"
   elif [[ "$num" == "16" ]]; then install_tool "ddns-go"
+  elif [[ "$num" == "17" ]]; then install_tool "nexttrace"
   # elif [[ "$num" == "17" ]]; then install_wrap
   # elif [[ "$num" == "18" ]]; then install_wireguard
   # elif [[ "$num" == "19" ]]; then install_tool "wtrace"
