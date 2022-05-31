@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# # bash <(curl -Lso- https://sh.vps.dance/autoBestTrace.sh)
 # https://github.com/nyjx/autoBestTrace
 # https://github.com/flyzy2005/shell
 
