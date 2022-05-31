@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
+# bash <(curl -Lso- https://sh.vps.dance/autoNexttrace.sh)
 # bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/autoNexttrace.sh)
 # bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoNexttrace.sh)
 
@@ -12,7 +13,7 @@ footer() {
 
 # install nexttrace
 if [ ! -f "/usr/bin/nexttrace" ]; then
-  bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh) nexttrace -p
+  bash <(curl -Lso- https://sh.vps.dance/tools.sh) nexttrace -p
 fi
 
 next() {
