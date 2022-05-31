@@ -151,6 +151,9 @@ yabs() {
 besttrace() {
   bash <(curl -Lso- $CDN/VPSDance/scripts/main/autoBestTrace.sh)
 }
+nexttrace() {
+  bash <(curl -Lso- $CDN/VPSDance/scripts/main/autoNexttrace.sh)
+}
 unix_bench() {
   bash <(curl -Lso- $CDN/teddysun/across/master/unixbench.sh)
 }
@@ -174,7 +177,6 @@ menu() {
   success "14." "安装 gost (隧道/端口转发工具)"
   success "15." "安装 nali (IP查询工具)"
   success "16." "安装 ddns-go (DDNS工具)"
-  success "17." "安装 nexttrace (路由追踪工具)"
   # success "17." "安装 warp"
   # success "18." "安装 wireguard"
   # success "19." "安装 wtrace (路由追踪工具 WorstTrace)"
@@ -183,6 +185,7 @@ menu() {
   success "23." "检测 VPS信息/IO/到国际网速 (Bench.sh)"
   success "24." "性能测试 (YABS)"
   success "25." "检测 回程路由 (BestTrace)"
+  success "26." "检测 回程路由 (NextTrace)"
   # success "25." "检测 到国内网速(电信/移动/联通) (Superspeed)"
   # success "25." "检测 VPS信息/IO/路由 (LemonBench)"
   # success "29." "性能测试 (UnixBench)"
@@ -215,7 +218,7 @@ main() {
   elif [[ "$num" == "14" ]]; then install_tool "gost"
   elif [[ "$num" == "15" ]]; then install_tool "nali"
   elif [[ "$num" == "16" ]]; then install_tool "ddns-go"
-  elif [[ "$num" == "17" ]]; then install_tool "nexttrace"
+  # elif [[ "$num" == "17" ]]; then install_tool "nexttrace"
   # elif [[ "$num" == "17" ]]; then install_wrap
   # elif [[ "$num" == "18" ]]; then install_wireguard
   # elif [[ "$num" == "19" ]]; then install_tool "wtrace"
@@ -224,6 +227,7 @@ main() {
   elif [[ "$num" == "23" ]]; then bench
   elif [[ "$num" == "24" ]]; then yabs
   elif [[ "$num" == "25" ]]; then besttrace
+  elif [[ "$num" == "26" ]]; then nexttrace
   # elif [[ "$num" == "29" ]]; then unix_bench
   # elif [[ "$num" == "31" ]]; then reinstall
   else exit
