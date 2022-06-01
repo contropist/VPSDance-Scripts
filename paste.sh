@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/paste.sh) [poster]
-# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/paste.sh) [poster]
+# bash <(curl -Lso- https://sh.vps.dance/paste.sh) [poster]
 
 echo "Paste your content:"
 IFS= read -d '' -n 1 text
