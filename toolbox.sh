@@ -2,10 +2,7 @@
 
 # Usage:
 # bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
-# bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/toolbox.sh)
 # bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/toolbox.sh)
-# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/toolbox.sh)
-# bash <(curl -Lso- https://raw.fastgit.org/VPSDance/scripts/main/toolbox.sh)
 
 # Colors
 RED='\033[0;31m'
