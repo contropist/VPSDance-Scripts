@@ -23,7 +23,12 @@ window.__tr = () => {
     time = time.split(' / ')[1] || time;
     return host === '*' ? `${ttl}  *` : `${ttl}  ${host}${ip}  ${time}ms  ${as}  ${location}`;
   });
-  html = lines.toArray().join('\n');
+  html = lines.toArray().reduce((acc, curr) => {
+    [last = ''] = acc.slice(-1)
+    if (last.slice(-1) + curr.slice(-1) === '**') acc.pop();
+    acc.push(curr);  
+    return acc;
+  }, []).join('\n');
   console.warn(html);
   // __cp(html);
   return html;
