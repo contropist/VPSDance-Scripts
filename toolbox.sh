@@ -92,12 +92,14 @@ install_deps() {
     Debian*|Ubuntu*)
       apt update -y;
       apt install -y curl wget htop zip unzip xz-utils gzip ca-certificates net-tools dnsutils iputils-ping mtr traceroute telnet tcpdump;
+      apt install -y hping3;
       bash <(curl -s https://install.speedtest.net/app/cli/install.deb.sh);
       apt install  -y speedtest;
     ;;
     CentOS*|RedHat*)
       yum update -y;
       yum install -y epel-release which openssl curl wget htop zip unzip xz gzip ca-certificates net-tools bind-utils iputils mtr traceroute telnet tcpdump;
+      yum install -y hping3; # @epel-release
       curl -s https://install.speedtest.net/app/cli/install.rpm.sh | sudo bash
       yum install -y speedtest
     ;;
