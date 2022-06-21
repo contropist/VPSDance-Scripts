@@ -87,7 +87,7 @@ init () {
         aarch64)
           match="aarch64.*linux-gnu"
         ;;
-        *) #x86_64
+        *)
          match="x86_64.*linux-gnu"
         ;;
       esac
@@ -99,7 +99,7 @@ init () {
         aarch64)
           match="linux-armv8"
         ;;
-        *) #x86_64
+        *)
          match="linux-amd64"
         ;;
       esac
@@ -115,7 +115,7 @@ init () {
         aarch64)
           match="Linux_.*arm64"
         ;;
-        *) #x86_64
+        *)
          match="Linux_.*x86_64"
         ;;
       esac
@@ -127,7 +127,7 @@ init () {
         aarch64)
           match="linux_arm64"
         ;;
-        *) #x86_64
+        *)
          match="linux_amd64"
         ;;
       esac
@@ -169,7 +169,7 @@ download () {
         aarch64)
           printf "${RED}[x] $ARCH not supported ${PLAIN}\n${NC}"; exit 1;
         ;;
-        *) #x86_64
+        *)
          url="https://pkg.wtrace.app/linux/worsttrace"
         ;;
       esac
@@ -274,6 +274,9 @@ gen_config () {
     ;;
     realm)
       conf=(''
+        '[log]'
+        'level = "warn"'
+        ''
         '[[endpoints]]'
         'listen = "0.0.0.0:10001"'
         'remote = "test.com:80"'
@@ -300,15 +303,17 @@ gen_config () {
       conf="$(printf "%s\n" "${conf[@]}")"
     ;;
     ss)
-      conf=('{'
-        ' "server": "0.0.0.0",'
-        ' "server_port": '$port','
-        ' "method": "chacha20-ietf-poly1305",'
+      conf=('{"servers": ['
+      '{'
+        ' "address": "0.0.0.0",'
+        ' "port": '$port','
         ' "password": "'$pass'",'
-        ' "mode": "tcp_only",'
+        ' "method": "chacha20-ietf-poly1305",'
+        ' "mode": "tcp_and_udp",'
         ' "fast_open": false,'
         ' "timeout": 300'
-      '}')
+      '}'
+      ']}')
       conf="$(printf "%s\n" "${conf[@]}")"
     ;;
   esac
