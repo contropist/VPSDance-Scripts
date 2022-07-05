@@ -30,7 +30,7 @@ ip_addr=(广州电信 上海电信 厦门电信 重庆联通 成都联通 上海
 for i in {0..7}
 do
 	echo ${ip_addr[$i]}
-	nexttrace -T -rdns -q 1 ${ip_list[$i]} \
+	nexttrace -T -q 1 ${ip_list[$i]} \
     | sed '/^.*Geo Data.*$/d' \
     | tac | awk '{ if (substr($0,3) != PREV) print $0; PREV=substr($0,3); }' | tac
 	next
