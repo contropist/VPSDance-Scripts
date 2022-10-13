@@ -30,6 +30,9 @@ ulimited_tuning() {
   # max open files
   sed -i '/fs.file-max/d' "$sysctl_conf"
   echo 'fs.file-max=102400' >> "$sysctl_conf"
+  # watch limit
+  echo 'fs.inotify.max_user_instances=999' >> "$sysctl_conf"
+  echo 'fs.inotify.max_user_watches=81920' >> "$sysctl_conf"
   # max user processes
   for usr in $allusers '\*'; do
     usr="${usr/\\/}"
