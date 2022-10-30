@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://sh.vps.dance/tools.sh) [snell|realm|gost|ss|nali|wtrace|ddns-go|nexttrace]
+# bash <(curl -Lso- https://sh.vps.dance/tools.sh) [snell|snell4|realm|gost|ss|nali|wtrace|ddns-go|nexttrace]
 # bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh)
 
 # Colors
@@ -38,13 +38,16 @@ prompt_yn () {
 }
 init () {
   case "$name" in
-    snell)
-      app="snell"
-      config="/root/snell.conf"
-      repo="surge-networks/snell"
+    snell | snell4)
+      app="$name"
+      config="/root/$app.conf"
+      # repo="surge-networks/snell"
       case $ARCH in
-        aarch64)
+        aarch64 | armv8)
           match="linux-aarch64"
+        ;;
+        armv7 | armv6l)
+          match="linux-armv7l"
         ;;
         *) #x86_64
          match="linux-amd64"
@@ -158,7 +161,20 @@ download () {
     # url=${url/"https://github.com"/"https://hub.fastgit.org"} # cdn
     url="https://ghproxy.com/$url" # cdn
   fi
+  echo $app
   case "$app" in
+    snell)
+      version="v3.0.1"
+      url="https://raw.githubusercontent.com/VPSDance/files/main/snell/${version}/snell-server-${version}-${match}.zip"
+      url="https://ghproxy.com/$url" # cdn
+    ;;
+    snell4)
+      # https://manual.nssurge.com/others/snell.html
+      version="v4.0.0"
+      # url="https://raw.githubusercontent.com/VPSDance/files/main/snell/${version}/snell-server-${version}-${match}.zip"
+      # url="https://ghproxy.com/$url" # cdn
+      url="https://dl.nssurge.com/snell/snell-server-${version}-${match}.zip"
+    ;;
     realm)
       if [[ "$debug" != true ]]; then
         rm -rf /usr/bin/realm ./realm;
@@ -191,6 +207,10 @@ download () {
       unzip -o snell*.zip; rm -rf snell-server-*.zip*;
       mv ./snell-server /usr/bin/;
     ;;
+    snell4)
+      unzip -o snell*.zip; rm -rf snell-server-*.zip*;
+      mv ./snell-server /usr/bin/snell4-server;
+    ;;
     realm)
       # curl -s https://api.github.com/repos/zhboner/realm/releases/latest | grep "browser_download_url.*" | cut -d : -f 2,3 | xargs wget -O ./realm {}; chmod +x realm
       if [[ `compgen -G "realm*.tar.gz"` ]]; then tar xzvf realm*.tar.gz; rm -rf realm*.tar.gz; fi
@@ -222,6 +242,9 @@ gen_service () {
   case "$app" in
     snell)
       service='[Unit]\nDescription=Snell Service\nAfter=network.target\n[Service]\nType=simple\nLimitNOFILE=32768\nRestart=on-failure\nExecStart=/usr/bin/snell-server -c /root/snell.conf\nStandardOutput=syslog\nStandardError=syslog\nSyslogIdentifier=snell-server\n[Install]\nWantedBy=multi-user.target\n'
+    ;;
+    snell4)
+      service='[Unit]\nDescription=Snell Service\nAfter=network.target\n[Service]\nType=simple\nLimitNOFILE=32768\nRestart=on-failure\nExecStart=/usr/bin/snell4-server -c /root/snell4.conf\nStandardOutput=syslog\nStandardError=syslog\nSyslogIdentifier=snell-server\n[Install]\nWantedBy=multi-user.target\n'
     ;;
     realm)
       service='[Unit]\nDescription=realm\nAfter=network-online.target\nWants=network-online.target systemd-networkd-wait-online.service\n[Service]\nType=simple\nUser=root\nRestart=on-failure\nRestartSec=5s\nExecStart=/usr/bin/realm -c /root/realm.toml\n[Install]\nWantedBy=multi-user.target'
@@ -271,6 +294,9 @@ gen_config () {
   case "$app" in
     snell)
       conf="[snell-server]\nlisten = 0.0.0.0:$port\npsk = $pass\nobfs = tls"
+    ;;
+    snell4)
+      conf="[snell-server]\nlisten = 0.0.0.0:$port\npsk = $pass\nipv6 = false" #v4
     ;;
     realm)
       conf=(''
