@@ -12,7 +12,7 @@ BOLD="\033[1m"
 NC='\033[0m'
 
 OS=$(uname -s) # Linux, FreeBSD, Darwin
-ARCH=$(uname -m) # x86_64, arm64, arm64/aarch64
+ARCH=$(uname -m) # x86_64, arm64/aarch64, i386, 
 # DISTRO=$( [[ -e $(which lsb_release) ]] && (lsb_release -si) || echo 'unknown' ) which/lsb_release command not found
 DISTRO=$( ([[ -e "/usr/bin/yum" ]] && echo 'CentOS') || ([[ -e "/usr/bin/apt" ]] && echo 'Debian') || echo 'unknown' )
 name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
