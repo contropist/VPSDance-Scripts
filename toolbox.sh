@@ -94,14 +94,12 @@ install_deps() {
       apt install -y curl wget htop zip unzip xz-utils gzip ca-certificates net-tools dnsutils iputils-ping mtr traceroute telnet tcpdump;
       apt install -y hping3;
       apt install -y python3 python3-pip;
-      pip3 install speedtest-cli
     ;;
     CentOS*|RedHat*)
       yum update -y;
       yum install -y epel-release which openssl curl wget htop zip unzip xz gzip ca-certificates net-tools bind-utils iputils mtr traceroute telnet tcpdump;
       yum install -y hping3; # @epel-release
       yum install -y python3 python3-pip;
-      pip3 install speedtest-cli
     ;;
   esac
 }
