@@ -37,7 +37,6 @@ bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoBe
 
 <!--
 update cache:
-
 - https://purge.jsdelivr.net/gh/VPSDance/scripts@main/toolbox.sh
 - https://purge.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh
 -->

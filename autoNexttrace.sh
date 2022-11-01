@@ -2,7 +2,6 @@
 
 # Usage:
 # bash <(curl -Lso- https://sh.vps.dance/autoNexttrace.sh)
-# bash <(curl -Lso- https://cdn.statically.io/gh/VPSDance/scripts/main/autoNexttrace.sh)
 # bash <(curl -Lso- https://cdn.jsdelivr.net/gh/VPSDance/scripts@main/autoNexttrace.sh)
 
 footer() {
