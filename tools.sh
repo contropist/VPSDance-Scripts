@@ -125,7 +125,7 @@ init () {
     ;;
     nexttrace)
       app="nexttrace"
-      repo="xgadget-lab/nexttrace"
+      repo="sjlleo/nexttrace"
       case $ARCH in
         aarch64)
           match="linux_arm64"
@@ -375,7 +375,7 @@ finally () {
       tips="$tips\n\n [Auto-generated] \"$config\"\n"
     ;;
     nexttrace)
-      tips="nexttrace -T -rdns 189.cn"
+      tips="nexttrace -T -f"
     ;;
     *)
       tips="systemctl restart $app; systemctl status $app;"
