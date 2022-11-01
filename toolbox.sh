@@ -121,6 +121,9 @@ ssh_port() {
 install_tool() {
   bash <(curl -Lso- ${SH}/tools.sh) "$@"
 }
+speedtest() {
+  bash <(curl -Lso- ${SH}/speedtest.sh)
+}
 install_xray() {
   bash <(curl -fsSL $(raw 'ghproxy')/XTLS/Xray-install/main/install-release.sh) install
   # 使用增强版的 geosite/geoip 规则
@@ -142,9 +145,9 @@ unlock_test() {
   info "bash <(curl -Lso- "$(raw 'ghproxy')/lmc999/RegionRestrictionCheck/main/check.sh")"
   bash <(curl -Lso- ${SH}/unlockTest.sh)
 }
-super_bench() {
-  bash <(curl -Lso- ${SH}/superBench.sh)
-}
+# super_bench() {
+#   bash <(curl -Lso- ${SH}/superBench.sh)
+# }
 bench() {
   bash <(curl -Lso- ${SH}/bench.sh)
 }
@@ -177,7 +180,7 @@ menu() {
   success "1." "[推荐] 配置SSH Public Key (SSH免密登录)"
   success "2." "[推荐] 终端优化 (颜色美化/上下键查找历史)"
   success "3." "[推荐] 安装并开启 BBR"
-  success "4." "[推荐] 安装常用软件 (curl/wget/ping/traceroute/speedtest)"
+  success "4." "[推荐] 安装常用软件 (curl/wget/ping/traceroute)"
   success "5." "[推荐] 系统优化 (TCP网络优化/资源限制优化)"
   success "6." "[推荐] 修改默认SSH端口 (防止被攻击)"
   success "10." "安装 xray"
@@ -191,12 +194,12 @@ menu() {
   # success "18." "安装 wireguard"
   # success "19." "安装 wtrace (路由追踪工具 WorstTrace)"
   success "21." "检测 VPS流媒体解锁 (RegionRestrictionCheck)"
-  success "22." "检测 VPS信息/IO/到国内网速 (SuperBench)"
-  success "23." "检测 VPS信息/IO/到国际网速 (Bench.sh)"
+  success "22." "检测 VPS信息/IO/网速 (Bench.sh)"
+  success "23." "检测 VPS到国内网速"
+  # success "23." "检测 VPS到国内网速 (Superspeed)"
   success "24." "性能测试 (YABS)"
   success "25." "检测 回程路由 (BestTrace)"
   success "26." "检测 回程路由 (NextTrace)"
-  # success "25." "检测 到国内网速(电信/移动/联通) (Superspeed)"
   # success "25." "检测 VPS信息/IO/路由 (LemonBench)"
   # success "29." "性能测试 (UnixBench)"
   # success "31." "DD重装Linux系统"
@@ -233,8 +236,8 @@ main() {
   # elif [[ "$num" == "18" ]]; then install_wireguard
   # elif [[ "$num" == "19" ]]; then install_tool "wtrace"
   elif [[ "$num" == "21" ]]; then unlock_test
-  elif [[ "$num" == "22" ]]; then super_bench
-  elif [[ "$num" == "23" ]]; then bench
+  elif [[ "$num" == "22" ]]; then bench
+  elif [[ "$num" == "23" ]]; then speedtest
   elif [[ "$num" == "24" ]]; then yabs
   elif [[ "$num" == "25" ]]; then besttrace
   elif [[ "$num" == "26" ]]; then nexttrace
