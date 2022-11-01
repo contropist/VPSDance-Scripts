@@ -11,7 +11,6 @@ Tools and Scripts for Linux VPS
 - VPS ToolBox(include all scripts)
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
-# bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/toolbox.sh)
 ```
 
 - install ddns-go
