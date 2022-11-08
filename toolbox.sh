@@ -154,6 +154,9 @@ bench() {
 super_speed() {
   bash <(curl -Lso- $(raw 'ghproxy')/flyzy2005/superspeed/master/superspeed.sh)
 }
+hyperspeed() {
+  bash <(curl -Lso- https://bench.im/hyperspeed)
+}
 lemon_bench() {
   curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast
 }
@@ -197,6 +200,7 @@ menu() {
   success "22." "检测 VPS信息/IO/网速 (Bench.sh)"
   success "23." "检测 VPS到国内网速"
   # success "23." "检测 VPS到国内网速 (Superspeed)"
+  # success "23." "检测 VPS网速 (hyperspeed)"
   success "24." "性能测试 (YABS)"
   success "25." "检测 回程路由 (BestTrace)"
   success "26." "检测 回程路由 (NextTrace)"

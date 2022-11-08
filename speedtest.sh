@@ -4,6 +4,8 @@
 # https://github.com/ernisn/superspeed/blob/master/ServerList.md
 # https://github.com/flyzy2005/superspeed/blob/master/superspeed.sh
 # https://github.com/oooldking/script/blob/master/superbench.sh
+# https://bench.im/hyperspeed
+# https://www.infski.com/files/superspeed.sh
 
 ARCH=$(uname -m)
 # VERSION="1.1.1"
