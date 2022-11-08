@@ -2,7 +2,6 @@
 
 # Usage:
 # bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
-# bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/toolbox.sh)
 
 # Colors
 RED='\033[0;31m'

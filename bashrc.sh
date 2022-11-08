@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/bashrc.sh)
+# bash <(curl -Lso- https://sh.vps.dance/bashrc.sh)
 
 
 # allusers=$( cat /etc/passwd | grep -vE "(/bin/false|/sbin/nologin|/bin/sync|guest-)" | cut -d: -f1 )

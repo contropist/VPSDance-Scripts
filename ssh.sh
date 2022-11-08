@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# # bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/ssh.sh) [key|port]
+# # bash <(curl -Lso- https://sh.vps.dance/ssh.sh) [key|port]
 
 # DISTRO=$( ([[ -e "/usr/bin/yum" ]] && echo 'CentOS') || ([[ -e "/usr/bin/apt" ]] && echo 'Debian') || echo 'unknown' )
 # Colors

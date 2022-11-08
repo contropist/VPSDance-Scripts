@@ -2,7 +2,6 @@
 
 # Usage:
 # bash <(curl -Lso- https://sh.vps.dance/tools.sh) [snell|snell4|realm|gost|ss|nali|wtrace|ddns-go|nexttrace]
-# bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh)
 
 # Colors
 RED='\033[0;31m'
