@@ -17,7 +17,7 @@ exit /B
 :gotAdmin
 if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
 title tool.cmd
-mode con: cols=36 lines=12
+mode con: cols=50 lines=16
 color 17
 SET "wall=HKLM\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules"
 SET "rdp=HKLM\SYSTEM\ControlSet001\Control\Terminal Server"
