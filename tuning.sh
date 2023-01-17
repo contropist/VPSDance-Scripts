@@ -1,6 +1,6 @@
 
 #!/usr/bin/env bash
-# tuning.sh
+# curl https://sh.vps.dance/tuning.sh | bash
 
 # Reference:
 # https://www.cnblogs.com/tolimit/p/5065761.html
