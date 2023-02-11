@@ -144,6 +144,10 @@ unlock_test() {
   info "bash <(curl -Lso- "$(raw 'ghproxy')/lmc999/RegionRestrictionCheck/main/check.sh")"
   bash <(curl -Lso- ${SH}/unlockTest.sh)
 }
+tiktok_test() {
+  info "bash <(curl -Lso- "$(raw 'ghproxy')/lmc999/TikTokCheck/main/tiktok.sh")"
+  bash <(curl -Lso- "$(raw 'ghproxy')/lmc999/TikTokCheck/main/tiktok.sh")
+}
 # super_bench() {
 #   bash <(curl -Lso- ${SH}/superBench.sh)
 # }
@@ -203,6 +207,7 @@ menu() {
   success "24." "性能测试 (YABS)"
   success "25." "检测 回程路由 (BestTrace)"
   success "26." "检测 回程路由 (NextTrace)"
+  success "27." "检测 Tiktok解锁 (TikTokCheck)"
   # success "25." "检测 VPS信息/IO/路由 (LemonBench)"
   # success "29." "性能测试 (UnixBench)"
   # success "31." "DD重装Linux系统"
@@ -244,6 +249,7 @@ main() {
   elif [[ "$num" == "24" ]]; then yabs
   elif [[ "$num" == "25" ]]; then besttrace
   elif [[ "$num" == "26" ]]; then nexttrace
+  elif [[ "$num" == "27" ]]; then tiktok_test
   # elif [[ "$num" == "29" ]]; then unix_bench
   # elif [[ "$num" == "31" ]]; then reinstall
   else exit
