@@ -46,7 +46,7 @@ ulimited_tuning() {
   done
   if ! grep -q "ulimit" /etc/profile; then
     sed -i '/ulimit -SHn/d' /etc/profile
-    echo "ulimit -SHn 1000000" >> /etc/profile
+    echo "ulimit -SHn 65535" >> /etc/profile
   fi
   ulimit -SHn 65535 && ulimit -c unlimited
   # reload_sysctl
