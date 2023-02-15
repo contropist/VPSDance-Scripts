@@ -85,14 +85,19 @@ speed_test() {
 runtest() {
   printf "%-18s%-18s%-20s%-12s\n" " Node Name" "Upload Speed" "Download Speed" "Latency"
   speed_test '3633' 'CT|Shanghai'
-  speed_test '28225' 'CT|Changsha 5G'
-  # speed_test '17145' 'CT|Hefei 5G'
+  # speed_test '28225' 'CT|Changsha 5G'
+  speed_test '17145' 'CT|Hefei 5G'
   # speed_test '28225' 'CT|Nanjing 5G'
+
   speed_test '24447' 'CU|ShangHai 5G'
   speed_test '4870'  'CU|Changsha 5G'
-  speed_test '25637' 'CM|Shanghai 5G'
-  speed_test '28491' 'CM|Changsha 5G'
-  speed_test '26404' 'CM|Hefei 5G'
+
+  # speed_test '25637' 'CM|Shanghai 5G'
+  # speed_test '28491' 'CM|Changsha 5G'
+  # speed_test '26404' 'CM|Hefei 5G'
+  speed_test '4575' 'CM|Chengdu'
+  speed_test '54312' 'CM|Hangzhou'
+  speed_test '29105' "CM|Xi'an"
 
   # speed_test '21541' 'Los Angeles, US'
   # speed_test '43860' 'Dallas, US'

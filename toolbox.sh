@@ -120,9 +120,6 @@ ssh_port() {
 install_tool() {
   bash <(curl -Lso- ${SH}/tools.sh) "$@"
 }
-speedtest() {
-  bash <(curl -Lso- ${SH}/speedtest.sh)
-}
 install_xray() {
   bash <(curl -fsSL $(raw 'ghproxy')/XTLS/Xray-install/main/install-release.sh) install
   # 使用增强版的 geosite/geoip 规则
@@ -158,10 +155,14 @@ openai_test() {
 bench() {
   bash <(curl -Lso- ${SH}/bench.sh)
 }
+# speedtest() {
+#   bash <(curl -Lso- ${SH}/speedtest.sh)
+# }
 super_speed() {
   bash <(curl -Lso- $(raw 'ghproxy')/flyzy2005/superspeed/master/superspeed.sh)
 }
 hyperspeed() {
+  # https://github.com/veoco/bim-core/
   bash <(curl -Lso- https://bench.im/hyperspeed)
 }
 lemon_bench() {
@@ -205,9 +206,9 @@ menu() {
   # success "19." "安装 wtrace (路由追踪工具 WorstTrace)"
   success "21." "检测 VPS流媒体解锁 (RegionRestrictionCheck)"
   success "22." "检测 VPS信息/IO/网速 (Bench.sh)"
-  success "23." "检测 VPS到国内网速"
+  # success "23." "检测 VPS到国内网速"
+  success "23." "检测 VPS到国内网速 (HyperSpeed)"
   # success "23." "检测 VPS到国内网速 (Superspeed)"
-  # success "23." "检测 VPS网速 (hyperspeed)"
   success "24." "性能测试 (YABS)"
   success "25." "检测 回程路由 (BestTrace)"
   success "26." "检测 回程路由 (NextTrace)"
@@ -250,7 +251,7 @@ main() {
   # elif [[ "$num" == "19" ]]; then install_tool "wtrace"
   elif [[ "$num" == "21" ]]; then unlock_test
   elif [[ "$num" == "22" ]]; then bench
-  elif [[ "$num" == "23" ]]; then speedtest
+  elif [[ "$num" == "23" ]]; then hyperspeed
   elif [[ "$num" == "24" ]]; then yabs
   elif [[ "$num" == "25" ]]; then besttrace
   elif [[ "$num" == "26" ]]; then nexttrace
