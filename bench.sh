@@ -5,13 +5,15 @@
 main() {
   bash <(
     curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/bench.sh \
-    | sed "/Los Angeles/Ii speed_test '34115' 'TianJin CT'" \
+    | sed "/Los Angeles/Ii speed_test '3633' 'Shanghai CT'" \
     | sed "/Los Angeles/Ii speed_test '27594' 'Guangzhou CT'" \
     | sed "/Los Angeles/Ii speed_test '4870' 'Changsha CU'" \
     | sed "/Los Angeles/Ii speed_test '24447' 'ShangHai CU'" \
     | sed "/Los Angeles/Ii speed_test '4575' 'Chengdu CM'" \
     | sed "/Los Angeles/Ii speed_test '29105' \"Xi'an CM\"" \
     | sed "/.*, CN/Id"
+    # | sed "/Los Angeles/Ii speed_test '29071' 'Chengdu CT'" \
+    # | sed "/Los Angeles/Ii speed_test '34115' 'TianJin CT'" \
     # | sed "/Los Angeles/Ii speed_test '54312' 'Hangzhou CM'" \
     # | sed "/Los Angeles/Ii speed_test '26940' 'Yinchuan CM'" \
     # | sed "/Los Angeles/Ii speed_test '16145' 'Lanzhou CM'" \
