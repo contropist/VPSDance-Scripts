@@ -184,49 +184,115 @@ unix_bench() {
 reinstall() {
   bash <(curl -Lso- $(raw 'ghproxy')/hiCasper/Shell/master/AutoReinstall.sh)
 }
+uninstall() {
+  app="$@"
+  un_service() { systemctl disable $app --now; rm -rf "/etc/systemd/system/$app.service"; }
+  case "$app" in
+    xray)
+      un_service;
+      rm -rf /etc/systemd/system/xray@.service /usr/local/bin/xray
+      rm -rf /usr/local/etc/xray/ /usr/local/share/xray/ /var/log/xray/
+    ;;
+    ss)
+      un_service;
+      rm -rf /root/ss.json /usr/bin/ssserver /usr/bin/sslocal /usr/bin/ssurl /usr/bin/ssmanager /usr/bin/ssservice
+    ;;
+    snell)
+      un_service;
+      rm -rf /root/snell.conf /usr/bin/snell-server
+    ;;
+    realm)
+      un_service;
+      rm -rf /root/realm.toml /usr/bin/realm
+    ;;
+    gost)
+      un_service;
+      rm -rf /root/gost.json /usr/bin/gost
+    ;;
+    nali)
+      rm -rf ~/.config/nali ~/.local/share/nali /usr/bin/nali
+    ;;
+    ddns-go)
+      un_service;
+      rm -rf /root/ddns-go.yaml /usr/bin/ddns-go
+    ;;
+   *)
+    echo "$@"; exit;
+   ;;
+  esac
+  echo -e "\n${GREEN}Done${NC}" 
+}
 
 menu() {
   header
   info "请选择要使用的功能"
-  success "1." "[推荐] 配置SSH Public Key (SSH免密登录)"
-  success "2." "[推荐] 终端优化 (颜色美化/上下键查找历史)"
-  success "3." "[推荐] 安装并开启 BBR"
-  success "4." "[推荐] 安装常用软件 (curl/wget/ping/traceroute)"
-  success "5." "[推荐] 系统优化 (TCP网络优化/资源限制优化)"
-  success "6." "[推荐] 修改默认SSH端口 (防止被攻击)"
-  success "10." "安装 xray"
-  success "11." "安装 shadowsocks"
-  success "12." "安装 snell"
-  success "13." "安装 realm (端口转发工具)"
-  success "14." "安装 gost (隧道/端口转发工具)"
-  success "15." "安装 nali (IP查询工具)"
-  success "16." "安装 ddns-go (DDNS工具)"
-  # success "17." "安装 warp"
-  # success "18." "安装 wireguard"
-  # success "19." "安装 wtrace (路由追踪工具 WorstTrace)"
-  success "21." "检测 VPS流媒体解锁 (RegionRestrictionCheck)"
-  success "22." "检测 VPS信息/IO/网速 (Bench.sh)"
-  # success "23." "检测 VPS到国内网速"
-  success "23." "检测 VPS到国内网速 (HyperSpeed)"
-  # success "23." "检测 VPS到国内网速 (Superspeed)"
-  success "24." "性能测试 (YABS)"
-  success "25." "检测 回程路由 (BestTrace)"
-  success "26." "检测 回程路由 (NextTrace)"
-  success "27." "检测 Tiktok解锁 (TikTokCheck)"
-  success "28." "检测 ChatGPT解锁 (OpenAI-Checker)"
-  # success "25." "检测 VPS信息/IO/路由 (LemonBench)"
-  # success "29." "性能测试 (UnixBench)"
-  # success "31." "DD重装Linux系统"
+  # success "1." "SSH Public Key"
+  local AR=(
+    [1]="[推荐] 配置SSH Public Key (SSH免密登录)"
+    [2]="[推荐] 终端优化 (颜色美化/上下键查找历史)"
+    [3]="[推荐] 安装并开启 BBR"
+    [4]="[推荐] 安装常用软件 (curl/wget/ping/traceroute)"
+    [5]="[推荐] 系统优化 (TCP网络优化/资源限制优化)"
+    [6]="[推荐] 修改默认SSH端口 (防止被攻击)"
+    [10]="安装/卸载 xray"
+    [11]="安装/卸载 shadowsocks"
+    [12]="安装/卸载 snell"
+    [13]="安装/卸载 realm (端口转发工具)"
+    [14]="安装/卸载 gost (隧道/端口转发工具)"
+    [15]="安装/卸载 nali (IP查询工具)"
+    [16]="安装/卸载 ddns-go (DDNS工具)"
+    # [17]="安装 warp"
+    # [18]="安装 wireguard"
+    # [19]="安装 wtrace (路由追踪工具 WorstTrace)"
+    [21]="检测 VPS流媒体解锁 (RegionRestrictionCheck)"
+    [22]="检测 VPS信息/IO/网速 (Bench.sh)"
+    # [23]="检测 VPS到国内网速"
+    # [23]="检测 VPS到国内网速 (Superspeed)"
+    [23]="检测 VPS到国内网速 (HyperSpeed)"
+    [24]="性能测试 (YABS)"
+    # [25]="检测 VPS信息/IO/路由 (LemonBench)"
+    [25]="检测 回程路由 (BestTrace)"
+    [26]="检测 回程路由 (NextTrace)"
+    [27]="检测 Tiktok解锁 (TikTokCheck)"
+    [28]="检测 ChatGPT解锁 (OpenAI-Checker)"
+    # [29]="性能测试 (UnixBench)"
+    # [31]="DD重装Linux系统"
+    # [100]=""
+  )
+  for i in "${!AR[@]}"; do
+    success "$i." "${AR[i]}"
+  done
+
   while :; do
     read -p "输入数字以选择:" num
     [[ $num =~ ^[0-9]+$ ]] || { danger "请输入正确的数字"; continue; }
     break
-    # if ((num >= 1 && num <= 5)); then
-    #   break
-    # else
-    #   danger "请输入正确的数字";
-    # fi
   done
+  main="${AR[num]}"
+  installs=(10 11 12 13 14 15 16)
+  if [[ " ${installs[@]} " =~ " ${num} " ]]; then
+    install_menu
+  fi
+}
+install_menu() {
+  # clear
+  info "$main, 请选择: "
+  local AR=(
+    [0]='返回'
+    [1]='安装'
+    [2]='卸载'
+  )
+  for i in "${!AR[@]}"; do
+    success "$i." "${AR[i]}"
+  done
+  while :; do
+    read -p "输入数字以选择: " inum
+    [[ -n "${AR[inum]}" ]] || { danger "invalid number"; continue; }
+    break
+  done
+  if [[ "$inum" == "0" ]]; then
+    clear; menu;
+  fi
 }
 
 main() {
@@ -238,13 +304,20 @@ main() {
   elif [[ "$num" == "4" ]]; then install_deps
   elif [[ "$num" == "5" ]]; then tuning
   elif [[ "$num" == "6" ]]; then ssh_port
-  elif [[ "$num" == "10" ]]; then install_xray
-  elif [[ "$num" == "11" ]]; then install_tool "ss"
-  elif [[ "$num" == "12" ]]; then install_tool "snell"
-  elif [[ "$num" == "13" ]]; then install_tool "realm"
-  elif [[ "$num" == "14" ]]; then install_tool "gost"
-  elif [[ "$num" == "15" ]]; then install_tool "nali"
-  elif [[ "$num" == "16" ]]; then install_tool "ddns-go"
+  elif [[ "$num" == "10" ]]; then 
+    [[ "$inum" == "1" ]] && install_xray || uninstall "xray";
+  elif [[ "$num" == "11" ]]; then
+    [[ "$inum" == "1" ]] && install_tool "ss" || uninstall "ss";
+  elif [[ "$num" == "12" ]]; then
+    [[ "$inum" == "1" ]] && install_tool "snell" || uninstall "snell";
+  elif [[ "$num" == "13" ]]; then
+    [[ "$inum" == "1" ]] && install_tool "realm" || uninstall "realm";
+  elif [[ "$num" == "14" ]]; then
+    [[ "$inum" == "1" ]] && install_tool "gost" || uninstall "gost";
+  elif [[ "$num" == "15" ]]; then
+    [[ "$inum" == "1" ]] && install_tool "nali" || uninstall "nali";
+  elif [[ "$num" == "16" ]]; then
+    [[ "$inum" == "1" ]] && install_tool "ddns-go" || uninstall "ddns-go";
   # elif [[ "$num" == "17" ]]; then install_tool "nexttrace"
   # elif [[ "$num" == "17" ]]; then install_wrap
   # elif [[ "$num" == "18" ]]; then install_wireguard
