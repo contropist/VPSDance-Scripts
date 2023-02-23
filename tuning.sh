@@ -17,7 +17,7 @@ allusers=$( cat /etc/passwd | grep -vE "(/bin/false|/sbin/nologin|/bin/sync|gues
 
 reload_sysctl() { sysctl -q -p && sysctl --system; }
 check_sysctl() {
-  if [ ! -f '/etc/sysctl.conf' ]; then touch /etc/sysctl.conf; fi
+  if [ ! -f "$sysctl_conf" ]; then touch "$sysctl_conf"; fi
 }
 
 ulimited_tuning() {
