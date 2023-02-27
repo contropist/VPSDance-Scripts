@@ -169,7 +169,7 @@ download () {
     ;;
     snell4)
       # https://manual.nssurge.com/others/snell.html
-      version="v4.0.0"
+      version="v4.0.1"
       # url="https://raw.githubusercontent.com/VPSDance/files/main/snell/${version}/snell-server-${version}-${match}.zip"
       # url="https://ghproxy.com/$url" # cdn
       url="https://dl.nssurge.com/snell/snell-server-${version}-${match}.zip"
@@ -292,10 +292,10 @@ gen_config () {
   # )"
   case "$app" in
     snell)
-      conf="[snell-server]\nlisten = 0.0.0.0:$port\npsk = $pass\nobfs = tls"
+      conf="[snell-server]\nlisten = 0.0.0.0:$port\nipv6 = false\npsk = $pass\nobfs = tls"
     ;;
     snell4)
-      conf="[snell-server]\nlisten = 0.0.0.0:$port\npsk = $pass\nipv6 = false" #v4
+      conf="[snell-server]\nlisten = 0.0.0.0:$port\nipv6 = false\npsk = $pass" #v4
     ;;
     realm)
       conf=(''
