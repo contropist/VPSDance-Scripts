@@ -3,8 +3,9 @@
 # bash <(curl -L -s check.unlock.media)
 # https://github.com/lmc999/RegionRestrictionCheck
 
-url="https://raw.githubusercontent.com/lmc999/RegionRestrictionCheck/main/check.sh"
-url="https://ghproxy.com/$url" # cdn
+url="lmc999/RegionRestrictionCheck/main/check.sh"
+# url="https://ghproxy.com/https://raw.githubusercontent.com/$url" # cdn
+url="https://sh.vps.dance/raw/$url"
 main() {
   bash <(
     curl -L -s $url \

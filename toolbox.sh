@@ -138,15 +138,15 @@ install_wireguard(){
   # curl -Ls $(raw 'ghproxy')/teddysun/across/master/wireguard.sh | bash -s -- -n
 }
 unlock_test() {
-  info "bash <(curl -Lso- "$(raw 'ghproxy')/lmc999/RegionRestrictionCheck/main/check.sh")"
+  info "bash <(curl -Lso- "$(raw '')/lmc999/RegionRestrictionCheck/main/check.sh")"
   bash <(curl -Lso- ${SH}/unlockTest.sh)
 }
 tiktok_test() {
-  info "bash <(curl -Lso- "$(raw 'ghproxy')/lmc999/TikTokCheck/main/tiktok.sh")"
-  bash <(curl -Lso- "$(raw 'ghproxy')/lmc999/TikTokCheck/main/tiktok.sh")
+  info "bash <(curl -Lso- "$(raw '')/lmc999/TikTokCheck/main/tiktok.sh")"
+  bash <(curl -Lso- ${SH}/raw/lmc999/TikTokCheck/main/tiktok.sh)
 }
 openai_test() {
-  info "bash <(curl -Lso- "$(raw 'ghproxy')/missuo/OpenAI-Checker/main/openai.sh")"
+  info "bash <(curl -Lso- "$(raw '')/missuo/OpenAI-Checker/main/openai.sh")"
   bash <(curl -Lso- "$(raw 'ghproxy')/missuo/OpenAI-Checker/main/openai.sh")
 }
 # super_bench() {
