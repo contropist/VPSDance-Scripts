@@ -353,6 +353,7 @@ gen_config () {
 finally () {
   # echo "Port:       $port"
   # echo "Password:   $pass"
+  local ip=`curl -Ls ip.sb || echo 'localhost'`;
   if [[ -n "$service" ]]; then
     echo -e "${GREEN}\n[Enable and start service]${NC}"
     if [[ -n "$config" && -n "$conf" ]]; then
@@ -370,7 +371,7 @@ finally () {
     ;;
     ddns-go)
       systemctl restart $app;
-      tips="\nOpen http://127.0.0.1:9876 for configuration."
+      tips="\nOpen http://$ip:9876 for configuration."
       tips="$tips\n\n [Auto-generated] \"$config\"\n"
     ;;
     nexttrace)
