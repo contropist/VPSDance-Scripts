@@ -169,8 +169,8 @@ lemon_bench() {
   curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast
 }
 yabs() {
-  info "curl -sL yabs.sh | bash -s -- -dir"
-  curl -sL yabs.sh | bash -s -- -dir
+  info "curl -sL yabs.sh | bash -s -- -r"
+  curl -sL yabs.sh | bash -s -- -r
 }
 besttrace() {
   bash <(curl -Lso- ${SH}/autoBestTrace.sh)
