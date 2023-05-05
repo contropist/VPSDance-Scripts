@@ -90,7 +90,7 @@ ssh_port() {
     iptables -I INPUT -p tcp --dport $SSH_PORT -j ACCEPT
     iptables-save > /etc/iptables.rules
   fi
-  local ip=`curl -Ls ip.sb`;
+  local ip=`curl -4Ls ip.sb || curl -6Ls ip.sb || echo 'localhost'`;
   warn "[*] 请勿退出当前ssh, 新开终端测试 \"ssh root@$ip -p $SSH_PORT\" 是否能登录"
   warn "[*] 如不能登录, 重新执行本命令, 改回默认的 22 端口"
 }
