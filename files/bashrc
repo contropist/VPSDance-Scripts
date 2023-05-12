@@ -18,4 +18,5 @@ alias ll='ls --color=auto -lAF'
 alias grep='grep --color=auto'
 # alias cls="stat -c '%a %A %U %G %s %n' *"
 # if [ "$color_prompt" = yes ]; then
-export PS1='\[\e[\033[32m\]\D{%y%m%d}-\A \h:\w\[\e[0m\] \n\[\e[0;1;34m\]\u\$ \[\e[0m\]'
+export PS1='\[\e[\033[32m\]\D{%y%m%d}-\A \u@\h:\w\[\e[0m\] \n➜ \[\e[0;1;36m\]\W \[\e[0m\]'
+# echo $PS1
