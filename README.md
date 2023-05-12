@@ -15,6 +15,14 @@ bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/swap.sh)
 ```
+- add SSH public key
+```sh
+bash <(curl -Lso- https://sh.vps.dance/ssh.sh) key
+```
+- change SSH port
+```sh
+bash <(curl -Lso- https://sh.vps.dance/ssh.sh) port
+```
 
 - install ddns-go
 ```sh
