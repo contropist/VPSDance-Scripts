@@ -11,6 +11,10 @@ Tools and Scripts for Linux VPS
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
 ```
+- add swap space
+```sh
+bash <(curl -Lso- https://sh.vps.dance/swap.sh)
+```
 
 - install ddns-go
 ```sh
