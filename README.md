@@ -38,12 +38,12 @@ bash <(curl -Lso- https://sh.vps.dance/tools.sh) realm -p
 ```
 
 - paste text and share
-```
+```sh
 bash <(curl -Lso- https://sh.vps.dance/paste.sh)
 ```
 
 - autoBestTrace
-```
+```sh
 bash <(curl -Lso- https://sh.vps.dance/autoBestTrace.sh)
 ```
 
