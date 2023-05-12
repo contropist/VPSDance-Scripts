@@ -26,25 +26,25 @@ bash <(curl -Lso- https://sh.vps.dance/ssh.sh) port
 
 - install ddns-go
 ```sh
-bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh) ddns-go -p
+bash <(curl -Lso- https://sh.vps.dance/tools.sh) ddns-go -p
 ```
 - install gost
 ```sh
-bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh) gost -p
+bash <(curl -Lso- https://sh.vps.dance/tools.sh) gost -p
 ```
 - install realm
 ```sh
-bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/tools.sh) realm -p
+bash <(curl -Lso- https://sh.vps.dance/tools.sh) realm -p
 ```
 
 - paste text and share
 ```
-bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/paste.sh)
+bash <(curl -Lso- https://sh.vps.dance/paste.sh)
 ```
 
 - autoBestTrace
 ```
-bash <(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/autoBestTrace.sh)
+bash <(curl -Lso- https://sh.vps.dance/autoBestTrace.sh)
 ```
 
 <!--
