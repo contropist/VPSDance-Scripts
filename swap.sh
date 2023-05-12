@@ -74,7 +74,8 @@ menu() {
   if [[ "$num" == "0" ]]; then
     clear
     swap_info
-    # menu
+    printf "%-37s\n" "-" | sed 's/\s/-/g'
+    menu
   elif [[ "$num" == "1" ]]; then
     create_swap
   elif [[ "$num" == "2" ]]; then

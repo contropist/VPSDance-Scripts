@@ -117,6 +117,9 @@ tuning() {
 ssh_port() {
   bash <(curl -Lso- ${SH}/ssh.sh) port
 }
+add_swap() {
+  bash <(curl -Lso- ${SH}/swap.sh)
+}
 install_tool() {
   bash <(curl -Lso- ${SH}/tools.sh) "$@"
 }
@@ -234,6 +237,7 @@ menu() {
     [4]="[推荐] 安装常用软件 (curl/wget/ping/traceroute/python3)"
     [5]="[推荐] 系统优化 (TCP网络优化/资源限制优化)"
     [6]="[推荐] 修改默认SSH端口 (减少被扫描风险)"
+    [7]="增加swap分区 (虚拟内存)"
     [10]="安装/卸载 xray"
     [11]="安装/卸载 shadowsocks"
     [12]="安装/卸载 snell"
@@ -304,6 +308,7 @@ main() {
   elif [[ "$num" == "4" ]]; then install_deps
   elif [[ "$num" == "5" ]]; then tuning
   elif [[ "$num" == "6" ]]; then ssh_port
+  elif [[ "$num" == "7" ]]; then add_swap
   elif [[ "$num" == "10" ]]; then 
     [[ "$inum" == "1" ]] && install_xray || uninstall "xray";
   elif [[ "$num" == "11" ]]; then
