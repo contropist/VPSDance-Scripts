@@ -34,7 +34,7 @@ echo "deb-src http://deb.debian.org/debian bookworm-backports main non-free-firm
 tips() {
   echo "Please run:"
   echo "apt update -y && apt upgrade -y && apt autoremove -y && apt autoclean -y"
-  echo "/etc/os-release"
+  echo "cat /etc/os-release"
   # apt full-upgrade -y;
 }
 
