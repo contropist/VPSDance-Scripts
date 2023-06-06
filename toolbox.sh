@@ -172,8 +172,17 @@ lemon_bench() {
   curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast
 }
 yabs() {
-  info "curl -sL yabs.sh | bash -s -- -n"
-  curl -sL yabs.sh | bash -s -- -n
+  while :; do
+    read -p "输入Geekbench 版本 [默认=6, 可选:4/5/6]: " BENCH_VER
+    BENCH_VER=${BENCH_VER:-6}
+    [[ $BENCH_VER =~ ^[0-9]+$ ]] || {
+      echo "invalid number"
+      continue
+    }
+    break
+  done
+  info "curl -sL yabs.sh | bash -s -- -$BENCH_VER -n"
+  curl -sL yabs.sh | bash -s -- -$BENCH_VER -n
 }
 besttrace() {
   bash <(curl -Lso- ${SH}/autoBestTrace.sh)
