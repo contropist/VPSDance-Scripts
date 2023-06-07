@@ -181,8 +181,34 @@ yabs() {
     }
     break
   done
-  info "curl -sL yabs.sh | bash -s -- -$BENCH_VER -n"
-  curl -sL yabs.sh | bash -s -- -$BENCH_VER -n
+  local cmd="curl -sL yabs.sh | bash -s -- -$BENCH_VER"
+  local AR=(
+    [1]='仅Benchmark'
+    [2]='仅fio'
+    [3]='仅iperf'
+    [4]='Benchmark+fio+iperf'
+  )
+  clear;
+  info "Geekbench 版本 $BENCH_VER, 请选择测试目标: "
+  for i in "${!AR[@]}"; do
+    success "$i." "${AR[i]}"
+  done
+  while :; do
+    read -p "输入数字以选择: " snum
+    [[ -n "${AR[snum]}" ]] || {
+      danger "invalid"
+      continue
+    }
+    break
+  done
+  if [[ "$snum" == "1" ]]; then cmd="$cmd -din"
+  elif [[ "$snum" == "2" ]]; then cmd="$cmd  -ign" $log
+  elif [[ "$snum" == "3" ]]; then cmd="$cmd  -dgn" $log
+  elif [[ "$snum" == "4" ]]; then cmd="$cmd  -n" $log
+  fi
+  clear;
+  info "$cmd";
+  eval "$cmd";
 }
 besttrace() {
   bash <(curl -Lso- ${SH}/autoBestTrace.sh)
