@@ -42,11 +42,11 @@ delete_swap() {
   if [[ ! -f "$swap_file" ]]; then return; fi
   swapoff $swap_file # 已经关闭, 会报错
   rm -f $swap_file
+  sed -i "\#${swap_file}#d" /etc/fstab
+  sed -i "/${line_mark}/d" /etc/sysctl.conf
 }
 restore_swap() {
   delete_swap
-  sed -i "\#${swap_file}#d" /etc/fstab
-  sed -i "/${line_mark}/d" /etc/sysctl.conf
   sysctl -p > /dev/null;
   info "swap设置还原成功!"
   swap_info
