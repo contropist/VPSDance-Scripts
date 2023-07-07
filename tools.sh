@@ -124,7 +124,7 @@ init () {
     ;;
     nexttrace)
       app="nexttrace"
-      repo="sjlleo/nexttrace"
+      repo="nxtrace/Ntrace-core"
       case $ARCH in
         aarch64)
           match="linux_arm64"
