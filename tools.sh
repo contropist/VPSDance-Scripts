@@ -330,7 +330,7 @@ gen_config () {
     ss)
       conf=('{"servers": ['
       '{'
-        ' "address": "0.0.0.0",'
+        ' "address": "::",'
         ' "port": '$port','
         ' "password": "'$pass'",'
         ' "method": "chacha20-ietf-poly1305",'
