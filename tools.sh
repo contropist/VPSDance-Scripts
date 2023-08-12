@@ -336,6 +336,7 @@ gen_config () {
         ' "method": "chacha20-ietf-poly1305",'
         ' "mode": "tcp_and_udp",'
         ' "fast_open": false,'
+        ' "ipv6_first": true,'
         ' "timeout": 300'
       '}'
       ']}')
