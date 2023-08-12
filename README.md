@@ -1,4 +1,5 @@
 # scripts
+
 Tools and Scripts for Linux VPS
 
 <!--
@@ -8,43 +9,63 @@ Tools and Scripts for Linux VPS
 -->
 
 - VPS ToolBox(include all scripts)
+
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
 ```
+
 - add swap space
+
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/swap.sh)
 ```
+
 - add SSH public key
+
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/ssh.sh) key
 ```
+
 - change SSH port
+
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/ssh.sh) port
 ```
 
+- prefer IPv4/IPv6; enable/disable IPv6;
+
+```sh
+bash <(curl -Lso- https://sh.vps.dance/ip46.sh)
+```
+
 - install ddns-go
+
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/tools.sh) ddns-go -p
 ```
+
 - install gost
+
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/tools.sh) gost -p
 ```
+
 - install realm
+
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/tools.sh) realm -p
 ```
 
-- paste text and share
-```sh
-bash <(curl -Lso- https://sh.vps.dance/paste.sh)
-```
-
 - autoBestTrace
+
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/autoBestTrace.sh)
+```
+
+- paste text and share
+
+```sh
+bash <(curl -Lso- https://sh.vps.dance/paste.sh)
 ```
 
 <!--
