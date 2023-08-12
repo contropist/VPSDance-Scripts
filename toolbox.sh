@@ -105,21 +105,12 @@ install_deps() {
 install_bbr() {
   bash <(curl -Lso- $(raw 'ghproxy')/teddysun/across/master/bbr.sh)
 }
-ssh_key() {
-  bash <(curl -Lso- ${SH}/ssh.sh)
-}
-bashrc() {
-  bash <(curl -Lso- ${SH}/bashrc.sh)
-}
-tuning() {
-  bash <(curl -Lso- ${SH}/tuning.sh)
-}
-ssh_port() {
-  bash <(curl -Lso- ${SH}/ssh.sh) port
-}
-add_swap() {
-  bash <(curl -Lso- ${SH}/swap.sh)
-}
+ssh_key() { bash <(curl -Lso- ${SH}/ssh.sh); }
+bashrc() { bash <(curl -Lso- ${SH}/bashrc.sh); }
+tuning() { bash <(curl -Lso- ${SH}/tuning.sh); }
+ssh_port() { bash <(curl -Lso- ${SH}/ssh.sh) port; }
+add_swap() { bash <(curl -Lso- ${SH}/swap.sh); }
+ip46() { bash <(curl -Lso- ${SH}/ip46.sh); }
 install_tool() {
   bash <(curl -Lso- ${SH}/tools.sh) "$@"
 }
@@ -273,6 +264,7 @@ menu() {
     [5]="[推荐] 系统优化 (TCP网络优化/资源限制优化)"
     [6]="[推荐] 修改默认SSH端口 (减少被扫描风险)"
     [7]="增加swap分区 (虚拟内存)"
+    [8]="IPv4/IPv6优先级调整; 启用/禁用IPv6"
     [10]="安装/卸载 xray"
     [11]="安装/卸载 shadowsocks"
     [12]="安装/卸载 snell"
@@ -344,6 +336,7 @@ main() {
   elif [[ "$num" == "5" ]]; then tuning
   elif [[ "$num" == "6" ]]; then ssh_port
   elif [[ "$num" == "7" ]]; then add_swap
+  elif [[ "$num" == "8" ]]; then ip46
   elif [[ "$num" == "10" ]]; then 
     [[ "$inum" == "1" ]] && install_xray || uninstall "xray";
   elif [[ "$num" == "11" ]]; then
