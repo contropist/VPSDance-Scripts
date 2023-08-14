@@ -345,7 +345,7 @@ gen_config () {
     ;;
   esac
   if [[ -n "$config" && -n "$conf" ]]; then
-    echo -e "\n[Create config file] \"$config\", for example:"
+    echo -e "${GREEN}\n[Create config file]${NC} \"$config\", for example:"
     echo -e "$conf"
   fi
   if [[ -f "/root/realm.json" && "$app" == "realm" ]]; then
