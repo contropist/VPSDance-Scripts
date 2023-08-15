@@ -123,9 +123,7 @@ install_xray() {
   info "status: systemctl status xray"
   info "restart: systemctl restart xray"
 }
-install_wrap() {
-  bash <(curl -fsSL $(raw 'ghproxy')/P3TERX/warp.sh/main/warp.sh) menu
-}
+install_wrap() { bash <(curl -fsSL $(raw 'ghproxy')/P3TERX/warp.sh/main/warp.sh) menu; }
 install_wireguard(){
   curl -Ls $(raw 'ghproxy')/teddysun/across/master/wireguard.sh | bash -s -- -r
   # uninstall_wireguard
@@ -143,25 +141,12 @@ openai_test() {
   info "bash <(curl -Lso- "$(raw '')/missuo/OpenAI-Checker/main/openai.sh")"
   bash <(curl -Lso- "$(raw 'ghproxy')/missuo/OpenAI-Checker/main/openai.sh")
 }
-# super_bench() {
-#   bash <(curl -Lso- ${SH}/superBench.sh)
-# }
-bench() {
-  bash <(curl -Lso- ${SH}/bench.sh)
-}
-# speedtest() {
-#   bash <(curl -Lso- ${SH}/speedtest.sh)
-# }
-super_speed() {
-  bash <(curl -Lso- $(raw 'ghproxy')/flyzy2005/superspeed/master/superspeed.sh)
-}
-hyperspeed() {
+bench() { bash <(curl -Lso- ${SH}/bench.sh); }
+# speedtest() { bash <(curl -Lso- ${SH}/speedtest.sh); }
+super_speed() { bash <(curl -Lso- $(raw 'ghproxy')/flyzy2005/superspeed/master/superspeed.sh); }
   # https://github.com/veoco/bim-core/
-  bash <(curl -Lso- https://bench.im/hyperspeed)
-}
-lemon_bench() {
-  curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast
-}
+hyperspeed() { bash <(curl -Lso- https://bench.im/hyperspeed); }
+# lemon_bench() { curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast; }
 yabs() {
   while :; do
     read -p "输入Geekbench 版本 [默认=6, 可选:4/5/6]: " BENCH_VER
@@ -201,18 +186,10 @@ yabs() {
   info "$cmd";
   eval "$cmd";
 }
-besttrace() {
-  bash <(curl -Lso- ${SH}/autoBestTrace.sh)
-}
-nexttrace() {
-  bash <(curl -Lso- ${SH}/autoNexttrace.sh)
-}
-unix_bench() {
-  bash <(curl -Lso- $(raw 'ghproxy')/teddysun/across/master/unixbench.sh)
-}
-reinstall() {
-  bash <(curl -Lso- $(raw 'ghproxy')/hiCasper/Shell/master/AutoReinstall.sh)
-}
+besttrace() { bash <(curl -Lso- ${SH}/autoBestTrace.sh); }
+nexttrace() { bash <(curl -Lso- ${SH}/autoNexttrace.sh); }
+unix_bench() { bash <(curl -Lso- $(raw 'ghproxy')/teddysun/across/master/unixbench.sh); }
+reinstall() { bash <(curl -Lso- $(raw 'ghproxy')/hiCasper/Shell/master/AutoReinstall.sh); }
 uninstall() {
   app="$@"
   un_service() { systemctl disable $app --now; rm -rf "/etc/systemd/system/$app.service"; }
@@ -255,7 +232,6 @@ uninstall() {
 menu() {
   header
   info "请选择要使用的功能"
-  # success "1." "SSH Public Key"
   local AR=(
     [1]="[推荐] 配置SSH Public Key (SSH免密登录)"
     [2]="[推荐] 终端优化 (颜色美化/上下键查找历史)"
