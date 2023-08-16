@@ -91,13 +91,13 @@ install_deps() {
     Debian*|Ubuntu*)
       apt update -y;
       apt install -y curl wget htop zip unzip xz-utils gzip ca-certificates net-tools dnsutils iputils-ping mtr traceroute telnet tcpdump;
-      apt install -y hping3 nmap;
+      apt install -y nmap;
       apt install -y python3 python3-pip;
     ;;
     CentOS*|RedHat*)
       yum update -y;
       yum install -y epel-release which openssl curl wget htop zip unzip xz gzip ca-certificates net-tools bind-utils iputils mtr traceroute telnet tcpdump;
-      yum install -y hping3 nmap; # @epel-release
+      yum install -y nmap;
       yum install -y python3 python3-pip;
     ;;
   esac
