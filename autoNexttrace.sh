@@ -29,8 +29,10 @@ ip_list=(14.215.116.1 202.96.209.133 117.28.254.129 113.207.25.138 119.6.6.6 120
 ip_addr=(广州电信 上海电信 厦门电信 重庆联通 成都联通 上海移动 成都移动 广东移动 成都教育网)
 # ip_len=${#ip_list[@]}
 
-for i in {0..8}
-do
+cancel() { exit 1; }
+trap cancel SIGINT SIGTERM
+
+for i in {0..8}; do
 	echo ${ip_addr[$i]}
 	nexttrace -T -q 1 ${ip_list[$i]} \
     | sed '/^.*Geo Data.*$/d' \
