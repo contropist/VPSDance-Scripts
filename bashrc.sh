@@ -20,7 +20,7 @@ apply_bashrc() {
     if [[ ! -f "$file" ]]; then continue; fi
     # insert lines
     printf "%s\n" "# => vps.dance" >>$file
-    printf "%s\n" "$(curl -Lso- https://raw.githubusercontent.com/VPSDance/scripts/main/files/bashrc)" >>$file
+    printf "%s\n" "$(curl -Lso- https://sh.vps.dance/raw/VPSDance/scripts/main/files/bashrc)" >>$file
     printf "%s\n" "# <= vps.dance" >>$file
   done
 }
