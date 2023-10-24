@@ -90,13 +90,16 @@ install_deps() {
   case "${DISTRO}" in
     Debian*|Ubuntu*)
       apt update -y;
-      apt install -y curl wget htop zip unzip xz-utils gzip ca-certificates net-tools dnsutils iputils-ping mtr traceroute telnet tcpdump;
-      apt install -y nmap;
+      apt install -y curl wget htop zip unzip xz-utils gzip ca-certificates; # zip unzip xz-utils gzip
+      # ifconfig/netstat dig/nslookup ping/traceroute telnet/tcpdump nc
+      apt install -y net-tools dnsutils iputils-ping mtr traceroute telnet tcpdump netcat-openbsd; 
+      apt install -y nmap; # nping
       apt install -y python3 python3-pip;
     ;;
     CentOS*|RedHat*)
       yum update -y;
-      yum install -y epel-release which openssl curl wget htop zip unzip xz gzip ca-certificates net-tools bind-utils iputils mtr traceroute telnet tcpdump;
+      yum install -y epel-release which openssl curl wget htop zip unzip xz gzip ca-certificates;
+      yum install -y net-tools bind-utils iputils mtr traceroute telnet tcpdump nc;
       yum install -y nmap;
       yum install -y python3 python3-pip;
     ;;
