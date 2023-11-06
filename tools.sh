@@ -115,10 +115,10 @@ init () {
       repo="jeessy2/ddns-go"
       case $ARCH in
         aarch64)
-          match="Linux_.*arm64"
+          match="linux_.*arm64"
         ;;
         *)
-         match="Linux_.*x86_64"
+         match="linux_.*x86_64"
         ;;
       esac
     ;;
@@ -156,6 +156,7 @@ download () {
   suffix=$( [[ "$prerelease" = true ]] && echo "releases" || echo "releases/latest" )
   if [[ -n "$repo" ]]; then
     api="https://api.github.com/repos/$repo/$suffix"
+    # echo "curl -s $api | grep \"browser_download_url.*$match\" | head -1"; exit;
     url=$( curl -s $api | grep "browser_download_url.*$match" | head -1 | cut -d : -f 2,3 | xargs echo ) # xargs wget
     # url=${url/"https://github.com"/"https://hub.fastgit.org"} # cdn
     url="https://ghproxy.com/$url" # cdn
