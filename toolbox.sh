@@ -4,13 +4,11 @@
 # bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
 
 # Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE="\033[34m"
-PURPLE="\033[35m"
-BOLD="\033[1m"
-NC='\033[0m'
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[0;33m'; BLUE='\033[34m'; CYAN='\033[0;36m'; PURPLE='\033[35m'; BOLD='\033[1m'; NC='\033[0m';
+success() { printf "${GREEN}%b${NC} ${@:2}\n" "$1"; }
+info() { printf "${CYAN}%b${NC} ${@:2}\n" "$1"; }
+danger() { printf "\n${RED}[x] %b${NC}\n" "$@"; }
+warn() { printf "${YELLOW}%b${NC}\n" "$@"; }
 
 OS=$(uname -s) # Linux, FreeBSD, Darwin
 ARCH=$(uname -m) # x86_64, arm64, aarch64
@@ -41,24 +39,7 @@ check_root() {
     # if [[ "$debug" != true ]]; then exit 1; fi
   fi
 }
-next() {
-  printf "%-37s\n" "-" | sed 's/\s/-/g'
-}
-success() {
-  printf "${GREEN}%s${NC} ${@:2}\n" "$1"
-}
-info() {
-  printf "${BLUE}%s${NC} ${@:2}\n" "$1"
-}
-danger() {
-  printf "${RED}[x] %s${NC}\n" "$@"
-}
-warn() {
-  printf "${YELLOW}%s${NC}\n" "$@"
-}
-nc() {
-  printf "${NC}%s${NC}\n" "$@" # No Color
-}
+next() { printf "%-37s\n" "-" | sed 's/\s/-/g'; }
 
 # if (ver_lte 3 3.0); then echo 3; else echo 2; fi # ver_lte 2.5.7 3 && echo "yes" || echo "no"
 ver_lte() { # <=
@@ -106,6 +87,7 @@ install_deps() {
   esac
 }
 install_bbr() {
+  info "bash <(curl -Lso- "$(raw '')/teddysun/across/master/bbr.sh")"
   bash <(curl -Lso- $(raw 'ghproxy')/teddysun/across/master/bbr.sh)
 }
 ssh_key() { bash <(curl -Lso- ${SH}/ssh.sh); }
