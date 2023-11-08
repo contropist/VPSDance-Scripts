@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
+# bash <(curl -Lso- https://sh.vps.dance/vkit.sh)
 
 # Colors
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[0;33m'; BLUE='\033[34m'; CYAN='\033[0;36m'; PURPLE='\033[35m'; BOLD='\033[1m'; NC='\033[0m';
@@ -55,7 +55,7 @@ python_version() {
 
 header() {
   next
-  printf "%s\n" "[VPS ToolBox] 目前支持: Ubuntu/Debian, Centos/Redhat"
+  printf "%s\n" "[vkit] 目前支持: Ubuntu/Debian, Centos/Redhat"
   printf "%b\n" "${GREEN}VPS/IPLC测评:${NC} ${YELLOW}https://vps.dance/${NC}"
   printf "%b\n" "${GREEN}Telegram频道:${NC} ${YELLOW}https://t.me/vpsdance${NC}"
   next

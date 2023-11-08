@@ -1,4 +1,4 @@
-# scripts
+# vkit
 
 Tools and Scripts for Linux VPS
 
@@ -8,10 +8,10 @@ Tools and Scripts for Linux VPS
 # cdn: https://ghproxy.com/https://github.com/:user/:repo/, https://ghproxy.com/https://github.com/zhboner/realm/releases/download/v1.4/realm
 -->
 
-- VPS ToolBox(include all scripts)
+- vkit(include all scripts)
 
 ```sh
-bash <(curl -Lso- https://sh.vps.dance/toolbox.sh)
+bash <(curl -Lso- https://sh.vps.dance/vkit.sh)
 ```
 
 - add swap space
@@ -70,6 +70,6 @@ bash <(curl -Lso- https://sh.vps.dance/paste.sh)
 
 <!--
 update cache:
-- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/toolbox.sh
+- https://purge.jsdelivr.net/gh/VPSDance/scripts@main/vkit.sh
 - https://purge.jsdelivr.net/gh/VPSDance/scripts@main/tools.sh
 -->
