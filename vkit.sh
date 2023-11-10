@@ -221,7 +221,7 @@ menu() {
     [1]="[推荐] 配置SSH Public Key (SSH免密登录)"
     [2]="[推荐] 终端优化 (颜色美化/上下键查找历史)"
     [3]="[推荐] 安装并开启 BBR"
-    [4]="[推荐] 安装常用软件 (curl/wget/ping/traceroute/python3)"
+    [4]="[推荐] 安装常用软件 (ping/traceroute/nslookup/nping/nc/tcpdump/python3)"
     [5]="[推荐] 系统优化 (TCP网络优化/资源限制优化)"
     [6]="[推荐] 修改默认SSH Port端口 (减少被扫描风险)"
     [7]="增加swap分区 (虚拟内存)"
