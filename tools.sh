@@ -186,7 +186,7 @@ download () {
           printf "${RED}[x] $ARCH not supported ${PLAIN}\n${NC}"; exit 1;
         ;;
         *)
-         url="https://pkg.wtrace.app/linux/worsttrace"
+         url="https://wtrace.app/packages/linux/worsttrace"
         ;;
       esac
     ;;
