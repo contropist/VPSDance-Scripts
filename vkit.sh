@@ -205,7 +205,7 @@ uninstall() {
     ;;
     hysteria-server)
       un_service;
-      rm -rf /etc/hysteria/
+      rm -rf /etc/hysteria/ /usr/local/bin/hysteria
     ;;
     nali)
       rm -rf ~/.config/nali ~/.local/share/nali /usr/bin/nali
