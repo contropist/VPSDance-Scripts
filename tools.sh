@@ -386,7 +386,7 @@ finally () {
     hysteria-server)
       tips="Please modify the ${RED}listen${NC}, ${RED}acme.domains${NC}, ${RED}acme.email${NC}, and ${RED}masquerade.proxy.url${NC} in the /etc/hysteria/config.yaml file."
       tips+="\nDocs: https://v2.hysteria.network/en/docs/getting-started/Server/"
-      tips+="\n\n$service_tips"
+      tips+="\n\nStart: $service_tips"
     ;;
     nali)
       tips="nali update;\nping g.cn | nali;\ntraceroute 189.cn | nali"

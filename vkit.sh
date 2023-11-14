@@ -177,6 +177,9 @@ unix_bench() { bash <(curl -Lso- $(raw 'ghproxy')/teddysun/across/master/unixben
 reinstall() { bash <(curl -Lso- $(raw 'ghproxy')/hiCasper/Shell/master/AutoReinstall.sh); }
 uninstall() {
   app="$@"
+  if [[ "$app" == "hy2" ]]; then
+    app="hysteria-server"
+  fi
   un_service() { systemctl disable $app --now; rm -rf "/etc/systemd/system/$app.service"; }
   case "$app" in
     xray)
@@ -199,6 +202,10 @@ uninstall() {
     gost)
       un_service;
       rm -rf /root/gost.json /usr/bin/gost
+    ;;
+    hysteria-server)
+      un_service;
+      rm -rf /etc/hysteria/
     ;;
     nali)
       rm -rf ~/.config/nali ~/.local/share/nali /usr/bin/nali
@@ -229,13 +236,13 @@ menu() {
     [10]="安装/卸载 xray"
     [11]="安装/卸载 shadowsocks"
     [12]="安装/卸载 snell"
-    [13]="安装/卸载 realm (端口转发工具)"
-    [14]="安装/卸载 gost (隧道/端口转发工具)"
-    [15]="安装/卸载 nali (IP查询工具)"
-    [16]="安装/卸载 ddns-go (DDNS工具)"
+    [13]="安装/卸载 hysteria 2"
+    [14]="安装/卸载 realm (端口转发工具)"
+    [15]="安装/卸载 gost (隧道/端口转发工具)"
+    [16]="安装/卸载 nali (IP查询工具)"
+    [17]="安装/卸载 ddns-go (DDNS工具)"
     # [17]="安装 warp"
     # [18]="安装 wireguard"
-    # [19]="安装 wtrace (路由追踪工具 WorstTrace)"
     [21]="检测 VPS流媒体解锁 (RegionRestrictionCheck)"
     [22]="检测 VPS信息/IO/网速 (Bench.sh)"
     # [23]="检测 VPS到国内网速"
@@ -261,7 +268,7 @@ menu() {
     break
   done
   main="${AR[num]}"
-  installs=(10 11 12 13 14 15 16)
+  installs=(10 11 12 13 14 15 16 17)
   if [[ " ${installs[@]} " =~ " ${num} " ]]; then
     install_menu
   fi
@@ -305,17 +312,17 @@ main() {
   elif [[ "$num" == "12" ]]; then
     [[ "$inum" == "1" ]] && install_tool "snell" || uninstall "snell";
   elif [[ "$num" == "13" ]]; then
-    [[ "$inum" == "1" ]] && install_tool "realm" || uninstall "realm";
+    [[ "$inum" == "1" ]] && install_tool "hy2" || uninstall "hy2";
   elif [[ "$num" == "14" ]]; then
-    [[ "$inum" == "1" ]] && install_tool "gost" || uninstall "gost";
+    [[ "$inum" == "1" ]] && install_tool "realm" || uninstall "realm";
   elif [[ "$num" == "15" ]]; then
-    [[ "$inum" == "1" ]] && install_tool "nali" || uninstall "nali";
+    [[ "$inum" == "1" ]] && install_tool "gost" || uninstall "gost";
   elif [[ "$num" == "16" ]]; then
+    [[ "$inum" == "1" ]] && install_tool "nali" || uninstall "nali";
+  elif [[ "$num" == "17" ]]; then
     [[ "$inum" == "1" ]] && install_tool "ddns-go" || uninstall "ddns-go";
-  # elif [[ "$num" == "17" ]]; then install_tool "nexttrace"
   # elif [[ "$num" == "17" ]]; then install_wrap
   # elif [[ "$num" == "18" ]]; then install_wireguard
-  # elif [[ "$num" == "19" ]]; then install_tool "wtrace"
   elif [[ "$num" == "21" ]]; then unlock_test
   elif [[ "$num" == "22" ]]; then bench
   elif [[ "$num" == "23" ]]; then hyperspeed
