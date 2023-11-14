@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# bash <(curl -Lso- https://sh.vps.dance/tools.sh) [snell|snell4|realm|gost|ss|nali|wtrace|ddns-go|nexttrace]
+# bash <(curl -Lso- https://sh.vps.dance/tools.sh) [snell|snell4|realm|gost|ss|nali|wtrace|ddns-go|nexttrace|hy2]
 
 # Colors
 RED='\033[0;31m'
@@ -93,6 +93,10 @@ init () {
          match="x86_64.*linux-gnu"
         ;;
       esac
+    ;;
+    hy2)
+      app="hysteria-server"
+      config="/etc/hysteria/config.yaml"
     ;;
     nali)
       app="nali"
@@ -193,7 +197,9 @@ download () {
   esac
   echo -e "${GREEN}\n[Download]${NC} $url"
   if [[ "$debug" != true ]]; then
-    wget $url
+    if [[ -n "$url" ]]; then
+      wget $url
+    fi
   fi
   # echo -e "\n[Extract files]"
   # tar xJvf .tar.xz/.txz # apt install -y xz-utils
@@ -221,6 +227,9 @@ download () {
     ;;
     ss)
       tar xJf shadowsocks-*.xz && rm -rf shadowsocks-*.xz*; mv ./ssserver ./sslocal ./ssurl ./ssmanager ./ssservice /usr/bin/;
+    ;;
+    hysteria-server)
+      bash <(curl -fsSL https://get.hy2.sh/)
     ;;
     nali)
       gzip -d nali-*.gz; mv ./nali-* /usr/bin/nali; chmod +x /usr/bin/nali;
@@ -372,7 +381,13 @@ finally () {
   else
     echo -e "${GREEN}\n[Usage]${NC}"
   fi
+  service_tips="systemctl restart $app; systemctl status $app;"
   case "$app" in
+    hysteria-server)
+      tips="Please modify the ${RED}listen${NC}, ${RED}acme.domains${NC}, ${RED}acme.email${NC}, and ${RED}masquerade.proxy.url${NC} in the /etc/hysteria/config.yaml file."
+      tips+="\nDocs: https://v2.hysteria.network/en/docs/getting-started/Server/"
+      tips+="\n\n$service_tips"
+    ;;
     nali)
       tips="nali update;\nping g.cn | nali;\ntraceroute 189.cn | nali"
     ;;
@@ -388,7 +403,7 @@ finally () {
       tips="nexttrace -T -f"
     ;;
     *)
-      tips="systemctl restart $app; systemctl status $app;"
+      tips="$service_tips"
     ;;
   esac
   if [[ -n "$tips" ]]; then
