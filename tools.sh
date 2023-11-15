@@ -18,6 +18,8 @@ name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
 # prerelease=$( [[ "${2}" =~ ^(-p|prerelease)$ ]] && echo true || echo false )
 prerelease=true
 debug=$( [[ $OS == "Darwin" ]] && echo true || echo false )
+ipv4="$(curl -m 5 -fsL4 http://ipv4.ip.sb)"
+# ipv6="$(curl -m 5 -fsL6 http://ipv6.ip.sb)"
 
 check_root () {
   if [[ "$USER" != 'root' ]]; then # [[ "$EUID" -ne 0 ]]
@@ -159,11 +161,17 @@ install_deps () {
 download () {
   suffix=$( [[ "$prerelease" = true ]] && echo "releases" || echo "releases/latest" )
   if [[ -n "$repo" ]]; then
-    api="https://api.github.com/repos/$repo/$suffix"
-    # echo "curl -s $api | grep \"browser_download_url.*$match\" | head -1"; exit;
+    # api="https://api.github.com/repos/$repo/$suffix"
+    api="https://sh.vps.dance/api/repos/$repo/$suffix"
+    # curl -s https://api.github.com/repos/nxtrace/NTrace-core/releases | grep "browser_download_url.*$match" | head -1 | cut -d : -f 2,3 | xargs echo
     url=$( curl -s $api | grep "browser_download_url.*$match" | head -1 | cut -d : -f 2,3 | xargs echo ) # xargs wget
     # url=${url/"https://github.com"/"https://hub.fastgit.org"} # cdn
-    url="https://ghproxy.com/$url" # cdn
+    if [ -z "$ipv4" ]; then
+      url="https://sh.vps.dance/$url"
+    else
+      url="https://ghproxy.com/$url" # cdn
+    fi
+    # echo $api; echo $url;exit
   fi
   echo $app
   case "$app" in
