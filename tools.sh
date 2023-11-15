@@ -158,33 +158,37 @@ install_deps () {
     ;;
   esac
 }
+not_support_ipv6 () {
+  app="$1"
+  if [ -z "$ipv4" ]; then
+    printf "\n${RED}[x] $app does not support downloading over IPv6. ${NC}\n\n"; exit 1;
+  fi
+}
 download () {
   suffix=$( [[ "$prerelease" = true ]] && echo "releases" || echo "releases/latest" )
+  prefix=$( [ -z "$ipv4" ] && echo "https://sh.vps.dance" || echo "https://ghproxy.com" )
   if [[ -n "$repo" ]]; then
     # api="https://api.github.com/repos/$repo/$suffix"
     api="https://sh.vps.dance/api/repos/$repo/$suffix"
     # curl -s https://api.github.com/repos/nxtrace/NTrace-core/releases | grep "browser_download_url.*$match" | head -1 | cut -d : -f 2,3 | xargs echo
     url=$( curl -s $api | grep "browser_download_url.*$match" | head -1 | cut -d : -f 2,3 | xargs echo ) # xargs wget
     # url=${url/"https://github.com"/"https://hub.fastgit.org"} # cdn
-    if [ -z "$ipv4" ]; then
-      url="https://sh.vps.dance/$url"
-    else
-      url="https://ghproxy.com/$url" # cdn
-    fi
-    # echo $api; echo $url;exit
+    url="$prefix/$url"
   fi
+  # echo $api; echo $url;exit
   echo $app
   case "$app" in
     snell)
       version="v3.0.1"
       url="https://raw.githubusercontent.com/VPSDance/files/main/snell/${version}/snell-server-${version}-${match}.zip"
-      url="https://ghproxy.com/$url" # cdn
+      url="$prefix/$url"
     ;;
     snell4)
+      not_support_ipv6 $app
       # https://manual.nssurge.com/others/snell.html
       version="v4.0.1"
       # url="https://raw.githubusercontent.com/VPSDance/files/main/snell/${version}/snell-server-${version}-${match}.zip"
-      # url="https://ghproxy.com/$url" # cdn
+      # url="$prefix/$url"
       url="https://dl.nssurge.com/snell/snell-server-${version}-${match}.zip"
     ;;
     realm)
@@ -193,6 +197,7 @@ download () {
       fi
     ;;
     wtrace)
+      not_support_ipv6 $app
       case $ARCH in
         aarch64)
           printf "${RED}[x] $ARCH not supported ${PLAIN}\n${NC}"; exit 1;
