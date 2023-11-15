@@ -102,7 +102,7 @@ install_tool() {
   bash <(curl -Lso- ${SH}/tools.sh) "$@"
 }
 install_xray() {
-  bash <(curl -fsSL $(raw 'ghproxy')/XTLS/Xray-install/main/install-release.sh) install
+  bash <(curl -fsSL $(raw 'sh')/XTLS/Xray-install/main/install-release.sh) install
   # 使用增强版的 geosite/geoip 规则
   wget -O /usr/local/share/xray/geoip.dat ${GH}/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
   wget -O /usr/local/share/xray/geosite.dat ${GH}/https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat
@@ -122,7 +122,7 @@ unlock_test() {
 }
 tiktok_test() {
   info "bash <(curl -Lso- "$(raw '')/lmc999/TikTokCheck/main/tiktok.sh")"
-  bash <(curl -Lso- ${SH}/raw/lmc999/TikTokCheck/main/tiktok.sh)
+  bash <(curl -Lso- "$(raw 'sh')/lmc999/TikTokCheck/main/tiktok.sh")
 }
 openai_test() {
   info "bash <(curl -Lso- "$(raw '')/missuo/OpenAI-Checker/main/openai.sh")"
