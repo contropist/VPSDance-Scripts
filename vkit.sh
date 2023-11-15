@@ -26,6 +26,8 @@ raw() {
     echo "${GH}/${RAW}"
   elif [[ "${1}" =~ ^(ghproxy)$ ]]; then
     echo "${GH}/${RAW}"
+  elif [[ "${1}" =~ ^(sh)$ ]]; then
+    echo "${SH}/raw"
   else
     echo $RAW
   fi
@@ -88,7 +90,7 @@ install_deps() {
 }
 install_bbr() {
   info "bash <(curl -Lso- "$(raw '')/teddysun/across/master/bbr.sh")"
-  bash <(curl -Lso- $(raw 'ghproxy')/teddysun/across/master/bbr.sh)
+  bash <(curl -Lso- $(raw 'sh')/teddysun/across/master/bbr.sh)
 }
 ssh_key() { bash <(curl -Lso- ${SH}/ssh.sh); }
 bashrc() { bash <(curl -Lso- ${SH}/bashrc.sh); }
@@ -124,7 +126,7 @@ tiktok_test() {
 }
 openai_test() {
   info "bash <(curl -Lso- "$(raw '')/missuo/OpenAI-Checker/main/openai.sh")"
-  bash <(curl -Lso- "$(raw 'ghproxy')/missuo/OpenAI-Checker/main/openai.sh")
+  bash <(curl -Lso- "$(raw 'sh')/missuo/OpenAI-Checker/main/openai.sh")
 }
 bench() { bash <(curl -Lso- ${SH}/bench.sh); }
 # speedtest() { bash <(curl -Lso- ${SH}/speedtest.sh); }
