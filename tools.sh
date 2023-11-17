@@ -166,7 +166,7 @@ not_support_ipv6 () {
 }
 download () {
   suffix=$( [[ "$prerelease" = true ]] && echo "releases" || echo "releases/latest" )
-  prefix=$( [ -z "$ipv4" ] && echo "https://sh.vps.dance" || echo "https://ghproxy.com" )
+  prefix=$( [ -z "$ipv4" ] && echo "https://sh.vps.dance" || echo "https://mirror.ghproxy.com" )
   if [[ -n "$repo" ]]; then
     # api="https://api.github.com/repos/$repo/$suffix"
     api="https://sh.vps.dance/api/repos/$repo/$suffix"

@@ -4,7 +4,7 @@
 # https://github.com/lmc999/RegionRestrictionCheck
 
 url="lmc999/RegionRestrictionCheck/main/check.sh"
-# url="https://ghproxy.com/https://raw.githubusercontent.com/$url" # cdn
+
 url="https://sh.vps.dance/raw/$url"
 main() {
   bash <(
