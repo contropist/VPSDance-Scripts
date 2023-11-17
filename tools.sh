@@ -172,7 +172,6 @@ download () {
     api="https://sh.vps.dance/api/repos/$repo/$suffix"
     # curl -s https://api.github.com/repos/nxtrace/NTrace-core/releases | grep "browser_download_url.*$match" | head -1 | cut -d : -f 2,3 | xargs echo
     url=$( curl -s $api | grep "browser_download_url.*$match" | head -1 | cut -d : -f 2,3 | xargs echo ) # xargs wget
-    # url=${url/"https://github.com"/"https://hub.fastgit.org"} # cdn
     url="$prefix/$url"
   fi
   # echo $api; echo $url;exit

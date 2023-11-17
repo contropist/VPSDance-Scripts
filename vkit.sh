@@ -20,16 +20,11 @@ GH='https://mirror.ghproxy.com'
 
 raw() {
   RAW='https://raw.githubusercontent.com'
-  if [[ "$cnd" =~ ^(fastgit)$ ]]; then
-    echo "https://raw.fastgit.org"
-  elif [[ "$cnd" =~ ^(ghproxy)$ ]]; then
-    echo "${GH}/${RAW}"
-  elif [[ "${1}" =~ ^(ghproxy)$ ]]; then
-    echo "${GH}/${RAW}"
-  elif [[ "${1}" =~ ^(sh)$ ]]; then
-    echo "${SH}/raw"
-  else
-    echo $RAW
+  # if [[ "$cnd" =~ ^(fastgit)$ ]]; then echo "https://raw.fastgit.org"
+  if [[ "$cnd" =~ ^(ghproxy)$ ]]; then echo "${GH}/${RAW}"
+  elif [[ "${1}" =~ ^(ghproxy)$ ]]; then echo "${GH}/${RAW}"
+  elif [[ "${1}" =~ ^(sh)$ ]]; then echo "${SH}/raw"
+  else echo $RAW
   fi
 }
 # echo $(raw 'ghproxy')
