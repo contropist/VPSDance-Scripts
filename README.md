@@ -4,7 +4,6 @@ Tools and Scripts for Linux VPS
 
 <!--
 # cdn: https://cdn.jsdelivr.net/gh/:user/:repo/, https://cdn.jsdelivr.net/gh/cloudend/scripts@main/tools.sh
-# cdn: https://hub.fastgit.org/:user/:repo/, https://hub.fastgit.org/zhboner/realm/releases/download/v1.4/realm
 # cdn: https://ghproxy.com/https://github.com/:user/:repo/, https://ghproxy.com/https://github.com/zhboner/realm/releases/download/v1.4/realm
 -->
 
@@ -67,6 +66,37 @@ bash <(curl -Lso- https://sh.vps.dance/autoBestTrace.sh)
 ```sh
 bash <(curl -Lso- https://sh.vps.dance/paste.sh)
 ```
+
+## Acknowledgements
+
+Thanks to the following projects:
+
+- [Github](https://github.com)
+- [Cloudflare Workers](https://workers.cloudflare.com)
+- [ghproxy](https://github.com/hunshcn/gh-proxy)
+- [jsdelivr](https://github.com/jsdelivr)
+- [ip.sb](https://ip.sb)
+- [ubuntu Pastebin](https://pastebin.ubuntu.com)
+- [speedtest cli](https://www.speedtest.net/apps/cli)
+- [bench.sh, bbr.sh](https://github.com/teddysun/across)
+- [HyperSpeed](https://github.com/veoco/bim-core)
+- [YABS](https://github.com/masonr/yet-another-bench-script)
+- [RegionRestrictionCheck](https://github.com/lmc999/RegionRestrictionCheck)
+- [TikTokCheck](https://github.com/lmc999/TikTokCheck)
+- [OpenAI-Checker](https://github.com/missuo/OpenAI-Checker)
+- [nekoneko shs](https://github.com/nkeonkeo/shs)
+- [ddns-go](https://github.com/jeessy2/ddns-go)
+- [realm](https://github.com/zhboner/realm)
+- [gost](https://github.com/ginuerzh/gost)
+- [NextTrace](https://github.com/nxtrace/Ntrace-core)
+- [nali](https://github.com/zu1k/nali)
+- [WorstTrace](https://wtrace.app)
+- [BestTrace](https://www.ipip.net/product/client.html)
+- [SuperBench](https://github.com/oooldking/script)
+<!-- - [hysteria](https://github.com/apernet/hysteria) -->
+<!-- - [ss-rust](https://github.com/shadowsocks/shadowsocks-rust) -->
+<!-- - [Project X](https://github.com/XTLS/Xray-core) -->
+<!-- - snell -->
 
 <!--
 update cache:
