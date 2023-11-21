@@ -62,8 +62,8 @@ fi
 
 # ip_len=${#ip_list[@]}
 
-for i in {0..8}; do
+for i in "${!ip_addr[@]}"; do
   echo ${ip_addr[$i]}
-  ./besttrace2021 -q1 -g cn -T ${ip_list[$i]}
+  besttrace -q1 -g cn -T ${ip_list[$i]}
   next
 done

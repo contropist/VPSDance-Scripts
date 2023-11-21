@@ -37,7 +37,7 @@ fi
 cancel() { exit 1; }
 trap cancel SIGINT SIGTERM
 
-for i in {0..8}; do
+for i in "${!ip_addr[@]}"; do
 	echo ${ip_addr[$i]}
 	nexttrace -T -q 1 ${ip_list[$i]} \
     | sed '/^.*Geo Data.*$/d' \
