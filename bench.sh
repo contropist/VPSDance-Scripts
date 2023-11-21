@@ -7,6 +7,7 @@ main() {
     curl -Lso- https://raw.githubusercontent.com/teddysun/across/master/bench.sh \
     | sed "/Los Angeles/Ii speed_test '3633' 'Shanghai CT'" \
     | sed "/Los Angeles/Ii speed_test '27594' 'Guangzhou CT'" \
+    | sed "/Los Angeles/Ii speed_test '29071' 'Chengdu CT'" \
     | sed "/Los Angeles/Ii speed_test '4870' 'Changsha CU'" \
     | sed "/Los Angeles/Ii speed_test '24447' 'ShangHai CU'" \
     | sed "/Los Angeles/Ii speed_test '4575' 'Chengdu CM'" \
@@ -27,3 +28,4 @@ main
 # https://www.speedtest.net/api/js/servers?search=联通
 # https://www.speedtest.net/api/js/servers?search=China%20Mobile
 # https://www.speedtest.net/api/js/servers?search=移动
+./speedtest-cli/speedtest --progress=no --server-id="29071" --accept-license --accept-gdpr
