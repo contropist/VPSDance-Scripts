@@ -71,6 +71,7 @@ ssh_port() {
   # local port=$(shuf -i 10001-60000 -n 1); # echo $port
   local port='35653';
   read -p "Please enter the SSH port [default=$port]: " _p && [ -n "$_p" ] && SSH_PORT=$_p || SSH_PORT=$port;
+  sed -i 's/^#\?\(PubkeyAuthentication[[:space:]]\+\).*$/\1yes/' /etc/ssh/sshd_config
   sed -i "s/#\?.*\Port\s*.*$/Port $SSH_PORT/" /etc/ssh/sshd_config; systemctl restart sshd;
   # echo "Port $SSH_PORT" >> /etc/ssh/sshd_config; systemctl restart sshd;
   info "[*] /etc/ssh/sshd_config has been modified."
