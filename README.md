@@ -85,6 +85,7 @@ Thanks to the following projects:
 - [TikTokCheck](https://github.com/lmc999/TikTokCheck)
 - [OpenAI-Checker](https://github.com/missuo/OpenAI-Checker)
 - [nekoneko shs](https://github.com/nkeonkeo/shs)
+- [ecs](https://github.com/spiritLHLS/ecs)
 - [ddns-go](https://github.com/jeessy2/ddns-go)
 - [realm](https://github.com/zhboner/realm)
 - [gost](https://github.com/ginuerzh/gost)
