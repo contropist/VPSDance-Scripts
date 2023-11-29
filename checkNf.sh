@@ -17,7 +17,7 @@ while true; do
   if [ "$code" = "404" ]; then
     date +"%Y-%m-%d %H:%M:%S" >>$log
     # 不解锁时, 调用API自动更换IP
-    # curl http://xxx.com/change_ip >>$log
+    curl -k -m10 "http://xxx.com/change_ip" >>$log
   fi
   sleep $((60 * $interval)) # xx秒
 done
