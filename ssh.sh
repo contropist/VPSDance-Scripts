@@ -58,6 +58,8 @@ ssh_key () {
     sed -i -nr 'G;/^([^\n]+\n)([^\n]+\n)*\1/!{P;h}' "${home}/.ssh/authorized_keys"
   done
   success "[*] SSH public key has been added."
+  warn "\nEnable or Disable Password login:"
+  info " bash <(curl -Lso- https://sh.vps.dance/ssh.sh) pwd\n"
 }
 
 enable_pubkey() {
@@ -154,7 +156,7 @@ main() {
     ;;
     *)
       ssh_key
-      # warn "Please specify name (key|port)";
+      # warn "Please specify name (key|port|pwd)";
       exit
     ;;
   esac
