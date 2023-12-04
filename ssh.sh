@@ -5,20 +5,11 @@
 
 # DISTRO=$( ([[ -e "/usr/bin/yum" ]] && echo 'CentOS') || ([[ -e "/usr/bin/apt" ]] && echo 'Debian') || echo 'unknown' )
 # Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE="\033[34m"
-PURPLE="\033[35m"
-BOLD="\033[1m"
-NC='\033[0m'
-name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
-info() {
-  printf "${BLUE}%s${NC} ${@:2}\n" "$1"
-}
-warn() {
-  printf "${YELLOW}%s${NC}\n" "$@"
-}
+RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[0;33m'; BLUE='\033[34m'; CYAN='\033[0;36m'; PURPLE='\033[35m'; BOLD='\033[1m'; NC='\033[0m';
+success() { printf "${GREEN}%b${NC} ${@:2}\n" "$1"; }
+info() { printf "${CYAN}%b${NC} ${@:2}\n" "$1"; }
+danger() { printf "\n${RED}[x] %b${NC}\n" "$@"; }
+warn() { printf "${YELLOW}%b${NC}\n" "$@"; }
 
 # Set up SSH public key authentication
 # mkdir -m 700 ~/.ssh; chmod 600 ~/.ssh/authorized_keys >> ~/.ssh/authorized_keys
@@ -39,10 +30,10 @@ ssh_key () {
   text=$(echo "$text" | sed '/^$/d')
   # echo "public key=$text"
   # echo "$text" >> "${HOME}/.ssh/authorized_keys"
-
   # for line in $text; do echo "$line"; sed -i "/$line/d" test; done
   # echo "$text" >> test
 
+  enable_pubkey
   for home in /root /home/*;
   do
     if [[ ! -e "$home" ]]; then continue; fi;
@@ -54,6 +45,24 @@ ssh_key () {
     sed -i "/^$/d" "${home}/.ssh/authorized_keys"
     sed -i -nr 'G;/^([^\n]+\n)([^\n]+\n)*\1/!{P;h}' "${home}/.ssh/authorized_keys"
   done
+  password_tip;
+}
+
+enable_pubkey() {
+  sed -i 's/^#\?\(PubkeyAuthentication[[:space:]]\+\).*$/\1yes/' /etc/ssh/sshd_config
+  systemctl restart sshd;
+}
+# disable_password() {
+#   sed -i 's/^#\?\(PasswordAuthentication[[:space:]]\+\).*$/\1no/' /etc/ssh/sshd_config
+#   systemctl restart sshd;
+# }
+password_tip() {
+  echo ""
+  echo "Disable password login:"
+  info "  sed -i 's/^#\?\(PasswordAuthentication[[:space:]]\+\).*$/\1no/' /etc/ssh/sshd_config; systemctl restart sshd;"
+  echo "Enable password login:"
+  info "  sed -i 's/^#\?\(PasswordAuthentication[[:space:]]\+\).*$/\1yes/' /etc/ssh/sshd_config; systemctl restart sshd;"
+  echo ""
 }
 
 iptables_persistence() { # Debian/Ubuntu
@@ -71,9 +80,9 @@ ssh_port() {
   # local port=$(shuf -i 10001-60000 -n 1); # echo $port
   local port='35653';
   read -p "Please enter the SSH port [default=$port]: " _p && [ -n "$_p" ] && SSH_PORT=$_p || SSH_PORT=$port;
-  sed -i 's/^#\?\(PubkeyAuthentication[[:space:]]\+\).*$/\1yes/' /etc/ssh/sshd_config
-  sed -i "s/#\?.*\Port\s*.*$/Port $SSH_PORT/" /etc/ssh/sshd_config; systemctl restart sshd;
-  # echo "Port $SSH_PORT" >> /etc/ssh/sshd_config; systemctl restart sshd;
+  sed -i "s/#\?.*\Port\s*.*$/Port $SSH_PORT/" /etc/ssh/sshd_config;
+  # echo "Port $SSH_PORT" >> /etc/ssh/sshd_config;
+  systemctl restart sshd;
   info "[*] /etc/ssh/sshd_config has been modified."
   if [ -e /etc/sysconfig/firewalld ]; then # CentOS
     if [[ $( firewall-cmd --zone=public --query-port=${SSH_PORT}/tcp ) == 'no' ]]; then
