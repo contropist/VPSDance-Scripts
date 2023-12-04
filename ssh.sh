@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-# # bash <(curl -Lso- https://sh.vps.dance/ssh.sh) [key|port]
+# # bash <(curl -Lso- https://sh.vps.dance/ssh.sh) [key|port|pwd]
 
 # DISTRO=$( ([[ -e "/usr/bin/yum" ]] && echo 'CentOS') || ([[ -e "/usr/bin/apt" ]] && echo 'Debian') || echo 'unknown' )
 # Colors
@@ -10,6 +10,18 @@ success() { printf "${GREEN}%b${NC} ${@:2}\n" "$1"; }
 info() { printf "${CYAN}%b${NC} ${@:2}\n" "$1"; }
 danger() { printf "\n${RED}[x] %b${NC}\n" "$@"; }
 warn() { printf "${YELLOW}%b${NC}\n" "$@"; }
+promptYn () {
+  default=${2:-Y}
+  while true; do
+    read -p "${1:-"Please answer"} ([Y]es, [N]o), default [$default] " yn
+    case "${yn:-$default}" in
+      [Yy]* ) return 0;;
+      [Nn]* ) return 1;;
+      * ) clear; echo "Please answer [y] yes or [n] no.";;
+    esac
+  done
+}
+name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
 
 # Set up SSH public key authentication
 # mkdir -m 700 ~/.ssh; chmod 600 ~/.ssh/authorized_keys >> ~/.ssh/authorized_keys
@@ -45,24 +57,49 @@ ssh_key () {
     sed -i "/^$/d" "${home}/.ssh/authorized_keys"
     sed -i -nr 'G;/^([^\n]+\n)([^\n]+\n)*\1/!{P;h}' "${home}/.ssh/authorized_keys"
   done
-  password_tip;
+  success "[*] SSH public key has been added."
 }
 
 enable_pubkey() {
   sed -i 's/^#\?\(PubkeyAuthentication[[:space:]]\+\).*$/\1yes/' /etc/ssh/sshd_config
   systemctl restart sshd;
 }
-# disable_password() {
-#   sed -i 's/^#\?\(PasswordAuthentication[[:space:]]\+\).*$/\1no/' /etc/ssh/sshd_config
-#   systemctl restart sshd;
-# }
-password_tip() {
-  echo ""
-  echo "Disable password login:"
-  info "  sed -i 's/^#\?\(PasswordAuthentication[[:space:]]\+\).*$/\1no/' /etc/ssh/sshd_config; systemctl restart sshd;"
-  echo "Enable password login:"
-  info "  sed -i 's/^#\?\(PasswordAuthentication[[:space:]]\+\).*$/\1yes/' /etc/ssh/sshd_config; systemctl restart sshd;"
-  echo ""
+enable_pwd() {
+  sed -i 's/^#\?\(PasswordAuthentication[[:space:]]\+\).*$/\1yes/' /etc/ssh/sshd_config
+  systemctl restart sshd;
+  success "[*] SSH PasswordAuthentication has been enabled."
+}
+disable_pwd() {
+  sed -i 's/^#\?\(PasswordAuthentication[[:space:]]\+\).*$/\1no/' /etc/ssh/sshd_config
+  systemctl restart sshd;
+  success "[*] SSH PasswordAuthentication has been disabled."
+}
+ssh_pwd() {
+  local AR=(
+    [1]="Enable PasswordAuthentication"
+    [2]="Disable PasswordAuthentication"
+    [3]="Exit"
+  )
+  info "Enable or Disable Password login:"
+  for i in "${!AR[@]}"; do
+    success "$i." "${AR[i]}"
+  done
+  while :; do
+    read -p "Please enter a number: " num
+    [[ $num =~ ^[0-9]+$ ]] || { danger "invalid number"; continue; }
+    break
+  done
+  case $num in
+    1)
+      enable_pwd
+    ;;
+    2)
+      disable_pwd
+    ;;
+    *)
+      exit
+    ;;
+  esac
 }
 
 iptables_persistence() { # Debian/Ubuntu
@@ -111,6 +148,9 @@ main() {
     ;;
     port)
       ssh_port
+    ;;
+    pwd)
+      ssh_pwd
     ;;
     *)
       ssh_key
