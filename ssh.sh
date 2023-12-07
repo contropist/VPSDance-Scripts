@@ -26,7 +26,8 @@ name=$( tr '[:upper:]' '[:lower:]' <<<"$1" )
 # Set up SSH public key authentication
 # mkdir -m 700 ~/.ssh; chmod 600 ~/.ssh/authorized_keys >> ~/.ssh/authorized_keys
 ssh_key () {
-  for home in /root /home/*; # do { if [[ ! -e "$home" ]]; then continue; fi; echo $home; }; done
+  # for home in /root /home/*; do { if [[ ! -e "$home" ]]; then continue; fi; echo $home; }; done
+  for home in /root /home/*;
   do
     if [[ ! -e "$home" ]]; then continue; fi;
     mkdir -p "${home}/.ssh"; chmod 700 "${home}/.ssh";
