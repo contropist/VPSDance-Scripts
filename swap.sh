@@ -12,7 +12,7 @@ warn() { printf "${YELLOW}%s${NC}\n" "$@"; }
 swap_info() {
   info "当前swap:"
   # free -h
-  swapon -s
+  swapon --show
 }
 swap_file="/vd_swap"
 line_mark="# vd_swap"
@@ -20,7 +20,7 @@ create_swap() {
   clear;
   while :; do
     read -p "请输入swap大小 (单位为G): " swap_size
-    [[ $swap_size =~ ^[1-9]+$ ]] || {
+    [[ $swap_size =~ ^[0-9]*\.?[0-9]+$ ]] || {
       echo "invalid number"
       continue
     }
