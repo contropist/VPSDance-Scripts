@@ -314,10 +314,10 @@ gen_config () {
   # )"
   case "$app" in
     snell)
-      conf="[snell-server]\nlisten = 0.0.0.0:$port\nipv6 = false\npsk = $pass\nobfs = tls"
+      conf="[snell-server]\nlisten = ::0:$port\nipv6 = false\npsk = $pass\nobfs = tls"
     ;;
     snell4)
-      conf="[snell-server]\nlisten = 0.0.0.0:$port\nipv6 = false\npsk = $pass" #v4
+      conf="[snell-server]\nlisten = ::0:$port\nipv6 = false\npsk = $pass" #v4
     ;;
     realm)
       conf=(''
@@ -393,7 +393,7 @@ finally () {
   else
     echo -e "${GREEN}\n[Usage]${NC}"
   fi
-  service_tips="systemctl restart $app; systemctl status $app;"
+  service_tips="systemctl enable $app; systemctl restart $app; systemctl status $app;"
   case "$app" in
     hysteria-server)
       tips="Please modify the ${RED}listen${NC}, ${RED}acme.domains${NC}, ${RED}acme.email${NC}, and ${RED}masquerade.proxy.url${NC} in the /etc/hysteria/config.yaml file."
