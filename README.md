@@ -94,7 +94,7 @@ Thanks to the following projects:
 - [WorstTrace](https://wtrace.app)
 - [BestTrace](https://www.ipip.net/product/client.html)
 - [SuperBench](https://github.com/oooldking/script)
-<!-- - [hysteria](https://github.com/apernet/hysteria) -->
+- [hysteria2](https://github.com/apernet/hysteria)
 <!-- - [ss-rust](https://github.com/shadowsocks/shadowsocks-rust) -->
 <!-- - [Project X](https://github.com/XTLS/Xray-core) -->
 <!-- - snell -->
