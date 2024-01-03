@@ -21,6 +21,7 @@ main() {
   )
 }
 main
+# ./speedtest-cli/speedtest --progress=no --server-id="29071" --accept-license --accept-gdpr
 
 # https://www.speedtest.net/api/js/servers?search=China%20Telecom
 # https://www.speedtest.net/api/js/servers?search=电信
@@ -28,4 +29,3 @@ main
 # https://www.speedtest.net/api/js/servers?search=联通
 # https://www.speedtest.net/api/js/servers?search=China%20Mobile
 # https://www.speedtest.net/api/js/servers?search=移动
-./speedtest-cli/speedtest --progress=no --server-id="29071" --accept-license --accept-gdpr
