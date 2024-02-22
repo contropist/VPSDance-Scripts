@@ -28,11 +28,17 @@ ulimited_tuning() {
     echo 'session required pam_limits.so' >> "$pam_limits"
   fi
   # max open files
-  sed -i '/fs.file-max/d' "$sysctl_conf"
-  echo 'fs.file-max=102400' >> "$sysctl_conf"
+  if [ -w /proc/sys/fs/file-max ]; then
+    sed -i '/fs.file-max/d' "$sysctl_conf"
+    echo 'fs.file-max=102400' >> "$sysctl_conf"
+  fi
   # watch limit
-  echo 'fs.inotify.max_user_instances=999' >> "$sysctl_conf"
-  echo 'fs.inotify.max_user_watches=81920' >> "$sysctl_conf"
+  if [ -w /proc/sys/fs/inotify/max_user_instances ]; then
+    sed -i '/inotify.max_user_instances/d' "$sysctl_conf"
+    echo 'fs.inotify.max_user_instances=999' >> "$sysctl_conf"
+    sed -i '/inotify.max_user_watches/d' "$sysctl_conf"
+    echo 'fs.inotify.max_user_watches=81920' >> "$sysctl_conf"
+  fi
   # max user processes
   for usr in $allusers '\*'; do
     usr="${usr/\\/}"
@@ -72,22 +78,26 @@ tcp_tuning() {
   echo 'net.ipv4.tcp_window_scaling=1' >> "$sysctl_conf"
   # TCP缓冲区
   BDP='16777216' # 26214400
-  # sed -i '/net.ipv4.tcp_rmem/d' "$sysctl_conf"
-  # sed -i '/net.ipv4.tcp_wmem/d' "$sysctl_conf"
-  # echo "net.ipv4.tcp_rmem=4096 131072 $BDP" >> "$sysctl_conf"
-  # echo "net.ipv4.tcp_wmem=4096 16384 $BDP" >> "$sysctl_conf"
-  sed -i '/net.core.rmem_max/d' "$sysctl_conf"
-  sed -i '/net.core.wmem_max/d' "$sysctl_conf"
-  echo "net.core.rmem_max=$BDP" >> "$sysctl_conf"
-  echo "net.core.wmem_max=$BDP" >> "$sysctl_conf"
-  sed -i '/net.core.rmem_default/d' "$sysctl_conf"
-  echo "net.core.rmem_default=$BDP" >> "$sysctl_conf" # 212992, `$BDP / 2`
+  if [ -w /proc/sys/net/core/rmem_max ]; then
+    # sed -i '/net.ipv4.tcp_rmem/d' "$sysctl_conf"
+    # sed -i '/net.ipv4.tcp_wmem/d' "$sysctl_conf"
+    # echo "net.ipv4.tcp_rmem=4096 131072 $BDP" >> "$sysctl_conf"
+    # echo "net.ipv4.tcp_wmem=4096 16384 $BDP" >> "$sysctl_conf"
+    sed -i '/net.core.rmem_max/d' "$sysctl_conf"
+    sed -i '/net.core.wmem_max/d' "$sysctl_conf"
+    echo "net.core.rmem_max=$BDP" >> "$sysctl_conf"
+    echo "net.core.wmem_max=$BDP" >> "$sysctl_conf"
+    sed -i '/net.core.rmem_default/d' "$sysctl_conf"
+    echo "net.core.rmem_default=$BDP" >> "$sysctl_conf" # 212992, `$BDP / 2`
+  fi
   # TCP Fast Open
   sed -i '/net.ipv4.tcp_fastopen/d' "$sysctl_conf"
   echo 'net.ipv4.tcp_fastopen=1' >> "$sysctl_conf"
-  # 网卡设备将请求放入队列的最大长度(默认值1000)
-  sed -i '/net.core.netdev_max_backlog/d' "$sysctl_conf"
-  echo 'net.core.netdev_max_backlog=32768' >> "$sysctl_conf"
+  if [ -w /proc/sys/net/core/netdev_max_backlog ]; then
+    # 网卡设备将请求放入队列的最大长度(默认值1000)
+    sed -i '/net.core.netdev_max_backlog/d' "$sysctl_conf"
+    echo 'net.core.netdev_max_backlog=32768' >> "$sysctl_conf"
+  fi
   # 接受SYN同步包的最大客户端数量(默认值128)
   sed -i '/net.ipv4.tcp_max_syn_backlog/d' "$sysctl_conf"
   echo 'net.ipv4.tcp_max_syn_backlog=8192' >> "$sysctl_conf"
