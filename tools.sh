@@ -195,6 +195,9 @@ download () {
         rm -rf /usr/bin/realm ./realm;
       fi
     ;;
+    nexttrace)
+      rm -rf ./nexttrace_*
+    ;;
     wtrace)
       not_support_ipv6 $app
       case $ARCH in
