@@ -245,7 +245,7 @@ menu() {
     # [23]="检测 VPS到国内网速"
     # [23]="检测 VPS到国内网速 (Superspeed)"
     # [23]="检测 VPS到国内网速 (HyperSpeed)"
-    [23]="检测 单线程/多线程测速 (i-abc Speedtest)"
+    [23]="检测 单线程/多线程网速 (i-abc/Speedtest)"
     [24]="性能/IO 测试 (YABS)"
     # [25]="检测 VPS信息/IO/路由 (LemonBench)"
     [25]="检测 回程路由 (BestTrace)"
