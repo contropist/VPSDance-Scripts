@@ -79,6 +79,7 @@ Thanks to the following projects:
 - [ubuntu Pastebin](https://pastebin.ubuntu.com)
 - [speedtest cli](https://www.speedtest.net/apps/cli)
 - [bench.sh, bbr.sh](https://github.com/teddysun/across)
+- [i-abc/Speedtest](https://github.com/i-abc/Speedtest)
 - [HyperSpeed](https://github.com/veoco/bim-core)
 - [YABS](https://github.com/masonr/yet-another-bench-script)
 - [RegionRestrictionCheck](https://github.com/lmc999/RegionRestrictionCheck)

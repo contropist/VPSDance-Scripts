@@ -125,9 +125,9 @@ openai_test() {
 }
 bench() { bash <(curl -Lso- ${SH}/bench.sh); }
 # speedtest() { bash <(curl -Lso- ${SH}/speedtest.sh); }
-super_speed() { bash <(curl -Lso- $(raw 'ghproxy')/flyzy2005/superspeed/master/superspeed.sh); }
-  # https://github.com/veoco/bim-core/
-hyperspeed() { bash <(curl -Lso- https://bench.im/hyperspeed); }
+# https://github.com/veoco/bim-core/
+# hyperspeed() { bash <(curl -Lso- https://bench.im/hyperspeed); }
+iabc_speedtest() { bash <(curl -sL https://jihulab.com/i-abc/Speedtest/-/raw/main/speedtest.sh); }
 # lemon_bench() { curl -fsSL http://ilemonra.in/LemonBenchIntl | bash -s fast; }
 yabs() {
   while :; do
@@ -244,7 +244,8 @@ menu() {
     [22]="检测 VPS信息/IO/网速 (Bench.sh)"
     # [23]="检测 VPS到国内网速"
     # [23]="检测 VPS到国内网速 (Superspeed)"
-    [23]="检测 VPS到国内网速 (HyperSpeed)"
+    # [23]="检测 VPS到国内网速 (HyperSpeed)"
+    [23]="检测 单线程/多线程测速 (i-abc Speedtest)"
     [24]="性能/IO 测试 (YABS)"
     # [25]="检测 VPS信息/IO/路由 (LemonBench)"
     [25]="检测 回程路由 (BestTrace)"
@@ -293,7 +294,7 @@ install_menu() {
 
 main() {
   clear
-  header
+  # header
   if [[ "$num" == "1" ]]; then ssh_key
   elif [[ "$num" == "2" ]]; then bashrc
   elif [[ "$num" == "3" ]]; then install_bbr
@@ -322,7 +323,7 @@ main() {
   # elif [[ "$num" == "18" ]]; then install_wireguard
   elif [[ "$num" == "21" ]]; then unlock_test
   elif [[ "$num" == "22" ]]; then bench
-  elif [[ "$num" == "23" ]]; then hyperspeed
+  elif [[ "$num" == "23" ]]; then iabc_speedtest
   elif [[ "$num" == "24" ]]; then yabs
   elif [[ "$num" == "25" ]]; then besttrace
   elif [[ "$num" == "26" ]]; then nexttrace
