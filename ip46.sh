@@ -53,7 +53,7 @@ check_ip46() {
   success "检测访问网络优先级 (显示IPv4, 则为IPv4优先; 显示IPv6, 则为IPv6优先):"
   curl ip.sb
   warn "PS: IPv6优先, 并不能保证所有请求都走IPv6, 某些客户端可能需要额外设定"
-  echo "比如: xray/v2ray设定UseIPv6, ss设定ipv6_first, trojan设定prefer_ipv4"
+  echo "比如: xray/v2ray设定UseIPv6, ss设定ipv6_first, trojan设定prefer_ipv4, hy2设定 direct.mode"
 }
 
 # = enable/disable IPv6
